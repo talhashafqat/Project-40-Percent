@@ -52,13 +52,24 @@ app.post("/signup", function (req, res) {
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
 
-    const newUser = new User({
-        name: userName,
-        email: userEmail,
-        password: userPassword
+    User.findOne({ email: userEmail }, function (err, foundList) {
+        if (!err) {
+            if (!foundList) {
+                console.log("User is not registered");
+                const newUser = new User({
+                    name: userName,
+                    email: userEmail,
+                    password: userPassword
+                });
+
+                newUser.save();
+            } else {
+                console.log("User is registered");
+            }
+        }
     });
 
-    newUser.save();
+
 
 });
 
