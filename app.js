@@ -1,13 +1,35 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const mongoose = require("mongoose");
 
 const app = express();
+
+mongoose.connect("mongodb://localhost:27017/growingTreesDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+const newUserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, "Check Data Entry, no name specified"]
+    },
+    email: {
+        type: String,
+        required: [true, "Check Data Entry, no email specified"]
+    },
+    password: {
+        type: String,
+        required: [true, "Check Data Entry, no password specified"]
+    }
+});
+
+const User = mongoose.model("User", newUserSchema);
+
 
 app.get("/", function (req, res) {
     res.render("signin");
@@ -30,7 +52,14 @@ app.post("/signup", function (req, res) {
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
 
-    console.log(userName + ' ' + userEmail + ' ' + userPassword);
+    const newUser = new User({
+        name: userName,
+        email: userEmail,
+        password: userPassword
+    });
+
+    newUser.save();
+
 });
 
 app.listen(3000, function () {
