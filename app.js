@@ -30,13 +30,15 @@ const newUserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", newUserSchema);
 
+var alreadyRegisteredError = false;
+
 
 app.get("/", function (req, res) {
     res.render("signin");
 });
 
 app.get("/signup", function (req, res) {
-    res.render("signup");
+    res.render("signup", { alreadyRegisteredError: alreadyRegisteredError });
 });
 
 app.post("/signin", function (req, res) {
@@ -64,12 +66,12 @@ app.post("/signup", function (req, res) {
 
                 newUser.save();
             } else {
+                alreadyRegisteredError = true;
                 console.log("User is registered");
+                res.render("signup", { alreadyRegisteredError: alreadyRegisteredError });
             }
         }
     });
-
-
 
 });
 

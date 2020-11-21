@@ -2795,6 +2795,13 @@ body.dark .login__links .login__link:hover {
   padding-top: 15px;
 }
 
+.invalid__login {
+  font-size: 12px;
+  padding-top: 10px;
+  padding-left: 10px;
+  color: #DB2727;
+}
+
 .field__view {
   position: absolute;
   top: 0;

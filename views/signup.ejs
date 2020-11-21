@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>Sign Up</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" media="all" href="/css/styles.css">
-</head>
+<%- include("partials/header.ejs") %>
 
-<body>
     <div class="out">
         <div class="login">
             <div class="login__container">
@@ -29,8 +20,10 @@
                                 <div class="field__wrap password__input"><input class="field__input " required
                                         type="password" name="userPassword" placeholder="Password">
                                 </div>
-                                <div class="field__wrap">
-                                    <p id="alreadyRegistered"></p>
+                                <div class="field__wrap" id="registrationError">
+                                  <% if (alreadyRegisteredError) { %>
+                                    <p class="invalid__login">This Email is already resgistered</p>
+                                <%  }; %>
                                 </div>
                             </div><button class="login__btn btn btn btn_green" type="submit">Continue</button>
                             <div class="login__or">or</div>
@@ -48,6 +41,4 @@
         </div>
     </div>
 
-</body>
-
-</html>
+<%- include("partials/footer.ejs") %>
