@@ -30,11 +30,12 @@ const newUserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", newUserSchema);
 
-var alreadyRegisteredError = false;
+var alreadyRegisteredError;
 
 
 app.get("/", function (req, res) {
     res.render("signin");
+    alreadyRegisteredError = false;
 });
 
 app.get("/signup", function (req, res) {
