@@ -26,6 +26,13 @@
                                 <div class="field__wrap password__input"><input class="field__input " required
                                         type="password" name="userPassword" placeholder="Password">
                                 </div>
+
+                                <div class="field__wrap" id="registrationError">
+                                  <% if (invalidUser) { %>
+                                    <p class="invalid__login">Invalid Username or Password</p>
+                                <%  }; %>
+                                </div>
+
                             </div><button class="login__btn btn btn btn_green" type="submit">Continue</button>
                             <div class="login__or">or</div>
                             <div class="login__btns"><button class="login__btn btn btn btn_border-gray"

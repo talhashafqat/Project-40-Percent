@@ -31,11 +31,13 @@ const newUserSchema = new mongoose.Schema({
 const User = mongoose.model("User", newUserSchema);
 
 var alreadyRegisteredError;
-
+var invalidUser;
 
 app.get("/", function (req, res) {
-    res.render("signin");
     alreadyRegisteredError = false;
+    invalidUser = false;
+    res.render("signin", {invalidUser: invalidUser});
+
 });
 
 app.get("/signup", function (req, res) {
@@ -46,8 +48,16 @@ app.post("/signin", function (req, res) {
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
 
-    console.log(userEmail);
-    console.log(userPassword);
+    User.findOne({ email: userEmail , password: userPassword}, function (err, foundList) {
+        if (!err) {
+            if (!foundList) {
+              invalidUser = true;
+                res.render("signin", {invalidUser: invalidUser});
+            } else {
+                res.send("User logged In");
+            }
+          }
+      });
 });
 
 app.post("/signup", function (req, res) {
