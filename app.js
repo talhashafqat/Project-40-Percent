@@ -2,17 +2,28 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const googlePlusToken = require("passport-google-plus-token");
+const passport = require("passport");
+const cookieSession = require("cookie-session");
+require("./passport-setup");
 
 const app = express();
 
+//MongoDB Connection Established to LocalHost
 mongoose.connect("mongodb://localhost:27017/growingTreesDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
-
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieSession({
+    name: "GrowingTress",
+    keys: ["key1", "key2"]
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
+//New User Data Schema
 const newUserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -33,11 +44,31 @@ const User = mongoose.model("User", newUserSchema);
 var alreadyRegisteredError;
 var invalidUser;
 
+//Google OAuth Connection
+app.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/failed' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/success');
+  });
+
+
 app.get("/", function (req, res) {
     alreadyRegisteredError = false;
     invalidUser = false;
     res.render("signin", {invalidUser: invalidUser});
 
+});
+
+app.get("/failed", function(req,res){
+    res.send("Login Failed");
+});
+
+app.get("/success", function(req,res){
+    res.send("Welcome ! Successfully Logged In");
 });
 
 app.get("/signup", function (req, res) {
