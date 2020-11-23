@@ -24,8 +24,25 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile._json.email);
-    return(cb);
+    User.findOne({email:profile._json.email}, function(err,foundList){
+      if(!err){
+        if(!foundList){
+          console.log("This user is not registered");
+          const newUser = new User({
+              name: profile._json.name,
+              email: profile._json.email
+          });
+          newUser.save();
+          console.log("User saved");
+          return cb(err,foundList);
+        } else {
+          console.log("This user is registered with following email address");
+          console.log(foundList.email);
+          return cb(err,foundList);
+        }
+      }
+    });
+
   }
 ));
 
