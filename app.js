@@ -91,7 +91,7 @@ app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/failed' }),
+  passport.authenticate('google', { failureRedirect: '/newUser' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/success');
@@ -105,8 +105,8 @@ app.get("/", function (req, res) {
 
 });
 
-app.get("/failed", function(req,res){
-    res.send("Login Failed");
+app.get("/newUser", function(req,res){
+    res.send("New User added, Show him the register kid screen");
 });
 
 app.get("/success", function(req,res){
