@@ -60,7 +60,7 @@ const newUserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, "Check Data Entry, no password specified"]
+        // required: [true, "Check Data Entry, no password specified"]
     }
 });
 
