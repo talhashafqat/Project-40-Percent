@@ -7233,6 +7233,8 @@ body.dark .checkbox__status {
   -ms-flex-positive: 1;
   flex-grow: 1;
   min-width: auto;
+  background: #0ABB11;
+  color: #ffffff;
 }
 
 .entry__group {
