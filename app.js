@@ -127,11 +127,13 @@ app.post("/signin", function (req, res) {
               invalidUser = true;
                 res.render("signin", {invalidUser: invalidUser});
             } else {
-                res.send("User logged In");
+                res.redirect("/kidsregistration");
             }
           }
       });
 });
+
+
 
 app.post("/signup", function (req, res) {
     const userName = req.body.userName;
@@ -153,11 +155,18 @@ app.post("/signup", function (req, res) {
                 alreadyRegisteredError = true;
                 console.log("User is registered");
                 res.render("signup", { alreadyRegisteredError: alreadyRegisteredError });
+
             }
         }
     });
 
 });
+
+
+app.get("/kidsregistration", function(req,res){
+    res.render("kidsregistration");
+});
+
 
 app.listen(3000, function () {
     console.log("Server started on port 3000");
