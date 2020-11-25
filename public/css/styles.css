@@ -2792,7 +2792,7 @@ body.dark .login__links .login__link:hover {
 }
 
 .login_password {
-  margin-top: 18px;
+  margin-top: 15px;
 }
 
 .invalid__login {
@@ -3039,7 +3039,7 @@ body.dark .field__input {
 }
 
 .field1_email .field1__input {
-  padding-right: 150px;
+  padding-right: 50px;
 }
 
 .field1_textarea {
