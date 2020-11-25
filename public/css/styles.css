@@ -2791,8 +2791,8 @@ body.dark .login__links .login__link:hover {
   color: #92929D;
 }
 
-.password__input {
-  padding-top: 15px;
+.login_password {
+  margin-top: 18px;
 }
 
 .invalid__login {

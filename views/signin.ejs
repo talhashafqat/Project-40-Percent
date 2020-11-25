@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%- include("partials/header.ejs") %>
 <html lang="en">
 
 <head>
@@ -20,12 +20,18 @@
                         <div class="login__body">
                             <div class="login__title login__title_sm">Login to your account</div>
                             <div class="login__field field">
-                                <div class="field__wrap"><input class="field__input" type="email" name="userEmail"
-                                        required placeholder="Enter Email">
+
+                              <div class="field1 field1_email js-field">
+                                <div class="field1__label">Email</div>
+                                <div class="field__wrap"><input class="field1__input js-field-input" type="email" name="userEmail" required>
                                 </div>
-                                <div class="field__wrap password__input"><input class="field__input " required
-                                        type="password" name="userPassword" placeholder="Password">
+                              </div>
+
+                              <div class="field1 field1_email js-field login_password ">
+                                <div class="field1__label">Password</div>
+                                <div class="field__wrap "><input class="field1__input js-field-input" type="password" name="userPassword" required>
                                 </div>
+                              </div>
 
                                 <div class="field__wrap" id="registrationError">
                                   <% if (invalidUser) { %>
@@ -51,3 +57,4 @@
 
 </body>
 </html>
+<%- include("partials/footer.ejs") %>
