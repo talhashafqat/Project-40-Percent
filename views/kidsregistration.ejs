@@ -1,6 +1,7 @@
 
 <%- include("partials/header.ejs") %>
 
+
     <div class="out">
         <div class="login">
             <div class="login__container">
@@ -8,14 +9,14 @@
                 <div class="entry__wrap">
                   <div class="login__head"><a class="login__logo" href="#"><img class="login__pic" src="img/logo.svg"
                               alt=""></a></div>
-                  <form class="entry__form">
+                  <form class="entry__form" method="post" action="/kidsregistration">
                     <div class="login__title login__title_sm">Register Kids</div>
                     <div class="entry__fieldset">
                           <div class="field1 field1_email js-field">
+                            <input type="hidden" name="newUserEmail" value="<%= newUserEmail %>">
                             <div class="field1__label">Full Name</div>
                             <div class="field1__wrap"><input class="field1__input js-field-input" type="text" name="kidName">
                             </div>
-
                       </div>
                       <div class="entry__row entry__row_mobile">
                         <div class="entry__col">
@@ -27,7 +28,7 @@
                         <div class="entry__col">
                           <div class="field1 field1_select js-field">
                             <div class="field1__label">Select Level</div>
-                            <div class="field1__wrap"><select class="field1__select js-field-input" name="Level">
+                            <div class="field1__wrap"><select class="field1__select js-field-input" name="kidLevel">
                                 <option>Level 1</option>
                                 <option>Level 2</option>
                                 <option>Level 3</option>

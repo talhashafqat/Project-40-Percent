@@ -64,6 +64,29 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Global Variables
+var alreadyRegisteredError;
+var invalidUser;
+var kids = [];
+
+
+
+//New Kid Data newUserSchema
+
+const newKidSchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: [true, "Check Data Entry, no name specified"]
+    },
+    age: {
+      type: Number,
+      required: [true, "Check Data Entry, no age specified"]
+    },
+    level: {
+      type: String,
+      required: [true, "Check Data Entry, no level specified"]
+    }
+});
 
 //New User Data Schema
 const newUserSchema = new mongoose.Schema({
@@ -78,13 +101,59 @@ const newUserSchema = new mongoose.Schema({
     password: {
         type: String,
         // required: [true, "Check Data Entry, no password specified"]
-    }
+    },
+    kids: []
 });
 
-const User = mongoose.model("User", newUserSchema);
 
-var alreadyRegisteredError;
-var invalidUser;
+
+// User Collection Created in MongoDB
+const User = mongoose.model("User", newUserSchema);
+const Kid = mongoose.model("kid", newKidSchema);
+
+//Test Data Entry in mongodb
+
+
+// const newKid1 = new Kid ({
+//   name: "Abdullah",
+//   age: 4,
+//   level: "Level 1"
+// });
+//
+// const newKid2 = new Kid ({
+//   name: "Hammad",
+//   age: 5,
+//   level: "Level 2"
+// });
+// const newKid3 = new Kid ({
+//   name: "Talal",
+//   age: 6,
+//   level: "Level 3"
+// });
+//
+// kids.push(newKid1,newKid2,newKid3);
+
+// newKid.save();
+
+// const newUser = new User({
+//   name: "Hamza",
+//   email: "Hamza@gmail.com",
+//   password: "abc123",
+//   kids: kids
+// })
+//
+// newUser.save();
+
+User.findOne({ email: "Hamza@gmail.com"}, function (err, foundList) {
+    if (!err) {
+        if (foundList) {
+            console.log(foundList.kids[0].name);
+        }
+      }
+  });
+
+
+
 
 //Google OAuth Connection
 app.get('/google',
@@ -151,6 +220,7 @@ app.post("/signup", function (req, res) {
                 });
 
                 newUser.save();
+                res.render("kidsregistration" , {newUserEmail: userEmail});
             } else {
                 alreadyRegisteredError = true;
                 console.log("User is registered");
@@ -166,6 +236,32 @@ app.post("/signup", function (req, res) {
 app.get("/kidsregistration", function(req,res){
     res.render("kidsregistration");
 });
+
+app.post("/kidsregistration", function(req,res){
+
+  const kidName = req.body.kidName;
+  const kidAge = req.body.kidAge;
+  const kidLevel = req.body.kidLevel;
+  const newUserEmail = req.body.newUserEmail;
+
+  const newKid = new Kid ({
+    name: kidName,
+    age: kidAge,
+    level: kidLevel
+  });
+
+  kids.push(newKid);
+
+  User.findOneAndUpdate({email: newUserEmail} , {kids: kids} , function(err,foundList){
+    if(!err){
+      console.log("Updated Successfully");
+    }
+  });
+
+
+
+});
+
 
 
 app.listen(3000, function () {
