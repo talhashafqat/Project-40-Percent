@@ -232,6 +232,22 @@ app.post("/kidsregistration", function(req,res){
 });
 
 
+// Front DashBoard link
+
+app.get("/dashboard", function(req,res){
+    res.render("dashboard");
+});
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000, function () {
     console.log("Server started on port 3000");

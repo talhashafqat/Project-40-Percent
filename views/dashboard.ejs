@@ -1,0 +1,429 @@
+<%- include("partials/header.ejs") %>
+
+<div class="out">
+      <div class="dashboard__page">
+        <div class="header js-header"><button class="header__burger js-header-burger"><svg class="icon icon-burger">
+              <use xlink:href="img/sprite.svg#icon-burger"></use>
+            </svg></button><a class="header__logo" href="#"><img class="header__pic header__pic_black" src="img/logo.svg" alt="" /><img class="header__pic header__pic_white" src="img/logo-white.svg" alt="" /></a>
+          <div class="header__title">Dashboard</div>
+          <div class="header__group">
+            <form class="header__search js-header-search"><button class="header__open js-header-open" type="button"><svg class="icon icon-search">
+                  <use xlink:href="img/sprite.svg#icon-search"></use>
+                </svg></button>
+              <div class="header__wrap"><input class="header__input" type="text" name="search" placeholder="Find" /></div>
+            </form><button class="header__btn btn btn_blue"><svg class="icon icon-plus">
+                <use xlink:href="img/sprite.svg#icon-plus"></use>
+              </svg><span class="btn__text">New</span></button><a class="header__notification active" href="#"><svg class="icon icon-bell">
+                <use xlink:href="img/sprite.svg#icon-bell"></use>
+              </svg></a><a class="header__profile" href="#"><img class="header__pic" src="img/header-ava.png" alt="" /></a>
+          </div>
+          <div class="header__bg js-header-bg"></div>
+        </div>
+        <div class="dashboard__pageWrapper">
+          <div class="sidebar js-sidebar">
+            <div class="sidebar__top"><button class="sidebar__close js-sidebar-close"><svg class="icon icon-close">
+                  <use xlink:href="img/sprite.svg#icon-close"></use>
+                </svg></button><a class="sidebar__logo" href="#"><img class="sidebar__pic sidebar__pic_black" src="img/logo.svg" alt="" /><img class="sidebar__pic sidebar__pic_white" src="img/logo-white.svg" alt="" /></a></div>
+            <div class="sidebar__wrapper">
+
+              <div class="sidebar__menu"><a class="sidebar__item active" href="square-dashboard.html"><svg class="icon icon-dashboard">
+                    <use xlink:href="img/sprite.svg#icon-dashboard"></use>
+                  </svg>Dashboard</a><a class="sidebar__item" href="#"><svg class="icon icon-messages">
+                    <use xlink:href="img/sprite.svg#icon-messages"></use>
+                  </svg>Messages<div class="sidebar__counter">3</div></a><a class="sidebar__item" href="square-projects.html"><svg class="icon icon-project">
+                    <use xlink:href="img/sprite.svg#icon-project"></use>
+                  </svg>Project</a>
+                <div class="sidebar__item"><a class="sidebar__head" href="square-schedule.html"><svg class="icon icon-schedule">
+                      <use xlink:href="img/sprite.svg#icon-schedule"></use>
+                    </svg>Schedule</a>
+                  <div class="sidebar__body"><a class="sidebar__link" href="#">In Progress<div class="sidebar__number">8</div></a><a class="sidebar__link" href="#">Pending<div class="sidebar__number">2</div></a><a class="sidebar__link" href="#">Completed<div class="sidebar__number">3</div></a></div>
+                </div><a class="sidebar__item" href="square-activity.html"><svg class="icon icon-activity">
+                    <use xlink:href="img/sprite.svg#icon-activity"></use>
+                  </svg>Activity</a><a class="sidebar__item" href="#"><svg class="icon icon-settings">
+                    <use xlink:href="img/sprite.svg#icon-settings"></use>
+                  </svg>Settings</a>
+              </div>
+            </div>
+          </div>
+          <div class="page3__container">
+                      <div class="student__dashboard">
+                        <div class="student__head">
+                          <h1 class="student__title title title_big">Student Profile</h1>
+                          <div class="student__text">This is total student that join in the Class <a class="student__link" href="#">Creating Beautifull Landing Page in 1 Hour</a> by <a class="student__link" href="#">Geo Vanni</a></div>
+                        </div>
+                        <div class="student__control">
+                          <div class="student__search"><button class="student__open"><svg class="icon icon-search">
+                                <use xlink:href="img/sprite.svg#icon-search"></use>
+                              </svg></button><input class="student__input" type="text" placeholder="Search Student"></div>
+                          <div class="sorting">
+                            <div class="sorting__options"><a class="sorting__filters" href="#"><svg class="icon icon-filters">
+                                  <use xlink:href="img/sprite.svg#icon-filters"></use>
+                                </svg></a>
+                              <div class="dropdown js-dropdown"><a class="dropdown__head js-dropdown-head" href="#">
+                                  <div class="dropdown__text">Sort by:</div>
+                                  <div class="dropdown__category">Highest Score</div>
+                                </a>
+                                <div class="dropdown__body js-dropdown-body"><label class="checkbox checkbox_sm checkbox_green"><input class="checkbox__input" type="checkbox" /><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__text">Project Name</span></span></label><label class="checkbox checkbox_sm checkbox_green"><input class="checkbox__input" type="checkbox" checked="checked" /><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__text">Newest Project</span></span></label><label class="checkbox checkbox_sm checkbox_green"><input class="checkbox__input" type="checkbox" checked="checked" /><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__text">Due Date</span></span></label><label class="checkbox checkbox_sm checkbox_green"><input class="checkbox__input" type="checkbox" /><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__text">Project Type</span></span></label></div>
+                              </div><button class="sorting__btn btn btn_yellow"><svg class="icon icon-plus">
+                                  <use xlink:href="img/sprite.svg#icon-plus"></use>
+                                </svg><span class="btn__text">Invite Students</span></button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="student__list student__list_2">
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-1.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Austin Robertson</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 12</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">54</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">62</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">38</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal"><img class="student__pic" src="img/challenge-medal.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Top Student"><img class="student__pic" src="img/top-student.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-5.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Francis Freeman</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 10</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">447</div>
+                              <div class="student__indicator">45</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">17</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">25</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">8</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal Silver"><img class="student__pic" src="img/challenge-medal-silver.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-2.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Estella Smith</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 8</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">17</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">25</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">8</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate-1.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Ranking 2"><img class="student__pic" src="img/ranking-2.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-4.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Rosetta Alvarado</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 5</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">22</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">12</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">10</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal"><img class="student__pic" src="img/challenge-medal.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Top Student"><img class="student__pic" src="img/top-student.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-1.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Austin Robertson</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 12</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">54</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">62</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">38</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal"><img class="student__pic" src="img/challenge-medal.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Top Student"><img class="student__pic" src="img/top-student.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-5.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Francis Freeman</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 10</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">447</div>
+                              <div class="student__indicator">45</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">17</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">25</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">8</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal Silver"><img class="student__pic" src="img/challenge-medal-silver.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-2.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Estella Smith</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 8</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">17</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">25</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">8</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate-1.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Ranking 2"><img class="student__pic" src="img/ranking-2.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-4.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Rosetta Alvarado</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 5</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">22</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">12</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">10</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal"><img class="student__pic" src="img/challenge-medal.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Top Student"><img class="student__pic" src="img/top-student.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-1.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Austin Robertson</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 12</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">54</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">62</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">38</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal"><img class="student__pic" src="img/challenge-medal.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Top Student"><img class="student__pic" src="img/top-student.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-5.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Francis Freeman</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 10</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">447</div>
+                              <div class="student__indicator">45</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">17</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">25</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">8</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal Silver"><img class="student__pic" src="img/challenge-medal-silver.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-2.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Estella Smith</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 8</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">17</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">25</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">8</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Onfire"><img class="student__pic" src="img/onfire.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Fast Graduate"><img class="student__pic" src="img/fast-graduate-1.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Ranking 2"><img class="student__pic" src="img/ranking-2.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                          <div class="student__item">
+                            <div class="student__ava"><img class="student__pic" src="img/ava-big-4.jpg" alt=""></div>
+                            <div class="student__title title title_sm">Rosetta Alvarado</div>
+                            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 5</span></div>
+                            <div class="student__indicators">
+                              <div class="student__indicator">847</div>
+                              <div class="student__indicator">75</div>
+                              <div class="student__indicator">---</div>
+                            </div>
+                            <div class="student__options">
+                              <div class="student__option">
+                                <div class="student__category">Joined</div>
+                                <div class="student__counter">22</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">FINISHED</div>
+                                <div class="student__counter">12</div>
+                              </div>
+                              <div class="student__option">
+                                <div class="student__category">ON GOING</div>
+                                <div class="student__counter">10</div>
+                              </div>
+                            </div>
+                            <div class="student__quality">
+                              <div class="student__icon tooltip" title="Challenge Medal"><img class="student__pic" src="img/challenge-medal.svg" alt=""></div>
+                              <div class="student__icon tooltip" title="Top Student"><img class="student__pic" src="img/top-student.svg" alt=""></div>
+                            </div><button class="student__btn btn btn_blue">View Profile</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+    </div>
+
+<%- include("partials/footer.ejs") %>

@@ -3247,6 +3247,21 @@ body.dark .field2__input, body.dark .field2__select {
   background: #069E0C;
 }
 
+.dashboard__page {
+  position: relative;
+  background: #FAFAFB;
+}
+
+.dashboard__pageWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  background: #FAFAFB;
+}
+
 .page__container {
   width: 100%;
   padding: 40px 40px 40px 290px;
@@ -18780,6 +18795,12 @@ body.dark .courses2__info {
   max-width: 1390px;
   margin: 0 auto;
   padding: 60px 30px;
+}
+
+.student__dashboard {
+  max-width: 1390px;
+  margin: 0 auto;
+  padding: 100px 30px 50px 270px;
 }
 
 .student__head {
