@@ -155,6 +155,7 @@ app.get("/signup", function (req, res) {
 });
 
 app.post("/signin", function (req, res) {
+    signedInUser = null;
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
 
@@ -224,6 +225,7 @@ app.post("/kidsregistration", function(req,res){
   User.findOneAndUpdate({email: newUserEmail} , {kids: kids} , function(err,foundList){
     if(!err){
       console.log("Updated Successfully");
+      signedInUser = newUserEmail;
       res.redirect("/dashboard");
     }
   });

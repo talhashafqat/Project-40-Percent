@@ -7902,10 +7902,8 @@ body.dark .users2 .ava__pic {
   align-items: center;
   height: 52px;
   color: #171725;
-  -webkit-transition: color .25s;
-  -o-transition: color .25s;
-  transition: color .25s;
 }
+
 
 .sidebar a.sidebar__item .icon, .sidebar__head .icon {
   margin-right: 20px;
@@ -7927,7 +7925,7 @@ body.dark .users2 .ava__pic {
   width: 3px;
   height: 32px;
   border-radius: 0 3px 3px 0;
-  background: #0062FF;
+  background: #0ABB11;
   opacity: 0;
   -webkit-transition: opacity .25s;
   -o-transition: opacity .25s;
@@ -7935,11 +7933,11 @@ body.dark .users2 .ava__pic {
 }
 
 .sidebar a.sidebar__item:hover, .sidebar__head:hover {
-  color: #0062FF;
+  color: #0ABB11;
 }
 
 .sidebar a.sidebar__item:hover .icon, .sidebar__head:hover .icon {
-  fill: #0062FF;
+  fill: #0ABB11;
 }
 
 .sidebar a.sidebar__item.active, .sidebar__head.active {
@@ -7951,16 +7949,17 @@ body.dark .users2 .ava__pic {
 }
 
 .sidebar a.sidebar__item.active {
-  color: #0062FF;
+  color: #0ABB11;
 }
 
 .sidebar a.sidebar__item.active .icon {
-  fill: #0062FF;
+  fill: #0ABB11;
 }
 
 .sidebar__item {
   padding: 0 20px;
 }
+
 
 .sidebar__item:not(:last-child) {
   margin-bottom: 10px;
