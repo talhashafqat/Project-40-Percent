@@ -254,6 +254,39 @@ app.get("/dashboard", function(req,res){
     });
 });
 
+app.post("/addkid", function(req,res){
+    console.log("Kid Adding Works Fine");
+    const kidName = req.body.kidName;
+    const kidAge = req.body.kidAge;
+    const kidLevel = req.body.kidLevel;
+
+    User.findOne({ email: signedInUser}, function (err, foundList) {
+        if (!err) {
+            if (foundList) {
+                console.log(foundList.kids);
+                kids = foundList.kids;
+
+                const newKid = new Kid ({
+                  name: kidName,
+                  age: kidAge,
+                  level: kidLevel
+                });
+                kids.push(newKid);
+                console.log(kids);
+                User.findOneAndUpdate({email: signedInUser} , {kids: kids} , function(err,foundList){
+                  if(foundList){
+                    console.log("Updated Successfully");
+                  }
+                });
+            }
+          }
+      })
+
+
+
+
+});
+
 
 app.listen(3000, function () {
     console.log("Server started on port 3000");
