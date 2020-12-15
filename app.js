@@ -248,7 +248,7 @@ app.get("/dashboard", function(req,res){
               }
           }
           else {
-            res.redirect("No Kids Registered");
+            res.redirect("/");
           }
         }
     });
