@@ -243,8 +243,7 @@ app.get("/dashboard", function(req,res){
       if (!err) {
           if (foundList) {
               if(foundList.kids){
-                console.log(foundList.kids[0].name);
-                    res.render("dashboard", {kidName: foundList.kids[0].name});
+                    res.render("dashboard", {kids: foundList.kids});
               }
           }
           else {
@@ -278,6 +277,7 @@ app.post("/addkid", function(req,res){
                     console.log("Updated Successfully");
                   }
                 });
+                res.redirect("/dashboard");
             }
           }
       })

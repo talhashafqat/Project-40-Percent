@@ -47,9 +47,10 @@
 
         </div>
         <div class="student__list student__list_2 student__list__margin">
+          <% for (let i=0; i<kids.length; i++) { %>
           <div class="student__item">
             <div class="student__ava"><img class="student__pic" src="img/Kid Pic.jpeg" alt=""></div>
-            <div class="student__title title title_sm"><%=kidName%></div>
+            <div class="student__title title title_sm"><%=kids[i].name%></div>
             <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 12</span></div>
             <div class="student__indicators">
               <div class="student__indicator">847</div>
@@ -72,6 +73,7 @@
             </div>
             <button class="student__btn btn btn_green">View Profile</button>
           </div>
+          <% } %>
         </div>
       </div>
     </div>
