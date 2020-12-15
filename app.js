@@ -34,10 +34,12 @@ passport.use(new GoogleStrategy({
           });
           newUser.save();
           console.log("User saved");
+          signedInUser = profile._json.email;
           return cb(err,foundList);
         } else {
           console.log("This user is registered with following email address");
           console.log(foundList.email);
+          signedInUser = foundList.email;
           return cb(err,foundList);
         }
       }
@@ -68,6 +70,7 @@ app.use(passport.session());
 var alreadyRegisteredError;
 var invalidUser;
 var kids = [];
+var signedInUser;
 
 
 
@@ -132,7 +135,7 @@ app.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/newUser' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/success');
+    res.redirect('/dashboard');
   });
 
 
@@ -144,11 +147,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/newUser", function(req,res){
-    res.send("New User added, Show him the register kid screen");
-});
-
-app.get("/success", function(req,res){
-    res.send("Welcome ! Successfully Logged In");
+res.render("kidsregistration" , {newUserEmail: signedInUser});
 });
 
 app.get("/signup", function (req, res) {
@@ -165,7 +164,8 @@ app.post("/signin", function (req, res) {
               invalidUser = true;
                 res.render("signin", {invalidUser: invalidUser});
             } else {
-                res.redirect("/kidsregistration");
+                signedInUser = userEmail;
+                res.redirect("/dashboard");
             }
           }
       });
@@ -224,6 +224,7 @@ app.post("/kidsregistration", function(req,res){
   User.findOneAndUpdate({email: newUserEmail} , {kids: kids} , function(err,foundList){
     if(!err){
       console.log("Updated Successfully");
+      res.redirect("/dashboard");
     }
   });
 
@@ -235,18 +236,21 @@ app.post("/kidsregistration", function(req,res){
 // Front DashBoard link
 
 app.get("/dashboard", function(req,res){
-    res.render("dashboard");
+  //User kids Name Found
+  User.findOne({ email: signedInUser}, function (err, foundList) {
+      if (!err) {
+          if (foundList) {
+              if(foundList.kids){
+                console.log(foundList.kids[0].name);
+                    res.render("dashboard", {kidName: foundList.kids[0].name});
+              }
+          }
+          else {
+            res.redirect("No Kids Registered");
+          }
+        }
+    });
 });
-
-
-
-
-
-
-
-
-
-
 
 
 app.listen(3000, function () {
