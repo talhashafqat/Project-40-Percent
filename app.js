@@ -288,6 +288,11 @@ app.post("/addkid", function(req,res){
 });
 
 
+app.get("/virtualboard", function(req,res){
+  res.render("virtualboard");
+});
+
+
 app.listen(3000, function () {
     console.log("Server started on port 3000");
 });

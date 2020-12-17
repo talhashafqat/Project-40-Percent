@@ -96,6 +96,12 @@ button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/* #canvas {
+  border: 2px solid black;
+  margin-left: 250px;
+  margin-top: 70px;
+} */
+
 .icon-activity {
   width: 1em;
   height: 1em;

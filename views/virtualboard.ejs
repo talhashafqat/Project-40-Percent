@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+<div class="out">
+  <div class="dashboard__page">
+    <div class="header js-header"><button class="header__burger js-header-burger"><svg class="icon icon-burger">
+          <use xlink:href="img/sprite.svg#icon-burger"></use>
+        </svg></button><a class="header__logo" href="#"><img src="img/dashboard_logo.svg" alt="" /><img class="header__pic header__pic_white" src="img/logo-white.svg" alt="" /></a>
+      <div class="header__title">Dashboard</div>
+      <div class="header__group">
+        <a class="header__profile" href="#"><img class="header__pic" src="img/header-ava.png" alt="" /></a>
+      </div>
+      <div class="header__bg js-header-bg"></div>
+    </div>
+    <div class="dashboard__pageWrapper">
+      <div class="sidebar js-sidebar">
+        <div class="sidebar__top"><button class="sidebar__close js-sidebar-close"><svg class="icon icon-close">
+              <use xlink:href="img/sprite.svg#icon-close"></use>
+            </svg></button><a class="sidebar__logo" href="#"><img class="sidebar__pic sidebar__pic_black" src="img/logo.svg" alt="" /><img class="sidebar__pic sidebar__pic_white" src="img/logo-white.svg" alt="" /></a></div>
+        <div class="sidebar__wrapper">
+
+          <div class="sidebar__menu"><a class="sidebar__item " href="/dashboard">
+              <img class="icon " src="img/dashboard_icon.svg" alt="">
+              Dashboard</a><a class="sidebar__item" href="">
+              <img class="icon " src="img/customPlanner_icon.svg" alt="">
+              Custom Planner</a><a class="sidebar__item active" href="#">
+              <img class="icon" src="img/virtualBoard_icon.svg" alt="">
+              Virtual Board</a>
+            <a class="sidebar__item" style="color: #E92424" href="/">
+              <img class="icon" src="img/logout_icon.svg" alt="">
+              Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page3__container">
+      <canvas id="canvas" width=auto height="885"></canvas>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="js/canvas.js"></script>
+
+<%- include("partials/footer.ejs") %>
