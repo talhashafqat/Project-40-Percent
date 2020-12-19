@@ -395,12 +395,11 @@ app.post("/deletekid", function(req,res){
   User.findOne({email: signedInUser}, function(err, foundList){
       if(!err){
         if(foundList){
-          kids = foundList.kids;
           var new_kids = [];
           console.log(kids);
-          for (let i=0; i<kids.length; i++) {
-            if(kids[i]._id != kidID){
-              new_kids.push(kids[i])
+          for (let i=0; i<foundList.kids.length; i++) {
+            if(foundList.kids[i]._id != kidID){
+              new_kids.push(foundList.kids[i])
             }
           }
           console.log(kids);
