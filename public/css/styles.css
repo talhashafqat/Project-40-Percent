@@ -96,11 +96,10 @@ button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* #canvas {
-  border: 2px solid black;
-  margin-left: 250px;
-  margin-top: 70px;
-} */
+#canvas {
+  cursor:
+  crosshair;
+}
 
 /* Range Slider CSS */
 
@@ -2354,6 +2353,15 @@ body.dark .tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized 
   color: #FAFAFB;
 }
 
+.add__student .btn_purple {
+  background: #A461D8;
+  color: #fff;
+}
+
+.add__student .btn_purple:hover {
+  background: #844DAE;
+}
+
 .btn_yellow .icon {
   fill: #FAFAFB;
 }
@@ -2370,6 +2378,15 @@ body.dark .tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized 
   background: #ffffff;
   color: #0062FF;
 }
+
+.delete__student {
+  margin-right: 20px;
+}
+
+.btn_delete{
+  color: #E92424;
+}
+
 
 .btn_white:hover {
   opacity: .95;
@@ -7396,6 +7413,25 @@ body.dark .checkbox__status {
   background: #0ABB11;
   color: #ffffff;
 }
+
+.student__highlight {
+  color: #0ABB11;
+  font-weight: 500;
+}
+
+.entry__btns .btn_red {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  min-width: auto;
+  background: #FD5C5C;
+  color: #ffffff;
+}
+
+.entry__btns .btn_red:hover {
+  background: #E92424;
+}
+
 
 .entry__btns .btn_yellow {
   -webkit-box-flex: 1;

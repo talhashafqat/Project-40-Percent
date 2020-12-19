@@ -46,12 +46,18 @@
           </div>
 
         </div>
+
+
         <div class="student__list student__list_2 student__list__margin">
           <% for (let i=0; i<kids.length; i++) { %>
           <div class="student__item">
+            <% if (kids[i].gender === "Male") { %>
             <div class="student__ava"><img class="student__pic" src="img/Kid Pic.jpeg" alt=""></div>
+            <% } else { %>
+              <div class="student__ava"><img class="student__pic" src="img/Girl Pic.jpeg" alt=""></div>
+              <% } %>
             <div class="student__title title title_sm"><%=kids[i].name%></div>
-            <div class="student__details"><span class="student__text">1583 XP</span><span class="student__text">Level 12</span></div>
+            <div class="student__details"><span class="student__text">985 XP</span></div>
             <div class="student__indicators">
               <div class="student__indicator">847</div>
               <div class="student__indicator">75</div>
@@ -71,8 +77,13 @@
                 <div class="student__counter">38</div>
               </div>
             </div>
-            <button class="student__btn btn btn_green">View Profile</button>
+            <form class="" action="/dashboard" method="post">
+              <button class="student__btn btn btn_green" type="submit">View Profile</button>
+              <input type="hidden" name="kidID" value="<%= kids[i]._id %>">
+            </form>
+
           </div>
+
           <% } %>
         </div>
       </div>
@@ -104,11 +115,10 @@
                   </div>
                   <div class="entry__col">
                     <div class="field1 field1_select js-field">
-                      <div class="field1__label">Select Level</div>
+                      <div class="field1__label">Select Gender</div>
                       <div class="field1__wrap"><select class="field1__select js-field-input" name="kidLevel">
-                          <option>Level 1</option>
-                          <option>Level 2</option>
-                          <option>Level 3</option>
+                          <option>Male</option>
+                          <option>Female</option>
                         </select></div>
                     </div>
                   </div>

@@ -154,13 +154,13 @@ const newKidSchema = new mongoose.Schema({
       type: Number,
       required: [true, "Check Data Entry, no age specified"]
     },
-    level: {
+    gender: {
       type: String,
       required: [true, "Check Data Entry, no level specified"]
     },
     subjects: [],
     experiencePoints : {
-      type: String
+      type: Number
     },
     gameScore : [],
     learningResources : [],
@@ -293,7 +293,8 @@ app.post("/kidsregistration", function(req,res){
   const newKid = new Kid ({
     name: kidName,
     age: kidAge,
-    level: kidLevel
+    gender: kidLevel,
+    experiencePoints: 0
   });
 
   kids.push(newKid);
@@ -329,6 +330,24 @@ app.get("/dashboard", function(req,res){
     });
 });
 
+app.post("/dashboard", function(req,res){
+    var kidProfile = []
+    const kidID = req.body.kidID;
+
+    User.findOne({email: signedInUser}, function(err,foundList){
+      if (!err){
+        if (foundList){
+            kidProfile = foundList.kids;
+            for (let i=0; i<kidProfile.length; i++) {
+              if (kidProfile[i]._id == kidID){
+                res.render("profile", {kidName: kidProfile[i].name , experiencePoints: kidProfile[i].experiencePoints, age: kidProfile[i].age, kidID: kidID})
+              }
+            }
+        }
+      }
+    })
+});
+
 app.post("/addkid", function(req,res){
     console.log("Kid Adding Works Fine");
     const kidName = req.body.kidName;
@@ -344,7 +363,8 @@ app.post("/addkid", function(req,res){
                 const newKid = new Kid ({
                   name: kidName,
                   age: kidAge,
-                  level: kidLevel
+                  gender: kidLevel,
+                  experiencePoints: 0
                 });
                 kids.push(newKid);
                 console.log(kids);
@@ -366,6 +386,33 @@ app.post("/addkid", function(req,res){
 
 app.get("/virtualboard", function(req,res){
   res.render("virtualboard");
+});
+
+
+app.post("/deletekid", function(req,res){
+  const kidID = req.body.kidID;
+  console.log(kidID);
+  User.findOne({email: signedInUser}, function(err, foundList){
+      if(!err){
+        if(foundList){
+          kids = foundList.kids;
+          var new_kids = [];
+          console.log(kids);
+          for (let i=0; i<kids.length; i++) {
+            if(kids[i]._id != kidID){
+              new_kids.push(kids[i])
+            }
+          }
+          console.log(kids);
+          User.findOneAndUpdate({email: signedInUser} , {kids: new_kids} , function(err,foundList){
+            if(foundList){
+              console.log("Updated Successfully");
+              res.redirect("/dashboard");
+            }
+          });
+        }
+      }
+  });
 });
 
 
