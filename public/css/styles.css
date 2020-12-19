@@ -102,6 +102,139 @@ button {
   margin-top: 70px;
 } */
 
+/* Range Slider CSS */
+
+.range {
+  width: 200px;
+  margin-right: 80px;
+}
+
+.range .sliderValue{
+  position: relative;
+  width: 100%;
+
+}
+
+.range .sliderValue span {
+  position: absolute;
+  color: #393842;
+  font-weight: 500;
+  top: -40px;
+  transform: translateX(-50%) scale(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease-in-out;
+  line-height: 55px;
+  z-index: 2;
+}
+
+.range .sliderValue span.show{
+    transform: translateX(-50%) scale(1);
+}
+
+.range .sliderValue span:after{
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  background: #fff;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border: 3px solid #0ABB11;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  z-index: -1;
+}
+
+.range .field .value{
+  position: absolute;
+  font-size: 14px;
+  font-weight: 600;
+  color: #393842;
+}
+
+.range .field .value.left {
+  left: -22px;
+
+}
+
+.range .field .value.right {
+  right: -30px;
+
+}
+
+.range .field input{
+  -webkit-appearance: none;
+  height: 3px;
+  width: 100%;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+.range .field input::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  background: #0ABB11;
+  border-radius: 50%;
+  border: 1px solid #0ABB11;
+  cursor: pointer;
+}
+
+
+.range .field{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%
+}
+
+.stroke__heading{
+  margin-right: 40px;
+}
+
+.colorSvg{
+  margin-right: 15px;
+}
+
+.custom__color{
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.colorImg{
+  margin-top: 20px;
+}
+
+.buttonsDraw{
+  margin-right: 50px;
+}
+
+#strokeColor {
+  margin-bottom: 10px;
+}
+
+.clear__button {
+  margin-right: 20px;
+}
+
+.save__button {
+
+  margin-right: 50px;
+}
+
+.board__heading {
+  font-family: 'Poppins', sans-serif;
+    line-height: 2;
+    font-weight: 500;
+    letter-spacing: .1px;
+    margin-right: 10px;
+}
+
+
 .icon-activity {
   width: 1em;
   height: 1em;
@@ -2200,6 +2333,11 @@ body.dark .tooltipster-sidetip.tooltipster-shadow.tooltipster-shadow-customized 
 .btn_gray {
   background: #F1F1F5;
   color: #696974;
+}
+
+.btn_red {
+  background: #FC5A5A;
+  color: #fff;
 }
 
 .btn_gray .icon {

@@ -76,6 +76,75 @@ var signedInUser;
 
 //New Kid Data newUserSchema
 
+const planner = new mongoose.Schema({
+    day: {
+      type: Number,
+      required: [true, "Check Data Entry, no day specified"]
+    },
+    subject : {
+      type: String,
+      required: [true, "Check Data Entry, no subject specified"]
+    },
+    activityID : {
+      type: String,
+      required: [true, "Check Data Entry, no Activity ID specified"]
+    },
+    activtiyName : {
+      type: String,
+      required: [true, "Check Data Entry, no Activity Name specified"]
+    },
+    activityStatus : {
+      type: Boolean,
+      required: [true, "Check Data Entry, no Activity Status specified"]
+    }
+});
+
+const learningResources = new mongoose.Schema({
+    name : {
+      type: String,
+      required: [true, "Check Data Entry, no name specified"]
+    },
+    subject: {
+      type: String,
+      required: [true, "Check Data Entry, no subject specified"]
+    },
+    status: {
+      type: Boolean,
+      required: [true, "Check Data Entry, no status specified"]
+    },
+    learningTime: {
+      type: String,
+      required: [true, "Check Data Entry, no time specified"]
+    }
+});
+
+const gameScoreSchema = new mongoose.Schema({
+    subject : {
+      type: String,
+      required: [true, "Check Data Entry, no subject specified"]
+    },
+    gameTitle : {
+      type: String,
+      required: [true, "Check Data Entry, no Game Title specified"]
+    },
+    gameScore : {
+      type: Number,
+      required: [true, "Check Data Entry, no Game Score specified"]
+    },
+    gameTime : {
+      type: String,
+      required: [true, "Check Data Entry, no Game Time specified"]
+    },
+    experiencePoints : {
+      type: Number,
+      required: [true, "Check Data Entry, no Experience Points specified"]
+    },
+    gameStatus : {
+      type: Boolean,
+      required: [true, "Check Data Entry, no Game Status specified"]
+    }
+});
+
 const newKidSchema = new mongoose.Schema({
     name: {
       type: String,
@@ -88,7 +157,14 @@ const newKidSchema = new mongoose.Schema({
     level: {
       type: String,
       required: [true, "Check Data Entry, no level specified"]
-    }
+    },
+    subjects: [],
+    experiencePoints : {
+      type: String
+    },
+    gameScore : [],
+    learningResources : [],
+    planner : []
 });
 
 //New User Data Schema

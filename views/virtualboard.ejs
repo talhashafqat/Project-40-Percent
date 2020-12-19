@@ -7,6 +7,44 @@
         </svg></button><a class="header__logo" href="#"><img src="img/dashboard_logo.svg" alt="" /><img class="header__pic header__pic_white" src="img/logo-white.svg" alt="" /></a>
       <div class="header__title">Dashboard</div>
       <div class="header__group">
+        <div class="buttonsDraw">
+          <button class="group__btn btn btn_gray" onclick="use_tool('draw');"> <img class="icon " style=" margin-right: 0px;" src="img/draw.svg" alt=""></button>
+          <button class="group__btn btn btn_gray" onclick="use_tool('erase');"><img class="icon " style=" margin-right: 0px;" src="img/eraser.svg" alt=""></button>
+        </div>
+        <div class="stroke__heading">
+          <img class="icon " src="img/stroke.svg" alt="">
+        </div>
+        <div class="range">
+          <div class="sliderValue">
+            <span>1</span>
+          </div>
+          <div class="field">
+            <div class="value left">
+              1
+            </div>
+            <input id="rangeInput" type="range" min="1" max="20" name="" value="1" steps="1">
+            <div class="value right">
+              20
+            </div>
+          </div>
+        </div>
+
+        <div class="blackColor">
+          <button type="button" name="button"></button>
+        </div>
+
+        <div class="colorSvg">
+          <img class="icon " src="img/colorSelector.svg" alt="">
+        </div>
+        <div class="custom__color">
+          <input type="color" name="strokeColor" id="strokeColor"  value="#000000">
+        </div>
+        <div class="clear__button">
+          <button class="group__btn btn btn_red" id="clear_button" >Clear</button>
+        </div>
+        <div class="save__button">
+          <button class="group__btn btn btn_yellow" >          <img class="icon " src="img/saveIcon.svg" alt="">Save</button>
+        </div>
         <a class="header__profile" href="#"><img class="header__pic" src="img/header-ava.png" alt="" /></a>
       </div>
       <div class="header__bg js-header-bg"></div>
