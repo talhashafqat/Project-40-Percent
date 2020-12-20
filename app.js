@@ -373,13 +373,12 @@ app.post("/addkid", function(req,res){
                     console.log("Updated Successfully");
                   }
                 });
-                res.redirect("/dashboard");
+
             }
           }
       })
 
-
-
+      res.redirect("/dashboard");
 
 });
 
