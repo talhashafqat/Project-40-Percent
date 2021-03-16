@@ -414,6 +414,12 @@ app.post("/deletekid", function(req,res){
 });
 
 
+//Alphabets OCR
+
+app.get("/ocr", function(req,res){
+    res.render("alphabets")
+});
+
 app.listen(3000, function () {
     console.log("Server started on port 3000");
 });
