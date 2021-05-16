@@ -9,6 +9,20 @@ window.addEventListener("load", () => {
   var tooltype = 'draw';
   var strokeColor = document.querySelector("#strokeColor")
   var clearButton = document.querySelector("clearButton")
+  var submitButton = document.querySelector("#submitButton")
+  var displayImage = document.querySelector("#displayImage")
+
+
+  submitButton.addEventListener("click", function(){
+      if (canvas.getContext) {
+        const dataURI = canvas.toDataURL();
+        console.log("This is the DataURI");
+        console.log(dataURI);
+        displayImage.src = dataURI;
+      }
+  });
+
+
   document.querySelector("#clear_button").addEventListener('click', function() {
     ctx.clearRect(0,0,canvas.width,canvas.height);
   }, false);

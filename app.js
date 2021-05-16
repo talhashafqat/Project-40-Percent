@@ -7,6 +7,7 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+
 //Google OAuth2.0 Connection & Data Retrival ----- Start -----
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -54,7 +55,7 @@ passport.use(new GoogleStrategy({
 const app = express();
 
 //MongoDB Connection Established to LocalHost
-mongoose.connect("mongodb://localhost:27017/growingTreesDB", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://admin-talha:growingtrees123@cluster0.8kepi.mongodb.net/growingTreesDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -416,8 +417,16 @@ app.post("/deletekid", function(req,res){
 
 //Alphabets OCR
 
-app.get("/ocr", function(req,res){
-    res.render("alphabets")
+app.get("/maths", function(req,res){
+    res.render("maths");
+});
+
+app.get("/english", function(req,res){
+    res.render("english");
+});
+
+app.get("/urdu", function(req,res){
+    res.render("urdu");
 });
 
 app.listen(3000, function () {
