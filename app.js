@@ -72,7 +72,8 @@ var alreadyRegisteredError;
 var invalidUser;
 var kids = [];
 var signedInUser;
-
+var colors = ["#0062FF", "#50B5FF", "#FF974A", "#FFC542"];
+var progressOverview = ["spark-1","spark-2","spark-3","spark-4"];
 
 
 //New Kid Data newUserSchema
@@ -321,7 +322,7 @@ app.get("/dashboard", function(req,res){
       if (!err) {
           if (foundList) {
               if(foundList.kids){
-                    res.render("dashboard", {kids: foundList.kids});
+                    res.render("dashboard", {kids: foundList.kids, colors: colors, progress: progressOverview});
               }
           }
           else {

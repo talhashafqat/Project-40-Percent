@@ -19103,7 +19103,6 @@ body.dark .courses2__info {
 
 .student__list__margin{
   margin-left: 280px;
-  margin-bottom: 400px;
 }
 
 .student__item {
@@ -20584,6 +20583,7 @@ body.dark .modul__item:hover .modul__text {
 .knowledge__doc .knowledge__text {
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
+  font-size: 20px;
   font-weight: 600;
 }
 
