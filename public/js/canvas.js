@@ -18,7 +18,7 @@ window.addEventListener("load", () => {
         const dataURI = canvas.toDataURL();
         console.log("This is the DataURI");
         console.log(dataURI);
-        displayImage.src = dataURI;
+        // displayImage.src = dataURI;
       }
   });
 
