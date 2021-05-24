@@ -11,11 +11,21 @@ window.addEventListener("load", () => {
   var clearButton = document.querySelector("clearButton")
   var submitButton = document.querySelector("#submitButton")
   var displayImage = document.querySelector("#displayImage")
+  var downloadButton = document.querySelector("#download")
 
+  downloadButton.addEventListener("click", function(){
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    var link = document.createElement('a');
+    link.download = 'canvas.jpg';
+    link.href = document.getElementById('canvas').toDataURL()
+    link.click();
+  });
 
   submitButton.addEventListener("click", function(){
       if (canvas.getContext) {
-        const dataURI = canvas.toDataURL();
+        const dataURI = canvas.toDataURL("image/jpeg");
         console.log("This is the DataURI");
         console.log(dataURI);
         // displayImage.src = dataURI;

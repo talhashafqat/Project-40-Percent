@@ -43,8 +43,13 @@
           <button class="group__btn btn btn_red" id="clear_button" >Clear</button>
         </div>
         <div class="save__button">
-          <button class="group__btn btn btn_yellow" id="submitButton">Submit</button>
+          <button hidden class="group__btn btn btn_yellow" id="submitButton">Submit</button>
         </div>
+
+        <div class="save__button">
+          <button class="group__btn btn btn_yellow" id="download">Download</button>
+        </div>
+
         <a class="header__profile" href="#"><img class="header__pic" src="img/header-ava.png" alt="" /></a>
       </div>
       <div class="header__bg js-header-bg"></div>
@@ -63,7 +68,7 @@
               Custom Planner</a><a class="sidebar__item active" href="#">
               <img class="icon" src="img/virtualBoard_icon.svg" alt="">
               Virtual Board</a>
-              <a class="sidebar__item" href="#">
+              <a class="sidebar__item " href="#">
               <img class="icon" src="img/maths.svg" alt="">
               Maths</a>
 
@@ -105,7 +110,7 @@
                       </div> -->
                       <div class="schedule__list">
                         <div class="page3__container">
-                          <canvas id="canvas" width=auto height="885"></canvas>
+                          <canvas id="canvas" width=1200 height="885"></canvas>
                         </div>
                         <div class="schedule__foot"><a class="schedule__more" href="#"></a></div>
                       </div>
@@ -118,5 +123,6 @@
 </div>
 
 <script src="js/canvas.js"></script>
+<!-- <script src="js/downloadcanvas.js"></script> -->
 
 <%- include("partials/footer.ejs") %>
