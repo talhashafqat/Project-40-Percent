@@ -101,6 +101,11 @@ button {
   crosshair;
 }
 
+#virtualboard {
+  cursor:
+  crosshair;
+}
+
 /* Range Slider CSS */
 
 .range {

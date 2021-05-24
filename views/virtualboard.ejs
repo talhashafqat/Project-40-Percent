@@ -43,7 +43,7 @@
           <button class="group__btn btn btn_red" id="clear_button" >Clear</button>
         </div>
         <div class="save__button">
-          <button class="group__btn btn btn_yellow" >          <img class="icon " src="img/saveIcon.svg" alt="">Save</button>
+          <button class="group__btn btn btn_yellow" id="submitButton">Submit</button>
         </div>
         <a class="header__profile" href="#"><img class="header__pic" src="img/header-ava.png" alt="" /></a>
       </div>
@@ -63,6 +63,16 @@
               Custom Planner</a><a class="sidebar__item active" href="#">
               <img class="icon" src="img/virtualBoard_icon.svg" alt="">
               Virtual Board</a>
+              <a class="sidebar__item" href="#">
+              <img class="icon" src="img/maths.svg" alt="">
+              Maths</a>
+
+              <a class="sidebar__item " href="english">
+              <img class="icon" src="img/english.svg" alt="">
+              English</a>
+              <a class="sidebar__item " href="urdu">
+              <img class="icon" src="img/maths.svg" alt="">
+              Urdu</a>
             <a class="sidebar__item" style="color: #E92424" href="/">
               <img class="icon" src="img/logout_icon.svg" alt="">
               Logout</a>
@@ -70,9 +80,39 @@
         </div>
       </div>
     </div>
-    <div class="page3__container">
-      <canvas id="canvas" width=auto height="885"></canvas>
-    </div>
+    <div class="page__container">
+                <div class="page__content">
+                  <div class="schedule">
+                    <div class="sorting js-sorting">
+                      <h1 class="sorting__title title">Schedule</h1>
+                    </div>
+                    <div class="schedule__container">
+                      <!-- <div class="schedule__calendar">
+                        <div class="datepicker">
+                          <div class="datepicker__container">
+                            <div class="datepicker__month">
+                              <div class="datepicker__head">
+                                <div class="datepicker__title">Maths Numbers</div>
+                              </div>
+                              <table class="datepicker__table">
+                                <tbody>
+                                </tbody>
+                              </table>
+                              <img src="img/Numbers.svg" style="margin-top: 100px;" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+                      <div class="schedule__list">
+                        <div class="page3__container">
+                          <canvas id="canvas" width=auto height="885"></canvas>
+                        </div>
+                        <div class="schedule__foot"><a class="schedule__more" href="#"></a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
   </div>
 </div>
 </div>
