@@ -114,6 +114,7 @@ var alreadyRegisteredError;
 var invalidUser;
 var kids = [];
 var signedInUser;
+var kidProfileCurrentlyIn;
 var colors = ["#0062FF", "#50B5FF", "#FF974A", "#FFC542"];
 var progressOverview = ["spark-1", "spark-2", "spark-3", "spark-4"];
 var updateSuccessful
@@ -423,11 +424,20 @@ app.post("/dashboard", function(req, res) {
               age: kidProfile[i].age,
               kidID: kidID
             })
+            kidProfileCurrentlyIn = {
+              kidName: kidProfile[i].name,
+              kidAge: kidProfile[i].age,
+              experiencePoints: kidProfile[i].experiencePoints
+            }
           }
         }
       }
     }
   })
+});
+
+app.get("/webglLoader", (req, res) => {
+  res.render('webglLoader');
 });
 
 app.post("/addkid", function(req, res) {
@@ -507,6 +517,9 @@ app.post("/deletekid", function(req, res) {
   });
 });
 
+app.get("/connectunity", (req, res) => {
+  res.json(kidProfileCurrentlyIn);
+});
 
 //Alphabets OCR
 
