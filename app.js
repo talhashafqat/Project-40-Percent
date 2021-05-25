@@ -12,15 +12,17 @@ const {
 } = require('tesseract.js');
 
 const storage = multer.diskStorage({
-    destination: (req,res,cb) => {
-      cb(null, "./uploads")
-    },
-    filename: (req,res,cb) => {
-      cb(null, req.file)
-    }
+  destination: (req, res, cb) => {
+    cb(null, "./uploads")
+  },
+  filename: (req, res, cb) => {
+    cb(null, req.file)
+  }
 });
 
-const upload = multer({storage:storage});
+const upload = multer({
+  storage: storage
+});
 
 
 // const worker = createWorker({
@@ -114,6 +116,7 @@ var kids = [];
 var signedInUser;
 var colors = ["#0062FF", "#50B5FF", "#FF974A", "#FFC542"];
 var progressOverview = ["spark-1", "spark-2", "spark-3", "spark-4"];
+var updateSuccessful
 
 
 //New Kid Data newUserSchema
@@ -518,6 +521,80 @@ app.get("/english", function(req, res) {
 app.get("/urdu", function(req, res) {
   res.render("urdu");
 });
+
+
+//Tracing
+app.get("/tracing", function(req, res) {
+  res.render("tracing");
+});
+
+
+//settings
+app.get("/settings", function(req, res) {
+  res.render("settings", {updateSuccessful: updateSuccessful});
+});
+
+app.post("/settings", function(req, res) {
+  const emailUpdate = req.body.emailupdate;
+  const passwordUpdate = req.body.passwordupdate;
+
+  if (emailUpdate == "") {
+    console.log("Email  Update  is  not  enter ");
+    User.findOneAndUpdate({
+      email: signedInUser
+    }, {
+      password: passwordUpdate
+    }, function(err, foundList) {
+      if (foundList) {
+        console.log(foundList);
+        console.log("Password Updated Successfully");
+        updateSuccessful = true;
+        res.render("settings", {
+          updateSuccessful: updateSuccessful
+        });
+        updateSuccessful = false;
+      }
+    });
+  } else if (passwordUpdate == "") {
+    User.findOneAndUpdate({
+      email: signedInUser
+    }, {
+      email: emailUpdate
+    }, function(err, foundList) {
+      if (foundList) {
+        console.log(foundList);
+        console.log("Email Updated Successfully");
+        updateSuccessful = true;
+        res.render("settings", {
+          updateSuccessful: updateSuccessful
+        });
+        updateSuccessful = false;
+      }
+    });
+  } else {
+    User.findOneAndUpdate({
+      email: signedInUser
+    }, {
+      email: emailUpdate,
+      password: passwordUpdate
+    }, function(err, foundList) {
+      if (foundList) {
+        console.log(foundList);
+        console.log("Email and Password Updated Successfully");
+        updateSuccessful = true;
+        res.render("settings", {
+          updateSuccessful: updateSuccessful
+        });
+        updateSuccessful = false;
+      }
+    });
+  }
+
+
+
+
+});
+
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");

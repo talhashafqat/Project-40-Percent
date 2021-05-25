@@ -1,0 +1,85 @@
+<%- include("partials/header.ejs") %>
+
+<div class="out">
+  <div class="dashboard__page">
+    <div class="header js-header"><button class="header__burger js-header-burger"><svg class="icon icon-burger">
+          <use xlink:href="img/sprite.svg#icon-burger"></use>
+        </svg></button><a class="header__logo" href="#"><img src="img/dashboard_logo.svg" alt="" /><img class="header__pic header__pic_white" src="img/logo-white.svg" alt="" /></a>
+      <div class="header__title">Dashboard</div>
+      <div class="header__group">
+        <a class="header__profile" href="#"><img class="header__pic" src="img/header-ava.png" alt="" /></a>
+      </div>
+      <div class="header__bg js-header-bg"></div>
+    </div>
+    <div class="dashboard__pageWrapper">
+      <div class="sidebar js-sidebar">
+        <div class="sidebar__top"><button class="sidebar__close js-sidebar-close"><svg class="icon icon-close">
+              <use xlink:href="img/sprite.svg#icon-close"></use>
+            </svg></button><a class="sidebar__logo" href="#"><img class="sidebar__pic sidebar__pic_black" src="img/logo.svg" alt="" /><img class="sidebar__pic sidebar__pic_white" src="img/logo-white.svg" alt="" /></a></div>
+        <div class="sidebar__wrapper">
+
+          <div class="sidebar__menu"><a class="sidebar__item active" href="#">
+              <img class="icon " src="img/dashboard_icon.svg" alt="">
+              Dashboard</a><a class="sidebar__item" href="">
+              <img class="icon " src="img/customPlanner_icon.svg" alt="">
+              Custom Planner</a><a class="sidebar__item" href="/virtualboard">
+              <img class="icon" src="img/virtualBoard_icon.svg" alt="">
+              Virtual Board</a>
+            <a class="sidebar__item" href="/">
+              <img class="icon" src="img/settings.svg" alt="">
+              Setting</a>
+            <a class="sidebar__item" style="color: #E92424" href="/">
+              <img class="icon" src="img/logout_icon.svg" alt="">
+              Logout</a>
+          </div>
+        </div>
+      </div>
+      <div class="page3__container">
+        <div class="student__dashboard" style="padding-bottom: 440px;">
+          <div class="student__head">
+            <h1 class="student__title title title_big">Settings</h1>
+            <div class="student__text">You can update your email address or password</div>
+            <div class="student__control">
+            </div>
+            <form class="" action="/settings" method="post">
+              <div class="update__email">
+                <div class="entry__row">
+                  <div class="entry__col">
+                    <div class="field1 js-field">
+                      <div class="field1__label">Update Email</div>
+                      <div class="field1__wrap"><input class="field1__input js-field-input" type="email" name="emailupdate"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="update__email">
+                <div class="entry__row">
+                  <div class="entry__col">
+                    <div class="field1 js-field">
+                      <div class="field1__label">Update Password</div>
+                      <div class="field1__wrap"><input class="field1__input js-field-input" type="password" name="passwordupdate"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="update__email">
+                <div class="entry__row">
+                  <div class="entry__col">
+                    <button class="login__btn btn btn btn_green" type="submit">Update</button>
+                  </div>
+                </div>
+              </div>
+              <% if(updateSuccessful) { %>
+                <p class="update__message">Updated Successfully</p>
+              <% } %>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
