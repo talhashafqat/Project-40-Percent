@@ -12,6 +12,8 @@ window.addEventListener("load", () => {
   var submitButton = document.querySelector("#submitButton")
   var displayImage = document.querySelector("#displayImage")
   var downloadButton = document.querySelector("#download")
+  let base64Image;
+
 
   downloadButton.addEventListener("click", function(){
     ctx.globalCompositeOperation = 'destination-over';
@@ -25,10 +27,18 @@ window.addEventListener("load", () => {
 
   submitButton.addEventListener("click", function(){
       if (canvas.getContext) {
-        const dataURI = canvas.toDataURL("image/jpeg");
+        const dataURL = canvas.toDataURL();
         console.log("This is the DataURI");
-        console.log(dataURI);
+        console.log(dataURL);
+        base64Image = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
         // displayImage.src = dataURI;
+        let message = {
+          image: base64Image
+        }
+        console.log(message);
+        $.post("/OCR", message, function(res){
+          console.log(res);
+        });
       }
   });
 
@@ -39,6 +49,10 @@ window.addEventListener("load", () => {
 
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
+
+  ctx.globalCompositeOperation = 'destination-over';
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   var color;
   var strokeWidth;

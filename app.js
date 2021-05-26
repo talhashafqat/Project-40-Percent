@@ -7,9 +7,13 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const multer = require("multer");
+const fs = require("fs")
+const imageDataURI = require('image-data-uri');
 const {
   createWorker
 } = require('tesseract.js');
+
+
 
 const storage = multer.diskStorage({
   destination: (req, res, cb) => {
@@ -24,23 +28,6 @@ const upload = multer({
   storage: storage
 });
 
-
-// const worker = createWorker({
-//   logger: m => console.log(m),
-// });
-//
-// const convertToText = async () => {
-//   await worker.load();
-//   await worker.loadLanguage('eng');
-//   await worker.initialize('eng');
-//   const {
-//     data: {
-//       text
-//     }
-//   } = await worker.recognize();
-//   console.log("text from file: ", text);
-// }
-// convertToText();
 
 
 //Google OAuth2.0 Connection & Data Retrival ----- Start -----
@@ -522,80 +509,129 @@ app.get("/urdu", function(req, res) {
   res.render("urdu");
 });
 
+app.post("/OCR", function(req, res) {
+      image = {
+        data: req.body.image
+      };
+      console.log("This part is working");
 
-//Tracing
-app.get("/tracing", function(req, res) {
-  res.render("tracing");
-});
+      console.log(image.data);
+
+      fs.writeFile('image.png', image.data, {
+        encoding: 'base64'
+      }, function(err) {
+        console.log('File created');
+      });
+
+      fs.readFile('image.png', function (err, data) {
+        if (err) throw err;
+        const worker = createWorker({
+        logger: m => console.log(m),
+        });
+
+        const convertToText = async() => {
+        await worker.load();
+        await worker.loadLanguage('eng');
+        await worker.initialize('eng');
+        await worker.setParameters({
+            tessedit_char_whitelist: '0123456789',
+        });
+        const { data: { text } } = await worker.recognize(data);
+        console.log("text from file: ", text);
+        }
+        convertToText();
+      });
+
+        // var json = JSON.stringify(image);
+        // fs.writeFile("out.png", json, 'base64', function(err) {
+        //   console.log(err);
+        // });
+        // console.log(json);
+        //     fs.writeFile('./ocr-images/image_json_file.json', json, 'utf8', function (err) {
+        //   if (err) {
+        //     console.log(err);
+        //   }
+        // });
 
 
-//settings
-app.get("/settings", function(req, res) {
-  res.render("settings", {updateSuccessful: updateSuccessful});
-});
+      });
 
-app.post("/settings", function(req, res) {
-  const emailUpdate = req.body.emailupdate;
-  const passwordUpdate = req.body.passwordupdate;
 
-  if (emailUpdate == "") {
-    console.log("Email  Update  is  not  enter ");
-    User.findOneAndUpdate({
-      email: signedInUser
-    }, {
-      password: passwordUpdate
-    }, function(err, foundList) {
-      if (foundList) {
-        console.log(foundList);
-        console.log("Password Updated Successfully");
-        updateSuccessful = true;
+      //Tracing
+      app.get("/tracing", function(req, res) {
+        res.render("tracing");
+      });
+
+
+      //settings
+      app.get("/settings", function(req, res) {
         res.render("settings", {
           updateSuccessful: updateSuccessful
         });
-        updateSuccessful = false;
-      }
-    });
-  } else if (passwordUpdate == "") {
-    User.findOneAndUpdate({
-      email: signedInUser
-    }, {
-      email: emailUpdate
-    }, function(err, foundList) {
-      if (foundList) {
-        console.log(foundList);
-        console.log("Email Updated Successfully");
-        updateSuccessful = true;
-        res.render("settings", {
-          updateSuccessful: updateSuccessful
-        });
-        updateSuccessful = false;
-      }
-    });
-  } else {
-    User.findOneAndUpdate({
-      email: signedInUser
-    }, {
-      email: emailUpdate,
-      password: passwordUpdate
-    }, function(err, foundList) {
-      if (foundList) {
-        console.log(foundList);
-        console.log("Email and Password Updated Successfully");
-        updateSuccessful = true;
-        res.render("settings", {
-          updateSuccessful: updateSuccessful
-        });
-        updateSuccessful = false;
-      }
-    });
-  }
+      });
+
+      app.post("/settings", function(req, res) {
+        const emailUpdate = req.body.emailupdate;
+        const passwordUpdate = req.body.passwordupdate;
+
+        if (emailUpdate == "") {
+          console.log("Email  Update  is  not  enter ");
+          User.findOneAndUpdate({
+            email: signedInUser
+          }, {
+            password: passwordUpdate
+          }, function(err, foundList) {
+            if (foundList) {
+              console.log(foundList);
+              console.log("Password Updated Successfully");
+              updateSuccessful = true;
+              res.render("settings", {
+                updateSuccessful: updateSuccessful
+              });
+              updateSuccessful = false;
+            }
+          });
+        } else if (passwordUpdate == "") {
+          User.findOneAndUpdate({
+            email: signedInUser
+          }, {
+            email: emailUpdate
+          }, function(err, foundList) {
+            if (foundList) {
+              console.log(foundList);
+              console.log("Email Updated Successfully");
+              updateSuccessful = true;
+              res.render("settings", {
+                updateSuccessful: updateSuccessful
+              });
+              updateSuccessful = false;
+            }
+          });
+        } else {
+          User.findOneAndUpdate({
+            email: signedInUser
+          }, {
+            email: emailUpdate,
+            password: passwordUpdate
+          }, function(err, foundList) {
+            if (foundList) {
+              console.log(foundList);
+              console.log("Email and Password Updated Successfully");
+              updateSuccessful = true;
+              res.render("settings", {
+                updateSuccessful: updateSuccessful
+              });
+              updateSuccessful = false;
+            }
+          });
+        }
 
 
 
 
-});
+      });
 
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
-});
+      app.listen(3000, function() {
+        console.log("Server started on port 3000");
+      });
