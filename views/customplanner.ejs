@@ -70,19 +70,25 @@
                 <div class="schedule__list">
                   <div class="schedule__group">
                     <% for(i=0,l=1; i<(dates.length -1);i++) { %>
+                      <% if (planner['day'+(i+1)]['Task'+l] != null) { %>
                       <div class="schedule__item">
                         <div class="schedule__date"><svg class="icon icon-calendar">
                             <use xlink:href="img/sprite.svg#icon-calendar"></use>
                           </svg><%=dates[i].toDateString()%></div>
                         <div class="schedule__details">
                           <% for(j=1;j<=dayTaskLength[i];j++) { %>
-                          <label class="checkbox checkbox_green checkbox_big"><input class="checkbox__input" type="checkbox"><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__details"><span
+                            <% if(planner['day'+(i+1)]['Task'+l] != null) { %>
+                           <label class="checkbox checkbox_green checkbox_big"><input class="checkbox__input" type="checkbox"><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__details"><span
                                   class="checkbox__line"><span class="checkbox__info"><%= planner['day'+(i+1)]['Task'+l] %></span><span class="users"><span class="users__item" style="background-color: #50B5FF">E</span></span></span><span class="checkbox__desc">
                                 </span></span></span>
                               </label>
+                              <% } else { %>
+                                <% break; %>
+                                <% } %>
                             <% l++; } %>
                         </div>
                       </div>
+                      <% } %>
                    <% } %>
 
                   </div>
