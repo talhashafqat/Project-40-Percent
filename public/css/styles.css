@@ -117,6 +117,15 @@ button {
 }
 
 
+/* OCR */
+
+.ocr__result{
+  margin-top: 30px;
+  margin-left: 5px;
+  color: #0ABB11;
+  font-size: 14pt;
+}
+
 /* Settings */
 
 .update__email{
@@ -13381,11 +13390,76 @@ body.dark .schedule__more:hover {
   table-layout: fixed;
 }
 
-.datepicker th {
+#dycalendar table {
+  margin-top: 40px;
+}
+
+#dycalendar  .dycalendar-span-month-year  {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#dycalendar table tr:nth-child(1) td {
   height: 30px;
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   font-size: 12px;
+  letter-spacing: .86px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #92929D;
+  vertical-align: middle;
+  text-align: center;
+  padding: 2px 0;
+}
+
+#dycalendar table td {
+  width: 38px;
+  height: 48px;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #171725;
+  -webkit-transition: all .25s;
+  -o-transition: all .25s;
+  transition: all .25s;
+}
+
+#dycalendar table td:hover {
+  background: #50B5FF;
+  color: #ffffff;
+}
+
+.dycalendar-month-container .dycalendar-target-date {
+  background: #0062FF !important;
+  font-weight: 700;
+  color: #ffffff !important;
+}
+
+.dycalendar-month-container .dycalendar-header .dycalendar-prev-next-btn {
+  background: #F8F8F8;
+  color: #111;
+  width: 44px;
+  height: 38px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+
+}
+
+.datepicker th {
+  height: 30px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  font-size: 18px;
   letter-spacing: .86px;
   font-weight: 600;
   text-transform: uppercase;

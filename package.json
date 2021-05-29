@@ -24,6 +24,7 @@
     "passport-google-plus-token": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "tesseract.js": "^2.0.0-beta.2"
+    "tesseract.js": "^2.0.0-beta.2",
+    "underscore": "^1.13.1"
   }
 }

@@ -102,7 +102,9 @@
                               </table>
                               <img src="img/englishAlphabets.svg" style="margin-top: 100px;" alt="">
                             </div>
-
+                            <% if (result) { %>
+                                <p class="ocr__result">The Letter you wrote is <%=answer%></p>
+                            <% } %>
                           </div>
                         </div>
                       </div>
@@ -120,6 +122,6 @@
 </div>
 </div>
 
-<script src="js/canvas.js"></script>
+<script src="js/englishcanvas.js"></script>
 
 <%- include("partials/footer.ejs") %>

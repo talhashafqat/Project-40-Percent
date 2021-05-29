@@ -1,0 +1,148 @@
+<%- include("partials/header.ejs") %>
+
+<div class="out">
+  <div class="dashboard__page">
+    <div class="header js-header"><button class="header__burger js-header-burger"><svg class="icon icon-burger">
+          <use xlink:href="img/sprite.svg#icon-burger"></use>
+        </svg></button><a class="header__logo" href="#"><img src="img/dashboard_logo.svg" alt="" /><img class="header__pic header__pic_white" src="img/logo-white.svg" alt="" /></a>
+      <div class="header__title">Dashboard</div>
+      <div class="header__group">
+        <a class="header__profile" href="#"><img class="header__pic" src="img/header-ava.png" alt="" /></a>
+      </div>
+      <div class="header__bg js-header-bg"></div>
+    </div>
+    <div class="dashboard__pageWrapper">
+      <div class="sidebar js-sidebar">
+        <div class="sidebar__top"><button class="sidebar__close js-sidebar-close"><svg class="icon icon-close">
+              <use xlink:href="img/sprite.svg#icon-close"></use>
+            </svg></button><a class="sidebar__logo" href="#"><img class="sidebar__pic sidebar__pic_black" src="img/logo.svg" alt="" /><img class="sidebar__pic sidebar__pic_white" src="img/logo-white.svg" alt="" /></a></div>
+        <div class="sidebar__wrapper">
+
+          <div class="sidebar__menu"><a class="sidebar__item " href="#">
+              <img class="icon " src="img/dashboard_icon.svg" alt="">
+              Dashboard</a><a class="sidebar__item active" href="">
+              <img class="icon " src="img/customPlanner_icon.svg" alt="">
+              Custom Planner</a><a class="sidebar__item" href="/virtualboard">
+              <img class="icon" src="img/virtualBoard_icon.svg" alt="">
+              Virtual Board</a>
+            <a class="sidebar__item" href="/settings">
+              <img class="icon" src="img/settings.svg" alt="">
+              Setting</a>
+            <a class="sidebar__item" style="color: #E92424" href="/">
+              <img class="icon" src="img/logout_icon.svg" alt="">
+              Logout</a>
+          </div>
+        </div>
+      </div>
+      <div class="page3__container">
+        <div class="page__container">
+          <div class="page__content">
+            <div class="schedule">
+
+              <div class="student__head" style="margin-top: 50px;">
+                <h1 class="student__title title title_big">Custom Planner</h1>
+                <div class="student__text">Here you can customize your study plan as per your dates! Click on the <span class="student__link">Create Planner</span> Button to get started!</div>
+                <div class="student__control">
+                  <div class="delete__student">
+                    <button class="btn btn_yellow js-popup-open" href="#popup-details" data-effect="mfp-zoom-in">
+                      <span class="btn__text ">Create Planner</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="sorting js-sorting" style="margin-top: 50px;">
+                          <h1 class="sorting__title title">Custom Planner</h1>
+                          <div class="sorting__variants">
+                            <div class="sorting__text">Show:</div><select class="sorting__select">
+                              <option selected >All Kids</option>
+                              <option >Kid1</option>
+                              <option >Kid2</option>
+                              <option >Kid3</option>
+                            </select>
+                          </div>
+                        </div> -->
+              <div class="schedule__container" style="margin-top: 70px;">
+
+                <div class="schedule__calendar">
+                  <div id="dycalendar">
+                  </div>
+                </div>
+                <div class="schedule__list">
+                  <div class="schedule__group">
+                    <% for(i=0,l=1; i<(dates.length -1);i++) { %>
+                      <div class="schedule__item">
+                        <div class="schedule__date"><svg class="icon icon-calendar">
+                            <use xlink:href="img/sprite.svg#icon-calendar"></use>
+                          </svg><%=dates[i].toDateString()%></div>
+                        <div class="schedule__details">
+                          <% for(j=1;j<=dayTaskLength[i];j++) { %>
+                          <label class="checkbox checkbox_green checkbox_big"><input class="checkbox__input" type="checkbox"><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__details"><span
+                                  class="checkbox__line"><span class="checkbox__info"><%= planner['day'+(i+1)]['Task'+l] %></span><span class="users"><span class="users__item" style="background-color: #50B5FF">E</span></span></span><span class="checkbox__desc">
+                                </span></span></span>
+                              </label>
+                            <% l++; } %>
+                        </div>
+                      </div>
+                   <% } %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Create Planner PopUp -->
+
+        <div class="popup mfp-hide" id="popup-details">
+          <div class="details">
+            <div class="details__container">
+              <div class="details__head">
+                <div class="details__title">Add Time Stamp</div>
+                <div class="details__info">Add Start and End Date for your Planner so we can organise your Tasks as per your dates</div>
+              </div>
+              <div class="details__wrapper">
+                <form class="entry__form" method="post" action="/createplanner">
+                  <div class="entry__fieldset">
+                    <!-- <div class="field1 field1_email js-field">
+                                <div class="field1__label">Full Name</div>
+                                <div class="field1__wrap"><input class="field1__input js-field-input" type="text" name="kidName">
+                                </div>
+                              </div> -->
+                    <div class="entry__row entry__row_mobile">
+                      <div class="entry__col">
+                        <div class="field1 field1_icon js-field">
+                          <div class="field1__label">Start Date</div>
+                          <div class="field1__wrap"><input class="field1__input js-field-input" type="date" name="startDate"></div>
+                        </div>
+                      </div>
+                      <div class="entry__col">
+                        <div class="field1 field1_icon js-field">
+                          <div class="field1__label">End Date</div>
+                          <div class="field1__wrap"><input class="field1__input js-field-input" type="date" name="endDate"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="entry__btns"><button class="entry__btn btn btn btn_big btn_yellow" type="submit">Create Planner</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <script src="js/dycalendar.js"></script>
+      <script>
+        dycalendar.draw({
+          target: "#dycalendar",
+          type: 'month',
+          dayofrmat: 'full',
+          monthformat: 'full',
+          highlighttargetdate: true,
+          prevnextbutton: 'show'
+        })
+      </script>
+
+      <%- include("partials/footer.ejs") %>

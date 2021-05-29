@@ -100,6 +100,9 @@
                               </table>
                               <img src="img/urdu.png" style="margin-top: 100px; margin-left: 50px;" alt="">
                             </div>
+                            <% if (result) { %>
+                                <p class="ocr__result">The Letter you wrote is <%=answer%></p>
+                            <% } %>
                           </div>
                         </div>
                       </div>
@@ -117,6 +120,6 @@
 </div>
 </div>
 
-<script src="js/canvas.js"></script>
+<script src="js/urducanvas.js"></script>
 
 <%- include("partials/footer.ejs") %>

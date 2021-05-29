@@ -9,19 +9,25 @@ window.addEventListener("load", () => {
   var tooltype = 'draw';
   var strokeColor = document.querySelector("#strokeColor")
   var clearButton = document.querySelector("clearButton")
+  var submitButton = document.querySelector("#submitButton")
   var displayImage = document.querySelector("#displayImage")
-  var downloadButton = document.querySelector("#download")
   let base64Image;
 
-
-  downloadButton.addEventListener("click", function(){
-    ctx.globalCompositeOperation = 'destination-over';
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    var link = document.createElement('a');
-    link.download = 'canvas.jpg';
-    link.href = document.getElementById('canvas').toDataURL()
-    link.click();
+  submitButton.addEventListener("click", function(){
+      if (canvas.getContext) {
+        const dataURL = canvas.toDataURL();
+        console.log("This is the DataURI");
+        console.log(dataURL);
+        base64Image = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+        // displayImage.src = dataURI;
+        let message = {
+          image: base64Image
+        }
+        console.log(message);
+        $.post("/UrduOCR", message, function(res){
+          console.log(res);
+        });
+      }
   });
 
 

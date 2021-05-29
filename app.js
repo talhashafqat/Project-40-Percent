@@ -12,7 +12,7 @@ const imageDataURI = require('image-data-uri');
 const {
   createWorker
 } = require('tesseract.js');
-
+var _ = require('underscore');
 
 
 const storage = multer.diskStorage({
@@ -103,12 +103,23 @@ var kids = [];
 var signedInUser;
 var colors = ["#0062FF", "#50B5FF", "#FF974A", "#FFC542"];
 var progressOverview = ["spark-1", "spark-2", "spark-3", "spark-4"];
-var updateSuccessful
-
+var updateSuccessful;;
+var mathsResult;
+var mathAnswer;
+var englishResult;
+var englishAnswer;
+var urduResult;
+var urduAnswer;
+var tasksList = ['Task1', 'Task2', 'Task3', 'Task4', 'Task5', 'Task6', 'Task7', 'Task8', 'Task9', 'Task10', 'Task11', 'Task12',
+  'Task13', 'Task14', 'Task15', 'Task16', 'Task17', 'Task18', 'Task19', 'Task20', 'Task21', 'Task22', 'Task23', 'Task24'
+];
+var planner = {};
+var selectedDates = [];
+var dayTaskLength = [];
 
 //New Kid Data newUserSchema
 
-const planner = new mongoose.Schema({
+const plannerDB = new mongoose.Schema({
   day: {
     type: Number,
     required: [true, "Check Data Entry, no day specified"]
@@ -498,140 +509,380 @@ app.post("/deletekid", function(req, res) {
 //Alphabets OCR
 
 app.get("/maths", function(req, res) {
-  res.render("maths");
+  res.render("maths", {
+    result: mathsResult,
+    answer: mathAnswer
+  });
 });
 
 app.get("/english", function(req, res) {
-  res.render("english");
+  res.render("english", {
+    result: englishResult,
+    answer: englishAnswer
+  });
 });
 
 app.get("/urdu", function(req, res) {
-  res.render("urdu");
+  res.render("urdu", {
+    result: urduResult,
+    answer: urduAnswer
+  });
 });
 
-app.post("/OCR", function(req, res) {
-      image = {
-        data: req.body.image
-      };
-      console.log("This part is working");
+app.post("/MathsOCR", function(req, res) {
 
-      console.log(image.data);
+  image = {
+    data: req.body.image
+  };
+  console.log("This part is working");
 
-      fs.writeFile('image.png', image.data, {
-        encoding: 'base64'
-      }, function(err) {
-        console.log('File created');
+  console.log(image.data);
+
+  fs.writeFile('image.png', image.data, {
+    encoding: 'base64'
+  }, function(err) {
+    console.log('File created');
+  });
+
+  fs.readFile('image.png', function(err, data) {
+    if (err) throw err;
+    const worker = createWorker({
+      logger: m => console.log(m),
+    });
+
+    const convertToText = async () => {
+      await worker.load();
+      await worker.loadLanguage('eng');
+      await worker.initialize('eng');
+      await worker.setParameters({
+        tessedit_char_whitelist: '0123456789',
       });
-
-      fs.readFile('image.png', function (err, data) {
-        if (err) throw err;
-        const worker = createWorker({
-        logger: m => console.log(m),
-        });
-
-        const convertToText = async() => {
-        await worker.load();
-        await worker.loadLanguage('eng');
-        await worker.initialize('eng');
-        await worker.setParameters({
-            tessedit_char_whitelist: '0123456789',
-        });
-        const { data: { text } } = await worker.recognize(data);
-        console.log("text from file: ", text);
+      const {
+        data: {
+          text
         }
-        convertToText();
+      } = await worker.recognize(data);
+      console.log("text from file: ", text);
+      mathsResult = true;
+      mathAnswer = text;
+
+    }
+    convertToText();
+
+  });
+
+
+
+});
+
+app.post("/EnglishOCR", function(req, res) {
+  image = {
+    data: req.body.image
+  };
+  console.log("This part is working");
+
+  console.log(image.data);
+
+  fs.writeFile('image.png', image.data, {
+    encoding: 'base64'
+  }, function(err) {
+    console.log('File created');
+  });
+
+  fs.readFile('image.png', function(err, data) {
+    if (err) throw err;
+    const worker = createWorker({
+      logger: m => console.log(m),
+    });
+
+    const convertToText = async () => {
+      await worker.load();
+      await worker.loadLanguage('eng');
+      await worker.initialize('eng');
+      await worker.setParameters({
+        tessedit_char_whitelist: 'ABCDEFFGHIJKLMNOPQRSTUVWXYZ',
       });
+      const {
+        data: {
+          text
+        }
+      } = await worker.recognize(data);
+      console.log("text from file: ", text);
+      englishResult = true;
+      englishAnswer = text;
+    }
+    convertToText();
+    res.redirect("/english");
+  });
 
-        // var json = JSON.stringify(image);
-        // fs.writeFile("out.png", json, 'base64', function(err) {
-        //   console.log(err);
-        // });
-        // console.log(json);
-        //     fs.writeFile('./ocr-images/image_json_file.json', json, 'utf8', function (err) {
-        //   if (err) {
-        //     console.log(err);
-        //   }
-        // });
+});
 
+app.post("/UrduOCR", function(req, res) {
+  image = {
+    data: req.body.image
+  };
+  console.log("This part is working");
 
+  console.log(image.data);
+
+  fs.writeFile('image.png', image.data, {
+    encoding: 'base64'
+  }, function(err) {
+    console.log('File created');
+  });
+
+  fs.readFile('image.png', function(err, data) {
+    if (err) throw err;
+    const worker = createWorker({
+      logger: m => console.log(m),
+    });
+
+    const convertToText = async () => {
+      await worker.load();
+      await worker.loadLanguage('urd');
+      await worker.initialize('urd');
+      await worker.setParameters({
+        tessedit_char_whitelist: 'آ ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ہ ی ے',
       });
+      const {
+        data: {
+          text
+        }
+      } = await worker.recognize(data);
+      console.log("text from file: ", text);
+      urduResult = true;
+      urduAnswer = text;
+    }
+    convertToText();
+  });
+
+});
 
 
-      //Tracing
-      app.get("/tracing", function(req, res) {
-        res.render("tracing");
-      });
+// Custom Planner
+
+app.get("/customplanner", function(req, res) {
+  res.render("customplanner", {
+    planner: {},
+    dates: [],
+    dayTaskLength: []
+  });
+});
+
+app.post("/customplanner", function(req, res) {
+  res.redirect("customplanner");
+});
+
+app.post("/createplanner", function(req, res) {
+
+  const startDate = new Date(req.body.startDate);
+  const endDate = new Date(req.body.endDate);
+
+  console.log(startDate + endDate);
+
+  const getDatesBetweenDates = (startDate, endDate) => {
+    let dates = []
+    //to avoid modifying the original date
+    const theDate = new Date(startDate)
+    while (theDate < endDate) {
+      dates = [...dates, new Date(theDate)]
+      theDate.setDate(theDate.getDate() + 1)
+    }
+    dates = [...dates, endDate]
+    return dates
+  }
+
+  selectedDates = getDatesBetweenDates(startDate, endDate);
+
+  console.log(selectedDates[0].toDateString());
+
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  const diffDays = Math.round(Math.abs((startDate - endDate) / oneDay));
+
+  console.log("Number of Days" + diffDays);
+  // var remainderTasks = tasksList.length % diffDays;
+  // var notRemainingTasksDivision = diffDays - remainderTasks;
+  var numberOfTaskPerDay = Math.round(tasksList.length / diffDays);
+
+  console.log("Number of tasks to be divided Per Day" + numberOfTaskPerDay);
+
+  if (numberOfTaskPerDay < (tasksList.length / diffDays)) {
+    console.log("Modulus Exist");
+    var remainderTasks = tasksList.length % diffDays;
+    var notRemainingTasksDivision = diffDays - remainderTasks;
+
+    for (i = 1, j = 1, l = 0; i <= diffDays; i++) {
+      planner['day' + i] = {};
+      if (i <= notRemainingTasksDivision) {
+        for (k = 0; k < numberOfTaskPerDay; k++) {
+          planner['day' + i]['Task' + j] = tasksList[l];
+          j++;
+          l++;
+          console.log(planner);
+        }
+      } else {
+        for (k = 0; k < numberOfTaskPerDay + 1; k++) {
+          planner['day' + i]['Task' + j] = tasksList[l];
+          j++;
+          l++;
+          console.log(planner);
+        }
+      }
+    }
+
+  } else {
+    console.log("Modulus Doesnt exist");
+    for (i = 1, j = 1, l = 0; i <= diffDays; i++) {
+      planner['day' + i] = {};
+      for (k = 0; k < numberOfTaskPerDay; k++) {
+        planner['day' + i]['Task' + j] = tasksList[l];
+        j++;
+        l++;
+        console.log(planner);
+      }
+    }
+  }
+
+  console.log(planner);
+  console.log(_.size(planner));
+  var plannerSize  = _.size(planner);
+
+  for (var a=1, b=0; a<=plannerSize; a++,b++){
+      console.log(_.size(planner['day'+a]));
+      dayTaskLength.push(_.size(planner['day'+a]));
+      console.log('Push Successful');
+  }
+
+  console.log(dayTaskLength);
+
+  // for (var a = 0,b=1; a < _.size(planner); a++,b++) {
+  //   dayTaskLength[a]  = _.size(planner['day'+b]);
+  // }
 
 
-      //settings
-      app.get("/settings", function(req, res) {
+  res.render("customplanner", {
+    planner: planner,
+    dates: selectedDates,
+    dayTaskLength: dayTaskLength
+  });
+
+  // for(i=1,j=1,l=0;i<=diffDays;i++){
+  //   planner['day' + i] = {};
+  //   if(i<=notRemainingTasksDivision){
+  //     for (k=0;k<numberOfTaskPerDay;k++){
+  //         planner['day' + i]['Task' + j] = tasksList[l];
+  //         j++;
+  //         l++;
+  //         console.log(planner);
+  //     }
+  //   }
+  //   else {
+  //     for (k=0;k<numberOfTaskPerDay+1;k++){
+  //         planner['day' + i]['Task' + j] = tasksList[l];
+  //         j++;
+  //         l++;
+  //         console.log(planner);
+  //     }
+  //   }
+  // }
+
+
+  // Latest Working Version
+  // for(i=1,j=1,l=0;i<=diffDays;i++){
+  //   planner['day' + i] = {};
+  //   for (k=0;k<numberOfTaskPerDay;k++){
+  //       planner['day' + i]['Task' + j] = tasksList[l];
+  //       j++;
+  //       l++;
+  //       console.log(planner);
+  //   }
+  // }
+
+
+  // This code is working fine and dividing tasks
+  // for(i=1,j=0;i<=diffDays;i++,j+=2){
+  //   planner['day' + i] = {['Task' + j]: tasksList[j], ['Task' + (j+1)]: tasksList[j+1] };
+  // }
+
+
+
+});
+
+//Tracing
+app.get("/tracing", function(req, res) {
+  res.render("tracing");
+});
+
+
+//settings
+app.get("/settings", function(req, res) {
+  res.render("settings", {
+    updateSuccessful: updateSuccessful
+  });
+});
+
+app.post("/settings", function(req, res) {
+  const emailUpdate = req.body.emailupdate;
+  const passwordUpdate = req.body.passwordupdate;
+
+  if (emailUpdate == "") {
+    console.log("Email  Update  is  not  enter ");
+    User.findOneAndUpdate({
+      email: signedInUser
+    }, {
+      password: passwordUpdate
+    }, function(err, foundList) {
+      if (foundList) {
+        console.log(foundList);
+        console.log("Password Updated Successfully");
+        updateSuccessful = true;
         res.render("settings", {
           updateSuccessful: updateSuccessful
         });
-      });
-
-      app.post("/settings", function(req, res) {
-        const emailUpdate = req.body.emailupdate;
-        const passwordUpdate = req.body.passwordupdate;
-
-        if (emailUpdate == "") {
-          console.log("Email  Update  is  not  enter ");
-          User.findOneAndUpdate({
-            email: signedInUser
-          }, {
-            password: passwordUpdate
-          }, function(err, foundList) {
-            if (foundList) {
-              console.log(foundList);
-              console.log("Password Updated Successfully");
-              updateSuccessful = true;
-              res.render("settings", {
-                updateSuccessful: updateSuccessful
-              });
-              updateSuccessful = false;
-            }
-          });
-        } else if (passwordUpdate == "") {
-          User.findOneAndUpdate({
-            email: signedInUser
-          }, {
-            email: emailUpdate
-          }, function(err, foundList) {
-            if (foundList) {
-              console.log(foundList);
-              console.log("Email Updated Successfully");
-              updateSuccessful = true;
-              res.render("settings", {
-                updateSuccessful: updateSuccessful
-              });
-              updateSuccessful = false;
-            }
-          });
-        } else {
-          User.findOneAndUpdate({
-            email: signedInUser
-          }, {
-            email: emailUpdate,
-            password: passwordUpdate
-          }, function(err, foundList) {
-            if (foundList) {
-              console.log(foundList);
-              console.log("Email and Password Updated Successfully");
-              updateSuccessful = true;
-              res.render("settings", {
-                updateSuccessful: updateSuccessful
-              });
-              updateSuccessful = false;
-            }
-          });
-        }
+        updateSuccessful = false;
+      }
+    });
+  } else if (passwordUpdate == "") {
+    User.findOneAndUpdate({
+      email: signedInUser
+    }, {
+      email: emailUpdate
+    }, function(err, foundList) {
+      if (foundList) {
+        console.log(foundList);
+        console.log("Email Updated Successfully");
+        updateSuccessful = true;
+        res.render("settings", {
+          updateSuccessful: updateSuccessful
+        });
+        updateSuccessful = false;
+      }
+    });
+  } else {
+    User.findOneAndUpdate({
+      email: signedInUser
+    }, {
+      email: emailUpdate,
+      password: passwordUpdate
+    }, function(err, foundList) {
+      if (foundList) {
+        console.log(foundList);
+        console.log("Email and Password Updated Successfully");
+        updateSuccessful = true;
+        res.render("settings", {
+          updateSuccessful: updateSuccessful
+        });
+        updateSuccessful = false;
+      }
+    });
+  }
 
 
 
 
-      });
+});
 
 
-      app.listen(3000, function() {
-        console.log("Server started on port 3000");
-      });
+app.listen(3000, function() {
+  console.log("Server started on port 3000");
+});
