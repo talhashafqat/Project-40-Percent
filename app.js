@@ -10,6 +10,7 @@ const multer = require("multer");
 const {
   createWorker
 } = require('tesseract.js');
+const { games } = require("googleapis/build/src/apis/games");
 
 const storage = multer.diskStorage({
   destination: (req, res, cb) => {
@@ -113,6 +114,9 @@ app.use(passport.session());
 var alreadyRegisteredError;
 var invalidUser;
 var kids = [];
+var lrdata = [];
+var gamedata = [];
+var unityProgress = [];
 var signedInUser;
 var kidProfileCurrentlyIn;
 var colors = ["#0062FF", "#50B5FF", "#FF974A", "#FFC542"];
@@ -208,7 +212,8 @@ const newKidSchema = new mongoose.Schema({
   experiencePoints: {
     type: Number
   },
-  gameScore: [],
+  gameScores: [],
+  progress: [],
   learningResources: [],
   planner: []
 });
@@ -230,11 +235,42 @@ const newUserSchema = new mongoose.Schema({
   kids: []
 });
 
+const progressSchema = new mongoose.Schema({
+  engGamesProgress:{
+    type: Number,
+    required: [true]
+  },
+  mathGamesProgress:{
+    type: Number,
+    required: [true]
+  },
+  urduGamesProgress:{
+    type: Number,
+    required: [true]
+  },
+  engLrProgress:{
+    type: Number,
+    required: [true]
+  },
+  mathLrProgress:{
+    type: Number,
+    required: [true]
+  },
+  urduLrProgress:{
+    type: Number,
+    required: [true]
+  }
+});
+
 
 
 // User Collection Created in MongoDB
 const User = mongoose.model("User", newUserSchema);
 const Kid = mongoose.model("kid", newKidSchema);
+const GameScore = mongoose.model("GameScore", gameScoreSchema);
+const LearningResource = mongoose.model("LearningResource", learningResources);
+const Progres = mongoose.model("Progres", progressSchema);
+
 
 
 //User kids Name Found
@@ -425,6 +461,7 @@ app.post("/dashboard", function(req, res) {
               kidID: kidID
             })
             kidProfileCurrentlyIn = {
+              kidID: kidID,
               kidName: kidProfile[i].name,
               kidAge: kidProfile[i].age,
               experiencePoints: kidProfile[i].experiencePoints
@@ -517,8 +554,213 @@ app.post("/deletekid", function(req, res) {
   });
 });
 
+// Connect Unity App
+
 app.get("/connectunity", (req, res) => {
   res.json(kidProfileCurrentlyIn);
+});
+
+// DATA COMING AND GOING TO UNITY
+
+app.get("/progress", (req, res) => {
+  let progress;
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            progress = kid.progress[0];
+            res.json(progress);
+            console.log("Progress sent to unity: ");
+            console.log(progress);
+          }
+        });
+      }
+    }
+  });
+  
+});
+
+app.get("/getxp", (req, res) => {
+  let xp;
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            xp = kid.experiencePoints;
+            res.json(xp);
+            console.log(xp);
+          }
+        });
+      }
+    }
+  });
+});
+
+app.post("/updatexp", (req, res) => {
+  const xp = req.body.experiencePoints;
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+  
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            kid.experiencePoints = xp;
+            console.log(kid.experiencePoints);
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/add-game-score", (req, res) => {
+  // New game
+  const newSubject = req.body.subject;
+  const newTitle = req.body.gameTitle;
+  const newGameScore = req.body.gameScore;
+  const newGameTime = req.body.gameTime;
+  const newExperiencePoints = req.body.experiencePoints;
+  const newgameStatus = req.body.gameStatus;
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        const newgame = new GameScore({
+            subject: newSubject,
+            gameTitle: newTitle,
+            gameScore: newGameScore,
+            gameTime: newGameTime,
+            experiencePoints: newExperiencePoints,
+            gameStatus: newgameStatus
+        });
+  
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            kid.gameScores.push(newgame)
+            console.log(kid.gameScores);
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/add-lr-data", (req, res) => {
+  // New LR
+  const newSubject= req.body.subject;
+  const newName= req.body.name;
+  const newStatus= req.body.status;
+  const newLearningTime= req.body.learningTime;
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        const newLearningResource= new LearningResource({
+          subject: newSubject,
+          name: newName,
+          status: newStatus,
+          learningTime: newLearningTime
+        });
+  
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            kid.learningResources.push(newLearningResource)
+            console.log(kid.learningResources);
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/progress", (req, res) => {
+  const newEngGameP = req.body.engGamesProgress;
+  const newMathGameP = req.body.mathGamesProgress;
+  const newUrduGameP = req.body.urduGamesProgress;
+  const newEngLrP = req.body.engLrProgress;
+  const newMathLrP = req.body.mathLrProgress;
+  const newUrduLrP = req.body.urduLrProgress;
+
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        const newProgress = new Progres({
+          engGamesProgress: newEngGameP,
+          mathGamesProgress: newMathGameP,
+          urduGamesProgress: newUrduGameP,
+          engLrProgress: newEngLrP,
+          mathLrProgress: newMathLrP,
+          urduLrProgress: newUrduLrP
+        });
+  
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            kid.progress[0] = newProgress;
+            console.log("Progress sent to web app:");
+            console.log(kid.progress);
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
 });
 
 //Alphabets OCR
@@ -602,10 +844,6 @@ app.post("/settings", function(req, res) {
       }
     });
   }
-
-
-
-
 });
 
 
