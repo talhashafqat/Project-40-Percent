@@ -139,34 +139,7 @@
 
               <!-- Progress Overview of Each Kids -->
 
-              <div class="admin__col admin__col_w35">
-                <div class="admin__card admin__card_pb20">
-                  <div class="admin__flex">
-                    <div class="admin__title title title_sm">Progress Overview</div>
-                  </div>
-                  <div class="admin__popular">
-                    <% for (let i=0; i<kids.length; i++) { %>
-                    <div class="admin__line">
-                      <div class="admin__details">
-                        <div class="admin__category"><%=kids[i].name%></div>
-                        <div class="admin__info">Age: <%=kids[i].age%></div>
-                      </div>
-                      <div class="admin__chart">
-                        <div id="spark-1"></div>
-                      </div>
-                      <div class="admin__result"><svg class="icon icon-profile">
-                          <use xlink:href="img/sprite.svg#icon-profile"></use>
-                        </svg>
-                        <div class="admin__text">2,129</div><svg class="icon icon-arrow-top">
-                          <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
-                        </svg>
-                      </div>
-                    </div>
 
-                    <% } %>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -219,5 +192,9 @@
     </div>
   </div>
 </div>
+
+<script>
+  console.log(options.labels[0]);
+</script>
 
 <%- include("partials/footer.ejs") %>

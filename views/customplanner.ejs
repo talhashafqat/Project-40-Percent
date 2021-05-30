@@ -69,23 +69,43 @@
                 </div>
                 <div class="schedule__list">
                   <div class="schedule__group">
-                    <% for(i=0,l=1; i<(dates.length -1);i++) { %>
-                      <% if (planner['day'+(i+1)]['Task'+l] != null) { %>
+                    <% for(i=0,l=1,k=1,m=1; i<(dates.length -1);i++) { %>
+                      <% if (engPlanner['day'+(i+1)]['Task'+l] != null) { %>
                       <div class="schedule__item">
                         <div class="schedule__date"><svg class="icon icon-calendar">
                             <use xlink:href="img/sprite.svg#icon-calendar"></use>
                           </svg><%=dates[i].toDateString()%></div>
                         <div class="schedule__details">
+                          <!-- For English Tasks -->
                           <% for(j=1;j<=dayTaskLength[i];j++) { %>
-                            <% if(planner['day'+(i+1)]['Task'+l] != null) { %>
+                            <% if(engPlanner['day'+(i+1)]['Task'+l] != null) { %>
                            <label class="checkbox checkbox_green checkbox_big"><input class="checkbox__input" type="checkbox"><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__details"><span
-                                  class="checkbox__line"><span class="checkbox__info"><%= planner['day'+(i+1)]['Task'+l] %></span><span class="users"><span class="users__item" style="background-color: #50B5FF">E</span></span></span><span class="checkbox__desc">
+                                  class="checkbox__line"><span class="checkbox__info"><%= engPlanner['day'+(i+1)]['Task'+l] %></span><span class="users"><span class="users__item" style="background-color: #50B5FF">E</span></span></span><span class="checkbox__desc">
                                 </span></span></span>
                               </label>
-                              <% } else { %>
-                                <% break; %>
-                                <% } %>
+                              <% } %>
                             <% l++; } %>
+
+                            <!-- For Maths Tasks -->
+                            <% for(j=1;j<=dayTaskLength[i];j++) { %>
+                              <% if(mathPlanner['day'+(i+1)]['Task'+k] != null) { %>
+                             <label class="checkbox checkbox_green checkbox_big"><input class="checkbox__input" type="checkbox"><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__details"><span
+                                    class="checkbox__line"><span class="checkbox__info"><%= mathPlanner['day'+(i+1)]['Task'+k] %></span><span class="users"><span class="users__item" style="background-color: #FC5A5A">M</span></span></span><span class="checkbox__desc">
+                                  </span></span></span>
+                                </label>
+                                <% } %>
+                              <% k++; } %>
+
+                              <!-- For Urdu Tasks -->
+                              <% for(j=1;j<=dayTaskLength[i];j++) { %>
+                                <% if(urduPlanner['day'+(i+1)]['Task'+m] != null) { %>
+                               <label class="checkbox checkbox_green checkbox_big"><input class="checkbox__input" type="checkbox"><span class="checkbox__in"><span class="checkbox__tick"></span><span class="checkbox__details"><span
+                                      class="checkbox__line"><span class="checkbox__info"><%= urduPlanner['day'+(i+1)]['Task'+m] %></span><span class="users"><span class="users__item" style="background-color: #FFC542">U</span></span></span><span class="checkbox__desc">
+                                    </span></span></span>
+                                  </label>
+                                  <% } %>
+                                <% m++; } %>
+
                         </div>
                       </div>
                       <% } %>

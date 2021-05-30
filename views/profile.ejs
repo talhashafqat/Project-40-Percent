@@ -35,7 +35,7 @@
         <div class="student__dashboard">
           <div class="student__head">
             <h1 class="student__title title title_big">Hi <%= kidName %> !</h1>
-            <div class="student__text">Experience Points : <span class="student__link"><%= experiencePoints %> XP </span> | Age: <span class="student__link"><%= age %></span> </div>
+            <div class="student__text">Age: <span class="student__link"><%= age %></span> </div>
             <div class="student__control">
               <div class="delete__student">
                 <button class="btn btn_gray js-popup-open" href="#popup-details" data-effect="mfp-zoom-in">
@@ -45,7 +45,7 @@
                 <div class="add__student delete__student">
                   <button class="btn btn_yellow">
                     <span class="btn__text ">Custom Planner</span></button>
-                </div>                
+                </div>
               </form>
               <div class="add__student">
                 <button class="btn btn_purple">
@@ -57,32 +57,24 @@
 
           <div class="admin__list" style="margin-top:120px;">
             <div class="admin__item">
-              <div class="admin__icon admin__icon_up"><svg class="icon icon-arrow-top">
-                  <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
-                </svg></div>
-              <div class="admin__number">431,234</div>
-              <div class="admin__info">Stats 1</div>
+              <div class="admin__icon admin__icon_up"><img src="img/xp.svg" alt=""></div>
+              <div class="admin__number">5,321</div>
+              <div class="admin__info">Experince Points</div>
             </div>
             <div class="admin__item">
-              <div class="admin__icon admin__icon_up"><svg class="icon icon-arrow-top">
-                  <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
-                </svg></div>
-              <div class="admin__number">217,315</div>
-              <div class="admin__info">Stats 2</div>
+              <div class="admin__icon admin__icon_up"><img src="img/book.svg" alt=""></div>
+              <div class="admin__number">7</div>
+              <div class="admin__info">Learning Resources</div>
             </div>
             <div class="admin__item">
-              <div class="admin__icon admin__icon_down"><svg class="icon icon-arrow-bottom">
-                  <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
-                </svg></div>
-              <div class="admin__number">78,518</div>
-              <div class="admin__info">Stats 3</div>
+              <div class="admin__icon admin__icon_down"><img src="img/game.svg" alt=""></div>
+              <div class="admin__number">9</div>
+              <div class="admin__info">Games</div>
             </div>
             <div class="admin__item">
-              <div class="admin__icon admin__icon_minus"><svg class="icon icon-minus">
-                  <use xlink:href="img/sprite.svg#icon-minus"></use>
-                </svg></div>
-              <div class="admin__number">110,918</div>
-              <div class="admin__info">Stats 4</div>
+              <div class="admin__icon admin__icon_minus"><img src="img/score.svg" alt=""></div>
+              <div class="admin__number">7.8</div>
+              <div class="admin__info">Avg Score</div>
             </div>
           </div>
 
@@ -172,78 +164,74 @@
                       <div class="overview__list">
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Sales</div>
+                            <div class="overview__title">Experience Points</div>
                             <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$27632</div>
-                            <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">1820</div>
+                            <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($21340 last year)</div>
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Purchase</div>
+                            <div class="overview__title">Learning Resources</div>
                             <div class="overview__status overview__status_up">+0.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$20199</div>
-                            <div class="overview__status overview__status_up">+0.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">3</div>
+                            <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($19000 last year)</div>
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Return</div>
+                            <div class="overview__title">Games</div>
                             <div class="overview__status overview__status_down">-1.5%<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$110</div>
-                            <div class="overview__status overview__status_down">-1.5%<svg class="icon icon-arrow-bottom">
+                            <div class="overview__number">4</div>
+                            <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($165 last year)</div>
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Marketing</div>
+                            <div class="overview__title">Avg Score</div>
                             <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$12632</div>
-                            <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">8.2</div>
+                            <div class="overview__status overview__status_up">Points<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($10500 last year)</div>
                         </div>
                       </div>
                       <div class="overview__row">
                         <div class="overview__col overview__col_w75">
                           <div class="overview__card">
                             <div class="overview__head">
-                              <div class="overview__title">Sales Figures</div>
+                              <div class="overview__title">Time Analysis</div>
                               <div class="overview__legend">
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Marketing Sales</div>
+                                  <div class="overview__text">Learning Resources</div>
                                 </div>
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
-                                  <div class="overview__text">Cases Sales</div>
+                                  <div class="overview__text">Activity</div>
                                 </div>
                               </div>
                             </div>
@@ -253,7 +241,7 @@
                           </div>
                         </div>
                         <div class="overview__col overview__col_w25">
-                          <div class="overview__card overview__card_p20">
+                          <!-- <div class="overview__card overview__card_p20">
                             <div class="overview__group">
                               <div class="overview__el">
                                 <div class="overview__chart overview__chart_circle">
@@ -264,7 +252,7 @@
                                 </div>
                                 <div class="overview__details">
                                   <div class="overview__number">68%</div>
-                                  <div class="overview__info">Hit Rate this year</div>
+                                  <div class="overview__info">Passing Rate</div>
                                 </div>
                               </div>
                               <div class="overview__el">
@@ -280,8 +268,8 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="overview__card">
+                          </div> -->
+                          <!-- <div class="overview__card">
                             <div class="overview__chart overview__chart_visitors">
                               <div id="chart-english-visitors"></div>
                             </div>
@@ -294,7 +282,7 @@
                                   <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                                 </svg></div>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <div class="overview__row">
@@ -302,8 +290,8 @@
                           <div class="overview__card">
                             <div class="overview__head overview__head_mb30">
                               <div class="overview__details overview__details_flex">
-                                <div class="overview__title">Average Total Sales</div>
-                                <div class="overview__years">2017-2018</div>
+                                <div class="overview__title">Percentile</div>
+
                               </div>
                             </div>
                             <div class="overview__charts">
@@ -313,8 +301,8 @@
                                   <div class="overview__percent">46% </div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">92,980</div>
-                                  <div class="overview__info">Cases</div>
+                                  <div class="overview__counter">4.6</div>
+                                  <div class="overview__info">Task 1</div>
                                 </div>
                               </div>
                               <div class="overview__box">
@@ -323,8 +311,8 @@
                                   <div class="overview__percent">74%</div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">28,546</div>
-                                  <div class="overview__info">Applications</div>
+                                  <div class="overview__counter">7.4</div>
+                                  <div class="overview__info">Task 2</div>
                                 </div>
                               </div>
                               <div class="overview__box">
@@ -333,36 +321,36 @@
                                   <div class="overview__percent">14%</div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">14,008</div>
-                                  <div class="overview__info">Products</div>
+                                  <div class="overview__counter">1.4</div>
+                                  <div class="overview__info">Task 3</div>
                                 </div>
                               </div>
                             </div>
                             <div class="overview__note"><svg class="icon icon-info">
                                 <use xlink:href="img/sprite.svg#icon-info"></use>
-                              </svg>Net sales, found on the income statement are used to calculate this ration returns and refunds must be backed out of total sales to measure the truly measure the firm’s assets abillity to generate sales.</div>
+                              </svg>Above are the Percentile of Each Task of the Subject the kid has performed</div>
                           </div>
                         </div>
                         <div class="overview__col overview__col_w50">
                           <div class="overview__card">
                             <div class="overview__head">
                               <div class="overview__details overview__details_flex">
-                                <div class="overview__title">Sales Report</div>
-                                <div class="overview__years">2017-2018</div>
+                                <div class="overview__title">Scores</div>
+
                               </div>
                               <div class="overview__legend">
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Online Sales</div>
+                                  <div class="overview__text">Learning Resources</div>
                                 </div>
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
-                                  <div class="overview__text">Offline Sales</div>
+                                  <div class="overview__text">Games</div>
                                 </div>
                               </div>
                             </div>
                             <div class="overview__chart overview__chart_sales-report">
-                              <div id="chart-sales-report"></div>
+                              <div id="chart-english-sales-report"></div>
                             </div>
                           </div>
                         </div>
@@ -398,63 +386,63 @@
                       <div class="overview__list">
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Sales</div>
+                            <div class="overview__title">Experience Points</div>
                             <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$27632</div>
-                            <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">2311</div>
+                            <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($21340 last year)</div>
+
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Purchase</div>
+                            <div class="overview__title">Learning Resources</div>
                             <div class="overview__status overview__status_up">+0.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$20199</div>
-                            <div class="overview__status overview__status_up">+0.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">1</div>
+                            <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($19000 last year)</div>
+
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Return</div>
+                            <div class="overview__title">Games</div>
                             <div class="overview__status overview__status_down">-1.5%<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$110</div>
-                            <div class="overview__status overview__status_down">-1.5%<svg class="icon icon-arrow-bottom">
+                            <div class="overview__number">2</div>
+                            <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($165 last year)</div>
+
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Marketing</div>
+                            <div class="overview__title">Avg Score</div>
                             <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$12632</div>
-                            <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">7.5</div>
+                            <div class="overview__status overview__status_up">Points<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($10500 last year)</div>
+
                         </div>
                       </div>
                       <div class="overview__row">
@@ -465,25 +453,25 @@
                               <div class="overview__legend">
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Marketing Sales</div>
+                                  <div class="overview__text">Learning Resources</div>
                                 </div>
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
-                                  <div class="overview__text">Cases Sales</div>
+                                  <div class="overview__text">Games</div>
                                 </div>
                               </div>
                             </div>
                             <div class="overview__chart overview__chart_sales-figures">
-                              <div id="chart-sales-figures"></div>
+                              <div id="chart-math-figures"></div>
                             </div>
                           </div>
                         </div>
                         <div class="overview__col overview__col_w25">
-                          <div class="overview__card overview__card_p20">
+                          <!-- <div class="overview__card overview__card_p20">
                             <div class="overview__group">
                               <div class="overview__el">
                                 <div class="overview__chart overview__chart_circle">
-                                  <div id="chart-hit-rate"></div>
+                                  <div id="chart-math-rate"></div>
                                   <div class="overview__icon"><svg class="icon icon-goal">
                                       <use xlink:href="img/sprite.svg#icon-goal"></use>
                                     </svg></div>
@@ -495,7 +483,7 @@
                               </div>
                               <div class="overview__el">
                                 <div class="overview__chart overview__chart_circle">
-                                  <div id="chart-deals"></div>
+                                  <div id="chart-math-deals"></div>
                                   <div class="overview__icon"><svg class="icon icon-briefcase-1">
                                       <use xlink:href="img/sprite.svg#icon-briefcase-1"></use>
                                     </svg></div>
@@ -506,10 +494,10 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="overview__card">
+                          </div> -->
+                          <!-- <div class="overview__card">
                             <div class="overview__chart overview__chart_visitors">
-                              <div id="chart-visitors"></div>
+                              <div id="chart-math-visitors"></div>
                             </div>
                             <div class="overview__bottom">
                               <div class="overview__details">
@@ -520,7 +508,7 @@
                                   <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                                 </svg></div>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <div class="overview__row">
@@ -528,67 +516,67 @@
                           <div class="overview__card">
                             <div class="overview__head overview__head_mb30">
                               <div class="overview__details overview__details_flex">
-                                <div class="overview__title">Average Total Sales</div>
-                                <div class="overview__years">2017-2018</div>
+                                <div class="overview__title">Percentile</div>
+
                               </div>
                             </div>
                             <div class="overview__charts">
                               <div class="overview__box">
                                 <div class="overview__chart">
-                                  <div id="chart-counter-cases"></div>
+                                  <div id="chart-math-cases"></div>
                                   <div class="overview__percent">46% </div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">92,980</div>
-                                  <div class="overview__info">Cases</div>
+                                  <div class="overview__counter">4.6</div>
+                                  <div class="overview__info">Task 1</div>
                                 </div>
                               </div>
                               <div class="overview__box">
                                 <div class="overview__chart">
-                                  <div id="chart-counter-applications"></div>
+                                  <div id="chart-math-applications"></div>
                                   <div class="overview__percent">74%</div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">28,546</div>
-                                  <div class="overview__info">Applications</div>
+                                  <div class="overview__counter">7.4</div>
+                                  <div class="overview__info">Task 2</div>
                                 </div>
                               </div>
                               <div class="overview__box">
                                 <div class="overview__chart">
-                                  <div id="chart-counter-products"></div>
+                                  <div id="chart-math-products"></div>
                                   <div class="overview__percent">14%</div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">14,008</div>
-                                  <div class="overview__info">Products</div>
+                                  <div class="overview__counter">1.4</div>
+                                  <div class="overview__info">Task 3</div>
                                 </div>
                               </div>
                             </div>
                             <div class="overview__note"><svg class="icon icon-info">
                                 <use xlink:href="img/sprite.svg#icon-info"></use>
-                              </svg>Net sales, found on the income statement are used to calculate this ration returns and refunds must be backed out of total sales to measure the truly measure the firm’s assets abillity to generate sales.</div>
+                              </svg>Above are the Percentile of Each Task of the Subject the kid has performed</div>
                           </div>
                         </div>
                         <div class="overview__col overview__col_w50">
                           <div class="overview__card">
                             <div class="overview__head">
                               <div class="overview__details overview__details_flex">
-                                <div class="overview__title">Sales Report</div>
-                                <div class="overview__years">2017-2018</div>
+                                <div class="overview__title">Scores</div>
+
                               </div>
                               <div class="overview__legend">
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Online Sales</div>
+                                  <div class="overview__text">Learning Resources</div>
                                 </div>
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
-                                  <div class="overview__text">Offline Sales</div>
+                                  <div class="overview__text">Games</div>
                                 </div>
                               </div>
                             </div>
                             <div class="overview__chart overview__chart_sales-report">
-                              <div id="chart-sales-report"></div>
+                              <div id="chart-math-sales-report"></div>
                             </div>
                           </div>
                         </div>
@@ -625,92 +613,92 @@
                       <div class="overview__list">
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Sales</div>
+                            <div class="overview__title">Experience Points</div>
                             <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$27632</div>
-                            <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">783</div>
+                            <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($21340 last year)</div>
+
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Purchase</div>
+                            <div class="overview__title">Learning Resources</div>
                             <div class="overview__status overview__status_up">+0.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$20199</div>
-                            <div class="overview__status overview__status_up">+0.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">3</div>
+                            <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($19000 last year)</div>
+
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Return</div>
+                            <div class="overview__title">Games</div>
                             <div class="overview__status overview__status_down">-1.5%<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$110</div>
-                            <div class="overview__status overview__status_down">-1.5%<svg class="icon icon-arrow-bottom">
+                            <div class="overview__number">2</div>
+                            <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($165 last year)</div>
+
                         </div>
                         <div class="overview__card">
                           <div class="overview__main">
-                            <div class="overview__title">Marketing</div>
+                            <div class="overview__title">Avg Score</div>
                             <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">$12632</div>
-                            <div class="overview__status overview__status_up">+2.5%<svg class="icon icon-arrow-top">
+                            <div class="overview__number">6.4</div>
+                            <div class="overview__status overview__status_up">Points<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
                           </div>
-                          <div class="overview__info">Compared to ($10500 last year)</div>
+
                         </div>
                       </div>
                       <div class="overview__row">
                         <div class="overview__col overview__col_w75">
                           <div class="overview__card">
                             <div class="overview__head">
-                              <div class="overview__title">Sales Figures</div>
+                              <div class="overview__title">Time Analysis</div>
                               <div class="overview__legend">
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Marketing Sales</div>
+                                  <div class="overview__text">Learning Resources</div>
                                 </div>
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
-                                  <div class="overview__text">Cases Sales</div>
+                                  <div class="overview__text">Games</div>
                                 </div>
                               </div>
                             </div>
                             <div class="overview__chart overview__chart_sales-figures">
-                              <div id="chart-sales-figures"></div>
+                              <div id="chart-urdu-figures"></div>
                             </div>
                           </div>
                         </div>
                         <div class="overview__col overview__col_w25">
-                          <div class="overview__card overview__card_p20">
+                          <!-- <div class="overview__card overview__card_p20">
                             <div class="overview__group">
                               <div class="overview__el">
                                 <div class="overview__chart overview__chart_circle">
-                                  <div id="chart-hit-rate"></div>
+                                  <div id="chart-urdu-rate"></div>
                                   <div class="overview__icon"><svg class="icon icon-goal">
                                       <use xlink:href="img/sprite.svg#icon-goal"></use>
                                     </svg></div>
@@ -722,7 +710,7 @@
                               </div>
                               <div class="overview__el">
                                 <div class="overview__chart overview__chart_circle">
-                                  <div id="chart-deals"></div>
+                                  <div id="chart-urdu-deals"></div>
                                   <div class="overview__icon"><svg class="icon icon-briefcase-1">
                                       <use xlink:href="img/sprite.svg#icon-briefcase-1"></use>
                                     </svg></div>
@@ -733,10 +721,10 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="overview__card">
+                          </div> -->
+                          <!-- <div class="overview__card">
                             <div class="overview__chart overview__chart_visitors">
-                              <div id="chart-visitors"></div>
+                              <div id="chart-urdu-visitors"></div>
                             </div>
                             <div class="overview__bottom">
                               <div class="overview__details">
@@ -747,7 +735,7 @@
                                   <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                                 </svg></div>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <div class="overview__row">
@@ -755,53 +743,53 @@
                           <div class="overview__card">
                             <div class="overview__head overview__head_mb30">
                               <div class="overview__details overview__details_flex">
-                                <div class="overview__title">Average Total Sales</div>
-                                <div class="overview__years">2017-2018</div>
+                                <div class="overview__title">Percentile</div>
+
                               </div>
                             </div>
                             <div class="overview__charts">
                               <div class="overview__box">
                                 <div class="overview__chart">
-                                  <div id="chart-counter-cases"></div>
+                                  <div id="chart-urdu-cases"></div>
                                   <div class="overview__percent">46% </div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">92,980</div>
-                                  <div class="overview__info">Cases</div>
+                                  <div class="overview__counter">4.6</div>
+                                  <div class="overview__info">Task 1</div>
                                 </div>
                               </div>
                               <div class="overview__box">
                                 <div class="overview__chart">
-                                  <div id="chart-counter-applications"></div>
+                                  <div id="chart-urdu-applications"></div>
                                   <div class="overview__percent">74%</div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">28,546</div>
-                                  <div class="overview__info">Applications</div>
+                                  <div class="overview__counter">7.4</div>
+                                  <div class="overview__info">Task 2</div>
                                 </div>
                               </div>
                               <div class="overview__box">
                                 <div class="overview__chart">
-                                  <div id="chart-counter-products"></div>
+                                  <div id="chart-urdu-products"></div>
                                   <div class="overview__percent">14%</div>
                                 </div>
                                 <div class="overview__details">
-                                  <div class="overview__counter">14,008</div>
-                                  <div class="overview__info">Products</div>
+                                  <div class="overview__counter">1.4</div>
+                                  <div class="overview__info">Task 3</div>
                                 </div>
                               </div>
                             </div>
                             <div class="overview__note"><svg class="icon icon-info">
                                 <use xlink:href="img/sprite.svg#icon-info"></use>
-                              </svg>Net sales, found on the income statement are used to calculate this ration returns and refunds must be backed out of total sales to measure the truly measure the firm’s assets abillity to generate sales.</div>
+                              </svg>Above are the Percentile of Each Task of the Subject the kid has performed</div>
                           </div>
                         </div>
                         <div class="overview__col overview__col_w50">
                           <div class="overview__card">
                             <div class="overview__head">
                               <div class="overview__details overview__details_flex">
-                                <div class="overview__title">Sales Report</div>
-                                <div class="overview__years">2017-2018</div>
+                                <div class="overview__title">Scores</div>
+
                               </div>
                               <div class="overview__legend">
                                 <div class="overview__parameter">
@@ -815,7 +803,7 @@
                               </div>
                             </div>
                             <div class="overview__chart overview__chart_sales-report">
-                              <div id="chart-sales-report"></div>
+                              <div id="chart-urdu-sales-report"></div>
                             </div>
                           </div>
                         </div>

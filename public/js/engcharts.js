@@ -228,89 +228,6 @@ Apex.chart = {
 })();
 
 // chart total impressions (page circle administration)
-(function () {
-  var options = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug'],
-    series: [{
-      name: 'Search',
-      data: [60, 50, 100, 25, 50, 75, 60, 40]
-    }, {
-      name: 'Job Booster',
-      data: [32, 41, 21, 29, 40, 18, 50, 26]
-    }, {
-      name: 'Job Alert',
-      data: [15, 25, 38, 12, 16, 41, 24, 42]
-    }, {
-      name: 'Company Booster',
-      data: [32, 13, 21, 39, 20, 26, 15, 26]
-    }],
-    colors: [blue, blueLight, orange, yellow],
-    chart: {
-      height: '100%',
-      type: 'bar',
-      stacked: true,
-      toolbar: {
-        show: false
-      }
-    },
-    grid: {
-      borderColor: borderColor,
-      strokeDashArray: 0,
-      xaxis: {
-        lines: {
-          show: false
-        }
-      },
-      yaxis: {
-        lines: {
-          show: true
-        }
-      },
-      padding: {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-      }
-    },
-    stroke: {
-      curve: 'smooth'
-    },
-    dataLabels: {
-      enabled: false
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '70%'
-      }
-    },
-    legend: {
-      show: false
-    },
-    tooltip: {
-      x: {
-        show: false
-      },
-      shared: true
-    },
-    xaxis: {
-      axisBorder: {
-        color: borderColor
-      },
-      axisTicks: {
-        show: false
-      },
-      tooltip: {
-        enabled: false
-      }
-    }
-  };
-
-  var chart = document.querySelector('#chart-total-impressions');
-  if (chart != null) {
-    new ApexCharts(chart, options).render();
-  }
-})();
 
 // chart target’s percent (page circle administration)
 (function () {
@@ -354,98 +271,6 @@ Apex.chart = {
 })();
 
 // chart financial goals (page circle administration)
-(function () {
-  var options = {
-    labels: ['11 Mon', '12 Tue', '13 Wed', '14 Thu', '15 Fri', '16 Sat', '17 Sun'],
-    series: [{
-      data: [610, 1540, 756, 1150, 1600, 1247, 932]
-    }],
-    colors: [blue],
-    chart: {
-      height: '100%',
-      type: 'area',
-      toolbar: {
-        show: false
-      }
-    },
-    grid: {
-      borderColor: grayLight,
-      strokeDashArray: 4,
-      xaxis: {
-        lines: {
-          show: true
-        }
-      },
-      yaxis: {
-        lines: {
-          show: false
-        }
-      },
-      padding: {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-      }
-    },
-    stroke: {
-      width: 3,
-      curve: 'smooth'
-    },
-    yaxis: {
-      show: false
-    },
-    xaxis: {
-      axisBorder: {
-        show: false
-      },
-      axisTicks: {
-        show: false
-      },
-      tooltip: {
-        enabled: false
-      }
-    },
-    legend: {
-      show: false
-    },
-    dataLabels: {
-      enabled: false
-    },
-    tooltip: {
-      x: {
-        show: false
-      },
-      custom: function custom(_ref) {
-        var labels = _ref.labels,
-            series = _ref.series,
-            seriesIndex = _ref.seriesIndex,
-            dataPointIndex = _ref.dataPointIndex,
-            w = _ref.w;
-
-        return '<div class="tooltip__box">' + '<span class="tooltip__price">$' + series[seriesIndex][dataPointIndex] + '<svg class="icon icon-arrow-top"><use xlink:href="img/sprite.svg#icon-arrow-top"></use></svg></span>' + '<span class="tooltip__date">On Saturday</span>' + '</div>';
-      }
-    },
-    fill: {
-
-      gradient: {
-        opacityFrom: 0.7,
-        opacityTo: 0
-      }
-    },
-    markers: {
-      strokeWidth: 0,
-      hover: {
-        size: 7
-      }
-    }
-  };
-
-  var chart = document.querySelector('#chart-financial-goals');
-  if (chart != null) {
-    new ApexCharts(chart, options).render();
-  }
-})();
 
 // chart earnings history (page performance)
 (function () {
@@ -528,8 +353,379 @@ Apex.chart = {
   }
 })();
 
+// chart sales figures (page circle overview)
+(function () {
+  var options = {
+    labels: ['Task 1', 'Task 2', 'Task 3'],
+    series: [{
+      name: 'Learning Resources',
+      data: [55, 89, 123,]
+    }, {
+      name: 'Activity',
+      data: [65, 456, 215]
+    }],
+    colors: [blue, green],
+    chart: {
+      height: '100%',
+      type: 'line',
+      toolbar: {
+        show: false
+      }
+    },
+    grid: {
+      borderColor: borderColor,
+      strokeDashArray: 0,
+      xaxis: {
+        lines: {
+          show: true
+        }
+      },
+      yaxis: {
+        lines: {
+          show: false
+        }
+      },
+      padding: {
+        top: 0,
+        left: 15,
+        right: 0,
+        bottom: 0
+      }
+    },
+    stroke: {
+      width: 3,
+      curve: 'smooth'
+    },
+    xaxis: {
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      },
+      tooltip: {
+        enabled: false
+      }
+    },
+    legend: {
+      show: false
+    },
+    dataLabels: {
+      enabled: false
+    },
+    tooltip: {
+      x: {
+        show: false
+      }
+    }
+  };
 
+  var chart = document.querySelector('#chart-english-figures');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
 
+// chart hit rate (page circle overview)
+(function () {
+  var options = {
+    series: [68],
+    chart: {
+      height: '100%',
+      type: 'radialBar'
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '86%'
+        },
+        track: {
+          background: blueOpacity,
+          margin: 0
+        },
+        dataLabels: {
+          show: false
+        }
+      }
+    },
+    fill: {
+      colors: blue
+    }
+  };
+
+  var chart = document.querySelector('#chart-english-rate');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
+
+// chart deals (page circle overview)
+(function () {
+  var options = {
+    series: [68],
+    chart: {
+      height: '100%',
+      type: 'radialBar'
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '86%'
+        },
+        track: {
+          background: greenOpacity,
+          margin: 0
+        },
+        dataLabels: {
+          show: false
+        }
+      }
+    },
+    fill: {
+      colors: green
+    }
+  };
+
+  var chart = document.querySelector('#chart-english-deals');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
+
+// chart visitors (page circle overview)
+(function () {
+  var options = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+    series: [{
+      name: 'Visitors',
+      data: [442, 380, 275, 430, 509, 463, 407, 533, 470]
+    }],
+    colors: [blue],
+    chart: {
+      height: '100%',
+      type: 'line',
+      toolbar: {
+        show: false
+      },
+      sparkline: {
+        enabled: true
+      }
+    },
+    grid: {
+      borderColor: borderColor,
+      strokeDashArray: 0,
+      xaxis: {
+        lines: {
+          show: true
+        }
+      },
+      yaxis: {
+        lines: {
+          show: false
+        }
+      }
+    },
+    stroke: {
+      width: 3,
+      curve: 'smooth'
+    },
+    xaxis: {
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      }
+    },
+    legend: {
+      show: false
+    },
+    dataLabels: {
+      enabled: false
+    }
+  };
+
+  var chart = document.querySelector('#chart-english-visitors');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
+
+// chart counter cases (page circle overview)
+(function () {
+  var options = {
+    series: [46],
+    chart: {
+      height: '100%',
+      type: 'radialBar'
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '86%'
+        },
+        track: {
+          background: blueOpacity,
+          margin: 0
+        },
+        dataLabels: {
+          show: false
+        }
+      }
+    },
+    fill: {
+      colors: blue
+    }
+  };
+
+  var chart = document.querySelector('#chart-english-cases');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
+
+// chart counter applications (page circle overview)
+(function () {
+  var options = {
+    series: [74],
+    chart: {
+      height: '100%',
+      type: 'radialBar'
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '86%'
+        },
+        track: {
+          background: greenOpacity,
+          margin: 0
+        },
+        dataLabels: {
+          show: false
+        }
+      }
+    },
+    fill: {
+      colors: green
+    }
+  };
+
+  var chart = document.querySelector('#chart-counter-applications');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
+
+// chart counter products (page circle overview)
+(function () {
+  var options = {
+    series: [14],
+    chart: {
+      height: '100%',
+      type: 'radialBar'
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '86%'
+        },
+        track: {
+          background: orangeOpacity,
+          margin: 0
+        },
+        dataLabels: {
+          show: false
+        }
+      }
+    },
+    fill: {
+      colors: orange
+    }
+  };
+
+  var chart = document.querySelector('#chart-counter-products');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
+
+// chart sales report (page circle overview)
+(function () {
+  var options = {
+    labels: ['Task 1', 'Task 2', 'Task 3'],
+    series: [{
+      name: 'Learning Resources',
+      data: [8, 7, 9]
+    }, {
+      name: 'Games',
+      data: [9, 6, 8]
+    }],
+    colors: [blue, green],
+    chart: {
+      height: '100%',
+      type: 'bar',
+      toolbar: {
+        show: false
+      }
+    },
+    grid: {
+      borderColor: borderColor,
+      strokeDashArray: 0,
+      xaxis: {
+        lines: {
+          show: false
+        }
+      },
+      yaxis: {
+        lines: {
+          show: true
+        }
+      },
+      padding: {
+        top: 0,
+        left: 15,
+        right: 0,
+        bottom: 0
+      }
+    },
+    stroke: {
+      curve: 'smooth'
+    },
+    dataLabels: {
+      enabled: false
+    },
+    plotOptions: {
+      bar: {
+        endingShape: 'rounded',
+        columnWidth: '8%'
+      }
+    },
+    legend: {
+      show: false
+    },
+    tooltip: {
+      shared: true
+    },
+    xaxis: {
+      axisBorder: {
+        show: false,
+        color: borderColor
+      },
+      axisTicks: {
+        show: false
+      },
+      tooltip: {
+        enabled: false
+      }
+    }
+  };
+
+  var chart = document.querySelector('#chart-english-sales-report');
+  if (chart != null) {
+    new ApexCharts(chart, options).render();
+  }
+})();
 
 // chart visitors all (page circle overview)
 (function () {
