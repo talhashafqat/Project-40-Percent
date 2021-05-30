@@ -230,19 +230,16 @@ Apex.chart = {
 // chart total impressions (page circle administration)
 (function () {
   var options = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug'],
+    labels: ['English', 'Maths', 'Urdu'],
     series: [{
-      name: 'Search',
-      data: [60, 50, 100, 25, 50, 75, 60, 40]
+      name: 'Abeera',
+      data: [650, 530, 750]
     }, {
-      name: 'Job Booster',
-      data: [32, 41, 21, 29, 40, 18, 50, 26]
+      name: 'Ibrahim',
+      data: [320, 410, 680]
     }, {
-      name: 'Job Alert',
-      data: [15, 25, 38, 12, 16, 41, 24, 42]
-    }, {
-      name: 'Company Booster',
-      data: [32, 13, 21, 39, 20, 26, 15, 26]
+      name: 'Test Kid',
+      data: [0, 0, 0]
     }],
     colors: [blue, blueLight, orange, yellow],
     chart: {
