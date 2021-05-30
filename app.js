@@ -227,9 +227,9 @@ const newKidSchema = new mongoose.Schema({
   gameScore: [],
   learningResources: [],
   planner: [],
-  engPlanner: {},
-  urduPlanner: {},
-  mathPlanner: {},
+  engPlanner: [],
+  urduPlanner: [],
+  mathPlanner: [],
   dates: [],
   dayTaskLength:[]
 });
@@ -383,9 +383,9 @@ app.post("/kidsregistration", function(req, res) {
     age: kidAge,
     gender: kidLevel,
     experiencePoints: 0,
-    engPlanner: {},
-    urduPlanner: {},
-    mathPlanner:{},
+    engPlanner:[],
+    urduPlanner: [],
+    mathPlanner:[],
     dates: [],
     dayTaskLength:[]
   });
@@ -476,9 +476,9 @@ app.post("/addkid", function(req, res) {
           age: kidAge,
           gender: kidLevel,
           experiencePoints: 0,
-          engPlanner: {},
-          urduPlanner: {},
-          mathPlanner:{},
+          engPlanner: [],
+          urduPlanner: [],
+          mathPlanner:[],
           dates: [],
           dayTaskLength:[]
         });
@@ -704,28 +704,35 @@ app.get("/customplanner", function(req, res) {
     if (!err) {
       if (foundList) {
         kidProfile = foundList.kids;
-        for (let i = 0; i < kidProfile.length; i++) {
+        console.log(kidProfile);
+        for (let i = 0; i <= kidProfile.length; i++) {
           if (kidProfile[i]._id == kidID) {
-            res.render("customplanner", {
-              engPlanner: kidProfile[i].engPlanner,
-              mathPlanner: kidProfile[i].mathPlanner,
-              urduPlanner: kidProfile[i].urduPlanner,
-              dates: kidProfile[i].dates,
-              dayTaskLength: kidProfile[i].dayTaskLength
-            })
+            if(kidProfile[i].engPlanner.length != 0){
+              res.render("customplanner", {
+                engPlanner: kidProfile[i].engPlanner[0],
+                mathPlanner: kidProfile[i].mathPlanner[0],
+                urduPlanner: kidProfile[i].urduPlanner[0],
+                dates: kidProfile[i].dates,
+                dayTaskLength: kidProfile[i].dayTaskLength
+              });
+              break;
+            } else {
+              res.render("customplanner", {
+                engPlanner: {},
+                mathPlanner: {},
+                urduPlanner: {},
+                dates: [],
+                dayTaskLength: []
+              });
+              break;
+            }
+
           }
         }
       }
     }
   })
 
-  // res.render("customplanner", {
-  //   engPlanner: {},
-  //   mathPlanner: {},
-  //   urduPlanner: {},
-  //   dates: [],
-  //   dayTaskLength: []
-  // });
 });
 
 app.post("/customplanner", function(req, res) {
@@ -733,6 +740,12 @@ app.post("/customplanner", function(req, res) {
 });
 
 app.post("/createplanner", function(req, res) {
+
+  var engPlanner = {};
+  var mathPlanner = {};
+  var urduPlanner = {};
+  var selectedDates = [];
+  var dayTaskLength = [];
 
   const startDate = new Date(req.body.startDate);
   const endDate = new Date(req.body.endDate);
@@ -816,8 +829,6 @@ app.post("/createplanner", function(req, res) {
   console.log(mathPlanner);
   console.log(urduPlanner);
 
-
-
   console.log(_.size(engPlanner));
   var engPlannerSize  = _.size(engPlanner);
 
@@ -833,35 +844,47 @@ app.post("/createplanner", function(req, res) {
   //   dayTaskLength[a]  = _.size(engPlanner['day'+b]);
   // }
 
+  console.log(engPlanner);
+  console.log(mathPlanner);
+  console.log(urduPlanner);
+  console.log(selectedDates);
+  console.log(dayTaskLength);
+
+
+  var engPlannerArray = [];
+  var mathPlannerArray = [];
+  var urduPlannerArray = [];
+
+  engPlannerArray.push(engPlanner);
+  mathPlannerArray.push(mathPlanner);
+  urduPlannerArray.push(urduPlanner);
 
   User.findOne({
     email: signedInUser
   }, function(err, foundList) {
     if (!err) {
       if (foundList) {
-        console.log("The Find One functions is running");
+        var new_kids = foundList.kids;
         for (let i = 0; i < foundList.kids.length; i++) {
-          if (foundList.kids[i]._id == kidID) {
-            console.log("The opened custom Planner kid ID is found " + foundList.kids[i]._id);
-            User.update({
-              _id : ObjectId(foundList.kids[i]._id)
-            }, {
-              engPlanner: engPlanner,
-              mathPlanner: mathPlanner,
-              urduPlanner: urduPlanner,
-              dates: selectedDates,
-              dayTaskLength: dayTaskLength
-            }, function(err, foundList) {
-              if(err){
-                console.log(err);
-              }
-              if (foundList) {
-                console.log("Updated Successfully");
-                res.redirect("/dashboard");
-              }
-            });
+          if (new_kids[i]._id == kidID) {
+            new_kids[i].engPlanner = engPlannerArray;
+            new_kids[i].mathPlanner = mathPlannerArray;
+            new_kids[i].urduPlanner = urduPlannerArray;
+            new_kids[i].dates = selectedDates;
+            new_kids[i].dayTaskLength = dayTaskLength;
           }
         }
+        console.log(kids);
+        User.findOneAndUpdate({
+          email: signedInUser
+        }, {
+          kids: new_kids
+        }, function(err, foundList) {
+          if (foundList) {
+            console.log("Updated Successfully");
+            // res.redirect("/dashboard");
+          }
+        });
       }
     }
   });
