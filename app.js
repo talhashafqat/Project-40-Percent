@@ -516,7 +516,11 @@ app.post("/dashboard", function(req, res) {
   })
 });
 
-app.get("/webglLoader", (req, res) => {
+// app.get("/webglLoader", (req, res) => {
+//   res.render('webglLoader');
+// });
+
+app.post("/webglLoader", (req,res) => {
   res.render('webglLoader');
 });
 
