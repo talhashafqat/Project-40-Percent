@@ -233,7 +233,6 @@ const newKidSchema = new mongoose.Schema({
   gameScores: [],
   progress: [],
   learningResources: [],
-  planner: [],
   engPlanner: [],
   urduPlanner: [],
   mathPlanner: [],
@@ -416,11 +415,25 @@ app.post("/kidsregistration", function(req, res) {
   const kidLevel = req.body.kidLevel;
   const newUserEmail = req.body.newUserEmail;
 
+
+  const newProgress = new Progres({
+    engGamesProgress: 0,
+    mathGamesProgress: 0,
+    urduGamesProgress: 0,
+    engLrProgress: 0,
+    mathLrProgress: 0,
+    urduLrProgress: 0
+  })
+
+  unityProgress.push(newProgress);
+  console.log(unityProgress);
+
   const newKid = new Kid({
     name: kidName,
     age: kidAge,
     gender: kidLevel,
     experiencePoints: 0,
+    progress: unityProgress,
     engPlanner:[],
     urduPlanner: [],
     mathPlanner:[],
@@ -437,6 +450,8 @@ app.post("/kidsregistration", function(req, res) {
   }, function(err, foundList) {
     if (!err) {
       console.log("Updated Successfully");
+      unityProgress.pop();
+      console.log(unityProgress);
       signedInUser = newUserEmail;
       res.redirect("/dashboard");
     }
@@ -519,11 +534,24 @@ app.post("/addkid", function(req, res) {
         console.log(foundList.kids);
         kids = foundList.kids;
 
+        const newProgress = new Progres({
+          engGamesProgress: 0,
+          mathGamesProgress: 0,
+          urduGamesProgress: 0,
+          engLrProgress: 0,
+          mathLrProgress: 0,
+          urduLrProgress: 0
+        })
+
+        unityProgress.push(newProgress);
+        console.log(unityProgress);
+
         const newKid = new Kid({
           name: kidName,
           age: kidAge,
           gender: kidLevel,
           experiencePoints: 0,
+          progress: unityProgress,
           engPlanner: [],
           urduPlanner: [],
           mathPlanner:[],
@@ -539,6 +567,8 @@ app.post("/addkid", function(req, res) {
         }, function(err, foundList) {
           if (foundList) {
             console.log("Updated Successfully");
+            unityProgress.pop();
+            console.log(unityProgress);
           }
         });
 
