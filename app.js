@@ -770,34 +770,171 @@ app.post("/add-lr-data", (req, res) => {
   });
 });
 
-app.post("/progress", (req, res) => {
-  const newEngGameP = req.body.engGamesProgress;
-  const newMathGameP = req.body.mathGamesProgress;
-  const newUrduGameP = req.body.urduGamesProgress;
-  const newEngLrP = req.body.engLrProgress;
-  const newMathLrP = req.body.mathLrProgress;
-  const newUrduLrP = req.body.urduLrProgress;
+// GETTING PROGRESS OF ALL OF THE KID PORTAL ROUTES
 
+app.post("/getEngLrProgress", (req, res) => {
+  const newEngGameP = parseInt(req.body.engGamesProgress);
   User.findOne({
     email: signedInUser
   }, function(err, foundList){
     if(!err){
       if(foundList){
         kids = foundList.kids;
-        const newProgress = new Progres({
-          engGamesProgress: newEngGameP,
-          mathGamesProgress: newMathGameP,
-          urduGamesProgress: newUrduGameP,
-          engLrProgress: newEngLrP,
-          mathLrProgress: newMathLrP,
-          urduLrProgress: newUrduLrP
-        });
-
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
-            kid.progress[0] = newProgress;
-            console.log("Progress sent to web app:");
-            console.log(kid.progress);
+            console.log("New LR Eng Progress")
+            console.log(typeof(newEngGameP));
+            kid.progress[0].whateverthenameindb = newEngGameP;
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/getEngGameProgress", (req, res) => {
+  const newEngGameP = parseInt(req.body.engGamesProgress);
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            console.log("New game Progress")
+            console.log(typeof(newEngGameP));
+            kid.progress[0].whateverthenameindb = newEngGameP;
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/getUrduLrProgress", (req, res) => {
+  const newEngGameP = parseInt(req.body.engGamesProgress);
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            console.log("New game Progress")
+            console.log(typeof(newEngGameP));
+            kid.progress[0].whateverthenameindb = newEngGameP;
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/getUrduGameProgress", (req, res) => {
+  const newEngGameP = parseInt(req.body.engGamesProgress);
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            console.log("New game Progress")
+            console.log(typeof(newEngGameP));
+            kid.progress[0].whateverthenameindb = newEngGameP;
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/getMathLrProgress", (req, res) => {
+  const newEngGameP = parseInt(req.body.engGamesProgress);
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            console.log("New game Progress")
+            console.log(typeof(newEngGameP));
+            kid.progress[0].whateverthenameindb = newEngGameP;
+          }
+        });
+
+      User.findOneAndUpdate({
+        email: signedInUser
+      }, {
+        kids:kids
+      }, (err, foundList) => {
+        if(foundList){
+          console.log("Updated Successfully")
+        }
+      });
+      }
+    }
+  });
+});
+
+app.post("/getMathGameProgress", (req, res) => {
+  const newEngGameP = parseInt(req.body.engGamesProgress);
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        kids.forEach(kid => {
+          if(kid._id == kidProfileCurrentlyIn.kidID){
+            console.log("New game Progress")
+            console.log(typeof(newEngGameP));
+            kid.progress[0].whateverthenameindb = newEngGameP;
           }
         });
 
