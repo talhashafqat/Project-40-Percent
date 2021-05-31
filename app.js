@@ -803,7 +803,7 @@ app.post("/add-lr-data", (req, res) => {
 // GETTING PROGRESS OF ALL OF THE KID PORTAL ROUTES
 
 app.post("/getEngLrProgress", (req, res) => {
-  const newEngGameP = parseInt(req.body.engGamesProgress);
+  const engLrProgress = parseInt(req.body.engLrProgress);
   User.findOne({
     email: signedInUser
   }, function(err, foundList){
@@ -813,8 +813,9 @@ app.post("/getEngLrProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New LR Eng Progress")
-            console.log(typeof(newEngGameP));
-            kid.progress[0].whateverthenameindb = newEngGameP;
+            console.log(typeof(engLrProgress));
+            console.log(engLrProgress);
+            kid.progress[0].engLrProgress = engLrProgress;
           }
         });
 
@@ -833,7 +834,7 @@ app.post("/getEngLrProgress", (req, res) => {
 });
 
 app.post("/getEngGameProgress", (req, res) => {
-  const newEngGameP = parseInt(req.body.engGamesProgress);
+  const engGamesProgress = parseInt(req.body.engGamesProgress);
   User.findOne({
     email: signedInUser
   }, function(err, foundList){
@@ -843,8 +844,8 @@ app.post("/getEngGameProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
-            console.log(typeof(newEngGameP));
-            kid.progress[0].whateverthenameindb = newEngGameP;
+            console.log(engGamesProgress);
+            kid.progress[0].engGamesProgress = engGamesProgress;
           }
         });
 
@@ -863,7 +864,7 @@ app.post("/getEngGameProgress", (req, res) => {
 });
 
 app.post("/getUrduLrProgress", (req, res) => {
-  const newEngGameP = parseInt(req.body.engGamesProgress);
+  const urduLrProgress = parseInt(req.body.urduLrProgress);
   User.findOne({
     email: signedInUser
   }, function(err, foundList){
@@ -873,8 +874,8 @@ app.post("/getUrduLrProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
-            console.log(typeof(newEngGameP));
-            kid.progress[0].whateverthenameindb = newEngGameP;
+            console.log(turduLrProgress);
+            kid.progress[0].urduLrProgress = urduLrProgress;
           }
         });
 
@@ -893,7 +894,7 @@ app.post("/getUrduLrProgress", (req, res) => {
 });
 
 app.post("/getUrduGameProgress", (req, res) => {
-  const newEngGameP = parseInt(req.body.engGamesProgress);
+  const urduGamesProgress = parseInt(req.body.urduGamesProgress);
   User.findOne({
     email: signedInUser
   }, function(err, foundList){
@@ -903,8 +904,8 @@ app.post("/getUrduGameProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
-            console.log(typeof(newEngGameP));
-            kid.progress[0].whateverthenameindb = newEngGameP;
+            console.log(urduGamesProgress);
+            kid.progress[0].urduGamesProgress = urduGamesProgress;
           }
         });
 
@@ -923,7 +924,7 @@ app.post("/getUrduGameProgress", (req, res) => {
 });
 
 app.post("/getMathLrProgress", (req, res) => {
-  const newEngGameP = parseInt(req.body.engGamesProgress);
+  const mathLrProgress = parseInt(req.body.mathLrProgress);
   User.findOne({
     email: signedInUser
   }, function(err, foundList){
@@ -933,8 +934,8 @@ app.post("/getMathLrProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
-            console.log(typeof(newEngGameP));
-            kid.progress[0].whateverthenameindb = newEngGameP;
+            console.log(mathLrProgress);
+            kid.progress[0].mathLrProgress = mathLrProgress;
           }
         });
 
@@ -953,7 +954,7 @@ app.post("/getMathLrProgress", (req, res) => {
 });
 
 app.post("/getMathGameProgress", (req, res) => {
-  const newEngGameP = parseInt(req.body.engGamesProgress);
+  const mathGamesProgress = parseInt(req.body.mathGamesProgress);
   User.findOne({
     email: signedInUser
   }, function(err, foundList){
@@ -963,8 +964,8 @@ app.post("/getMathGameProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
-            console.log(typeof(newEngGameP));
-            kid.progress[0].whateverthenameindb = newEngGameP;
+            console.log(mathGamesProgress);
+            kid.progress[0].mathGamesProgress = mathGamesProgress;
           }
         });
 
