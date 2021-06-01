@@ -133,6 +133,7 @@ var selectedDates = [];
 var dayTaskLength = [];
 var kidID;
 var gameKidsArray = [];
+var learningResourcesArray = [];
 
 function isEmpty(obj) {
     for(var key in obj) {
@@ -784,22 +785,26 @@ app.post("/add-lr-data", (req, res) => {
           status: newStatus,
           learningTime: newLearningTime
         });
-        var new_kids = [];
+        // var new_kids = [];
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             kid.learningResources.push(newLearningResource)
             console.log(kid.learningResources);
           }
-          new_kids.push(kid);
+          // new_kids.push(kid);
         });
+
+        learningResourcesArray = kids;
 
       User.findOneAndUpdate({
         email: signedInUser
       }, {
-        kids:new_kids
+        kids:learningResourcesArray
       }, (err, foundList) => {
         if(foundList){
-          console.log("Added LR Successfully")
+          console.log(learningResourcesArray);
+          console.log("Added LR Successfully");
+          console.log(foundList);
         }
       });
       }
