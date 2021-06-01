@@ -85,7 +85,19 @@
             </div>
             <div class="admin__item">
               <div class="admin__icon admin__icon_minus"><img src="img/score.svg" alt=""></div>
-              <div class="admin__number">7.8</div>
+              <% if(kidProfile.gameScores.length == 0) { %>
+                    <div class="admin__number">0</div>
+              <% } else { %>
+                  
+                  <% var totalScore = 0 %>
+                  <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                        <% totalScore += kidProfile.gameScores[i].gameScore %>
+                      <% } %>
+                    <% var avgScore = totalScore/kidProfile.gameScores.length %>
+                  <% } %>
+
+                  <div class="admin__number"><%= avgScore %></div>
+
               <div class="admin__info">Avg Score</div>
             </div>
           </div>
