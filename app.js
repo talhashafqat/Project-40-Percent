@@ -429,13 +429,25 @@ app.post("/kidsregistration", function(req, res) {
   unityProgress.push(newProgress);
   console.log(unityProgress);
 
+  const newgame = new GameScore({
+      subject: "English",
+      gameTitle: "Demo Game",
+      gameScore: 0,
+      gameTime: "300",
+      experiencePoints: 40,
+      gameStatus: true
+  });
+
+  gameKidsArray.push(newgame);
+  console.log(gameKidsArray);
+
   const newKid = new Kid({
     name: kidName,
     age: kidAge,
     gender: kidLevel,
     experiencePoints: 0,
     progress: unityProgress,
-    gameScores: [],
+    gameScores: gameKidsArray,
     learningResources: [],
     engPlanner:[],
     urduPlanner: [],
@@ -454,7 +466,9 @@ app.post("/kidsregistration", function(req, res) {
     if (!err) {
       console.log("Updated Successfully");
       unityProgress.pop();
+      gameKidsArray.pop();
       console.log(unityProgress);
+      console.log(gameKidsArray);
       signedInUser = newUserEmail;
       res.redirect("/dashboard");
     }
@@ -551,6 +565,18 @@ app.post("/addkid", function(req, res) {
         unityProgress.push(newProgress);
         console.log(unityProgress);
 
+        const newgame = new GameScore({
+            subject: "English",
+            gameTitle: "Demo Game",
+            gameScore: 0,
+            gameTime: "300",
+            experiencePoints: 40,
+            gameStatus: true
+        });
+
+        gameKidsArray.push(newgame);
+        console.log(gameKidsArray);
+
         const newKid = new Kid({
           name: kidName,
           age: kidAge,
@@ -575,7 +601,9 @@ app.post("/addkid", function(req, res) {
           if (foundList) {
             console.log("Updated Successfully");
             unityProgress.pop();
+            gameKidsArray.pop();
             console.log(unityProgress);
+            console.log(gameKidsArray);
           }
         });
 
@@ -702,7 +730,6 @@ app.post("/updatexp", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             kid.experiencePoints += xpInInt;
-            console.log(kid.experiencePoints);
           }
         });
 
@@ -745,6 +772,9 @@ app.post("/add-game-score", (req, res) => {
         // var new_kids = [];
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
+            if(kid.gameScores[0].gameTitle == "Demo Game"){
+              kid.gameScores.pop();
+            }
             kid.gameScores.push(newgame)
             console.log("Bellow are all game scores");
             console.log(kid.gameScores);
