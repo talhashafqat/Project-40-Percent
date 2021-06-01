@@ -736,22 +736,23 @@ app.post("/add-game-score", (req, res) => {
             experiencePoints: newExperiencePoints,
             gameStatus: newgameStatus
         });
-        var new_kids = [];
+        // var new_kids = [];
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             kid.gameScores.push(newgame)
             console.log("Bellow are all game scores");
             console.log(kid.gameScores);
           }
-          new_kids.push(kid);
+          // new_kids.push(kid);
         });
 
       User.findOneAndUpdate({
         email: signedInUser
       }, {
-        kids:new_kids
+        kids:kids
       }, (err, foundList) => {
         if(foundList){
+          console.log(kids);
           console.log("Added Game Successfully")
         }
       });
@@ -821,7 +822,7 @@ app.post("/getEngLrProgress", (req, res) => {
             if(kid.progress[0].engLrProgress < engLrProgress){
               kid.progress[0].engLrProgress = engLrProgress;
             }
-            
+
           }
         });
 

@@ -354,77 +354,7 @@ Apex.chart = {
 })();
 
 // chart sales figures (page circle overview)
-(function () {
-  var options = {
-    labels: ['Task 1', 'Task 2', 'Task 3'],
-    series: [{
-      name: 'Learning Resources',
-      data: [55, 89, 123,]
-    }, {
-      name: 'Activity',
-      data: [65, 456, 215]
-    }],
-    colors: [blue, green],
-    chart: {
-      height: '100%',
-      type: 'line',
-      toolbar: {
-        show: false
-      }
-    },
-    grid: {
-      borderColor: borderColor,
-      strokeDashArray: 0,
-      xaxis: {
-        lines: {
-          show: true
-        }
-      },
-      yaxis: {
-        lines: {
-          show: false
-        }
-      },
-      padding: {
-        top: 0,
-        left: 15,
-        right: 0,
-        bottom: 0
-      }
-    },
-    stroke: {
-      width: 3,
-      curve: 'smooth'
-    },
-    xaxis: {
-      axisBorder: {
-        show: false
-      },
-      axisTicks: {
-        show: false
-      },
-      tooltip: {
-        enabled: false
-      }
-    },
-    legend: {
-      show: false
-    },
-    dataLabels: {
-      enabled: false
-    },
-    tooltip: {
-      x: {
-        show: false
-      }
-    }
-  };
 
-  var chart = document.querySelector('#chart-english-figures');
-  if (chart != null) {
-    new ApexCharts(chart, options).render();
-  }
-})();
 
 // chart hit rate (page circle overview)
 (function () {
