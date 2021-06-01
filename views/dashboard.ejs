@@ -67,7 +67,7 @@
             <div class="student__ava"><img class="student__pic" src="img/Girl Pic.jpeg" alt=""></div>
             <% } %>
             <div class="student__title title title_sm"><%=kids[i].name%></div>
-            <div class="student__details"><span class="student__text">985 XP</span></div>
+            <div class="student__details"><span class="student__text"><%=kids[i].experiencePoints%> XP</span></div>
             <div class="student__indicators">
               <div class="student__indicator">847</div>
               <div class="student__indicator">75</div>
@@ -76,11 +76,11 @@
             <div class="student__options">
               <div class="student__option">
                 <div class="student__category">Completed</div>
-                <div class="student__counter">4</div>
+                <div class="student__counter"><%=(kids[i].progress[0].engGamesProgress) + (kids[i].progress[0].mathGamesProgress) + (kids[i].progress[0].urduGamesProgress) + (kids[i].progress[0].engLrProgress) + (kids[i].progress[0].mathLrProgress) + (kids[i].progress[0].urduLrProgress) %></div>
               </div>
               <div class="student__option">
-                <div class="student__category">Passing Rate</div>
-                <div class="student__counter">88%</div>
+                <div class="student__category">Avg Score</div>
+                <div class="student__counter">7.8</div>
               </div>
             </div>
             <form class="" action="/dashboard" method="post">
@@ -99,11 +99,16 @@
 
             <!-- Experience Points Statistics -->
 
+            <% var totalExperiencePoints = 0 %>
+            <% for (let i=0; i<kids.length; i++) { %>
+              <% totalExperiencePoints += kids[i].experiencePoints %>
+              <% } %>
+
             <div class="admin__card admin__card_p30">
               <div class="admin__top">
                 <div class="admin__details">
                   <div class="admin__total">Total Experience Points</div>
-                  <div class="admin__number">12,314 </div>
+                  <div class="admin__number"><%= totalExperiencePoints %> </div>
                 </div>
                 <div class="admin__legends">
                   <% for (let i=0; i<kids.length; i++) { %>

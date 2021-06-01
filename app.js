@@ -498,9 +498,7 @@ app.post("/dashboard", function(req, res) {
         for (let i = 0; i < kidProfile.length; i++) {
           if (kidProfile[i]._id == kidID) {
             res.render("profile", {
-              kidName: kidProfile[i].name,
-              experiencePoints: kidProfile[i].experiencePoints,
-              age: kidProfile[i].age,
+              kidProfile: kidProfile[i],
               kidID: kidID
             })
             kidProfileCurrentlyIn = {
