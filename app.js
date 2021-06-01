@@ -132,6 +132,7 @@ var urduPlanner = {};
 var selectedDates = [];
 var dayTaskLength = [];
 var kidID;
+var gameKidsArray = [];
 
 function isEmpty(obj) {
     for(var key in obj) {
@@ -746,14 +747,17 @@ app.post("/add-game-score", (req, res) => {
           // new_kids.push(kid);
         });
 
+        gameKidsArray = kids;
+
       User.findOneAndUpdate({
         email: signedInUser
       }, {
-        kids:kids
+        kids:gameKidsArray
       }, (err, foundList) => {
         if(foundList){
-          console.log(kids);
-          console.log("Added Game Successfully")
+          console.log(gameKidsArray);
+          console.log("Added Game Successfully");
+          console.log(foundList);
         }
       });
       }
