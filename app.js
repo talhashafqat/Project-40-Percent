@@ -702,6 +702,7 @@ app.post("/updatexp", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             kid.experiencePoints += xpInInt;
+            console.log(kid.experiencePoints);
           }
         });
 
