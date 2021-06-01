@@ -84,7 +84,12 @@
                 <% if(kids[i].gameScores.length == 0) { %>
                         <div class="student__counter">0</div>
                 <% } else { %>
-                        <div class="student__counter">7.8</div>
+                  <% var totalScore = 0 %>
+                  <% for(j=0;j<kids[i].gameScores.length;j++) { %>
+                        <% totalScore += kids[i].gameScores[j].gameScore  %>
+                      <% } %>
+                    <% var avgScore = totalScore/kids[i].gameScores.length %>
+                        <div class="student__counter"><%= avgScore %></div>
                     <% } %>
               </div>
             </div>

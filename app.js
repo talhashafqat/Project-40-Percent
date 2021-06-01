@@ -716,7 +716,7 @@ app.post("/add-game-score", (req, res) => {
             experiencePoints: newExperiencePoints,
             gameStatus: newgameStatus
         });
-        
+
         for (let i = 0; i < kids.length; i++) {
           if(kids[i]._id == kidProfileCurrentlyIn.kidID){
             User.findOne({email: signedInUser}).then((user) => {
