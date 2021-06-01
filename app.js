@@ -228,7 +228,6 @@ const newKidSchema = new mongoose.Schema({
     type: String,
     required: [true, "Check Data Entry, no level specified"]
   },
-  subjects: [],
   experiencePoints: {
     type: Number
   },
