@@ -44,8 +44,8 @@
       <div class="page3__container">
         <div class="student__dashboard">
           <div class="student__head">
-            <h1 class="student__title title title_big">Hi <%= kidName %> !</h1>
-            <div class="student__text">Age: <span class="student__link"><%= age %></span> </div>
+            <h1 class="student__title title title_big">Hi <%= kidProfile.name %> !</h1>
+            <div class="student__text">Age: <span class="student__link"><%= kidProfile.age %></span> </div>
             <div class="student__control">
               <div class="delete__student">
                 <button class="btn btn_gray js-popup-open" href="#popup-details" data-effect="mfp-zoom-in">
@@ -57,10 +57,12 @@
                     <span class="btn__text ">Custom Planner</span></button>
                 </div>
               </form>
-              <div class="add__student">
-                <button class="btn btn_purple" href="webglLoader">
-                  <span class="btn__text ">Visit Kid Zone</span></button>
-              </div>
+              <form class="" action="/webglLoader" method="post">
+                <div class="add__student">
+                  <button class="btn btn_purple" type="submit">
+                    <span class="btn__text ">Visit Kid Zone</span></button>
+                </div>
+              </form>
             </div>
           </div>
 
@@ -68,22 +70,34 @@
           <div class="admin__list" style="margin-top:120px;">
             <div class="admin__item">
               <div class="admin__icon admin__icon_up"><img src="img/xp.svg" alt=""></div>
-              <div class="admin__number">5,321</div>
+              <div class="admin__number"><%= kidProfile.experiencePoints %></div>
               <div class="admin__info">Experince Points</div>
             </div>
             <div class="admin__item">
               <div class="admin__icon admin__icon_up"><img src="img/book.svg" alt=""></div>
-              <div class="admin__number">7</div>
+              <div class="admin__number"><%= (kidProfile.progress[0].engLrProgress) + (kidProfile.progress[0].mathLrProgress) + (kidProfile.progress[0].urduLrProgress) %></div>
               <div class="admin__info">Learning Resources</div>
             </div>
             <div class="admin__item">
               <div class="admin__icon admin__icon_down"><img src="img/game.svg" alt=""></div>
-              <div class="admin__number">9</div>
+              <div class="admin__number"><%= (kidProfile.progress[0].engGamesProgress) + (kidProfile.progress[0].mathGamesProgress) + (kidProfile.progress[0].urduGamesProgress) %></div>
               <div class="admin__info">Games</div>
             </div>
             <div class="admin__item">
               <div class="admin__icon admin__icon_minus"><img src="img/score.svg" alt=""></div>
-              <div class="admin__number">7.8</div>
+              <% if(kidProfile.gameScores.length == 0) { %>
+                    <div class="admin__number">0</div>
+              <% } else { %>
+                  
+                  <% var totalScore = 0 %>
+                  <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                        <% totalScore += kidProfile.gameScores[i].gameScore %>
+                      <% } %>
+                    <% var avgScore = totalScore/kidProfile.gameScores.length %>
+                  <% } %>
+
+                  <div class="admin__number"><%= avgScore %></div>
+
               <div class="admin__info">Avg Score</div>
             </div>
           </div>
@@ -180,7 +194,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">1820</div>
+                            <div class="overview__number"><%= kidProfile.experiencePoints %></div>
                             <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -194,7 +208,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">3</div>
+                            <div class="overview__number"><%= kidProfile.progress[0].engLrProgress %></div>
                             <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -208,7 +222,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">4</div>
+                            <div class="overview__number"><%= kidProfile.progress[0].engGamesProgress %></div>
                             <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
@@ -402,7 +416,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">2311</div>
+                            <div class="overview__number"><%= kidProfile.experiencePoints %></div>
                             <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -417,7 +431,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">1</div>
+                            <div class="overview__number"><%= kidProfile.progress[0].mathLrProgress %></div>
                             <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -432,7 +446,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">2</div>
+                            <div class="overview__number"><%= kidProfile.progress[0].mathGamesProgress %></div>
                             <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
@@ -629,7 +643,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">783</div>
+                            <div class="overview__number"><%= kidProfile.experiencePoints %></div>
                             <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -644,7 +658,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">3</div>
+                            <div class="overview__number"><%= kidProfile.progress[0].urduLrProgress %></div>
                             <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -659,7 +673,7 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">2</div>
+                            <div class="overview__number"><%= kidProfile.progress[0].urduGamesProgress %></div>
                             <div class="overview__status overview__status_up">Completed<svg class="icon icon-arrow-bottom">
                                 <use xlink:href="img/sprite.svg#icon-arrow-bottom"></use>
                               </svg></div>
@@ -841,7 +855,7 @@
         <div class="details__container">
           <div class="details__head">
             <div class="details__title">Remove Kid</div>
-            <div class="details__info">Are you sure you want to remove <span class="student__highlight"><%= kidName %></span> from the system? All the data will be deleted along the kid.</div>
+            <div class="details__info">Are you sure you want to remove <span class="student__highlight"><%= kidProfile.name %></span> from the system? All the data will be deleted along the kid.</div>
           </div>
           <div class="details__wrapper">
             <form class="entry__form" method="post" action="/deletekid">
