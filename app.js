@@ -732,7 +732,9 @@ app.post("/add-game-score", (req, res) => {
   }, function(err, foundList){
     if(!err){
       if(foundList){
+        console.log(kids);
         kids = foundList.kids;
+        console.log(kids);
         const newgame = new GameScore({
             subject: newSubject,
             gameTitle: newTitle,
@@ -751,12 +753,12 @@ app.post("/add-game-score", (req, res) => {
           // new_kids.push(kid);
         });
 
-        gameKidsArray = kids;
+        console.log(kids);
 
       User.findOneAndUpdate({
         email: signedInUser
       }, {
-        kids:gameKidsArray
+        kids: kids
       }, (err, foundList) => {
         if(foundList){
           console.log(gameKidsArray);
