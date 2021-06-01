@@ -813,9 +813,13 @@ app.post("/getEngLrProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New LR Eng Progress")
-            console.log(typeof(engLrProgress));
             console.log(engLrProgress);
-            kid.progress[0].engLrProgress = engLrProgress;
+            console.log("ENG LR PROGRESS STORED IN DB");
+            console.log(kid.progress[0].engLrProgress);
+            if(kid.progress[0].engLrProgress < engLrProgress){
+              kid.progress[0].engLrProgress = engLrProgress;
+            }
+            
           }
         });
 
@@ -874,7 +878,7 @@ app.post("/getUrduLrProgress", (req, res) => {
         kids.forEach(kid => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
-            console.log(turduLrProgress);
+            console.log(urduLrProgress);
             kid.progress[0].urduLrProgress = urduLrProgress;
           }
         });
