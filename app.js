@@ -215,49 +215,6 @@ const gameScoreSchema = new mongoose.Schema({
   }
 });
 
-const newKidSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Check Data Entry, no name specified"]
-  },
-  age: {
-    type: Number,
-    required: [true, "Check Data Entry, no age specified"]
-  },
-  gender: {
-    type: String,
-    required: [true, "Check Data Entry, no level specified"]
-  },
-  experiencePoints: {
-    type: Number
-  },
-  gameScores: [],
-  learningResources: [],
-  progress: [],
-  engPlanner: [],
-  urduPlanner: [],
-  mathPlanner: [],
-  dates: [],
-  dayTaskLength:[]
-});
-
-//New User Data Schema
-const newUserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Check Data Entry, no name specified"]
-  },
-  email: {
-    type: String,
-    required: [true, "Check Data Entry, no email specified"]
-  },
-  password: {
-    type: String,
-    // required: [true, "Check Data Entry, no password specified"]
-  },
-  kids: []
-});
-
 const progressSchema = new mongoose.Schema({
   engGamesProgress:{
     type: Number,
@@ -284,6 +241,52 @@ const progressSchema = new mongoose.Schema({
     required: [true]
   }
 });
+
+
+const newKidSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Check Data Entry, no name specified"]
+  },
+  age: {
+    type: Number,
+    required: [true, "Check Data Entry, no age specified"]
+  },
+  gender: {
+    type: String,
+    required: [true, "Check Data Entry, no level specified"]
+  },
+  experiencePoints: {
+    type: Number
+  },
+  gameScores: [gameScoreSchema],
+  learningResources: [learningResources],
+  progress: [progressSchema],
+  engPlanner: [],
+  urduPlanner: [],
+  mathPlanner: [],
+  dates: [],
+  dayTaskLength:[]
+});
+
+//New User Data Schema
+const newUserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Check Data Entry, no name specified"]
+  },
+  email: {
+    type: String,
+    required: [true, "Check Data Entry, no email specified"]
+  },
+  password: {
+    type: String,
+    // required: [true, "Check Data Entry, no password specified"]
+  },
+  //kids: [newKidSchema]
+  kids: [newKidSchema]
+});
+
 
 
 
@@ -689,36 +692,6 @@ app.get("/getxp", (req, res) => {
   });
 });
 
-app.post("/updatexp", (req, res) => {
-  const xp = req.body.experiencePoints;
-  const xpInInt = parseInt(xp);
-  User.findOne({
-    email: signedInUser
-  }, function(err, foundList){
-    if(!err){
-      if(foundList){
-        kids = foundList.kids;
-
-        kids.forEach(kid => {
-          if(kid._id == kidProfileCurrentlyIn.kidID){
-            kid.experiencePoints += xpInInt;
-          }
-        });
-
-      User.findOneAndUpdate({
-        email: signedInUser
-      }, {
-        kids:kids
-      }, (err, foundList) => {
-        if(foundList){
-          console.log("Updated XP Successfully")
-        }
-      });
-      }
-    }
-  });
-});
-
 app.post("/add-game-score", (req, res) => {
   // New game
   const newSubject = req.body.subject;
@@ -743,29 +716,29 @@ app.post("/add-game-score", (req, res) => {
             experiencePoints: newExperiencePoints,
             gameStatus: newgameStatus
         });
-        // var new_kids = [];
-        kids.forEach(kid => {
-          if(kid._id == kidProfileCurrentlyIn.kidID){
-            kid.gameScores.push(newgame)
-            console.log("Bellow are all game scores");
-            console.log(kid.gameScores);
+        
+        for (let i = 0; i < kids.length; i++) {
+          if(kids[i]._id == kidProfileCurrentlyIn.kidID){
+            User.findOne({email: signedInUser}).then((user) => {
+              user.kids[i].gameScores.push(newgame);
+              user.kids[i].experiencePoints += parseInt(newExperiencePoints);
+              console.log("gameScores: " + user.kids[i].gameScores);
+              user.save();
+            });
           }
-          // new_kids.push(kid);
-        });
-
-        console.log(kids);
-
-      User.findOneAndUpdate({
-        email: signedInUser
-      }, {
-        kids: kids
-      }, (err, foundList) => {
-        if(foundList){
-          console.log(gameKidsArray);
-          console.log("Added Game Successfully");
-          console.log(foundList);
         }
-      });
+
+      // User.findOneAndUpdate({
+      //   email: signedInUser
+      // }, {
+      //   $set: {"kids.$[].gameScores": [newgame]}
+      // }, (err, foundList) => {
+      //   if(foundList){
+      //     console.log(kids);
+      //     console.log("Added Game Successfully");
+      //     console.log(foundList);
+      //   }
+      // }, useFindAndModify = false);
       }
     }
   });
@@ -791,31 +764,44 @@ app.post("/add-lr-data", (req, res) => {
           learningTime: newLearningTime
         });
         // var new_kids = [];
-        kids.forEach(kid => {
-          if(kid._id == kidProfileCurrentlyIn.kidID){
-            kid.learningResources.push(newLearningResource)
-            console.log(kid.learningResources);
+        for (let i = 0; i < kids.length; i++) {
+          if(kids[i]._id == kidProfileCurrentlyIn.kidID){
+            User.findOne({email: signedInUser}).then((user) => {
+              user.kids[i].learningResources.push(newLearningResource);
+              user.kids[i].experiencePoints += 20;
+              console.log("Learning Resources: " + user.kids[i].learningResources);
+              user.save();
+            });
           }
-          // new_kids.push(kid);
-        });
-
-        learningResourcesArray = kids;
-
-      User.findOneAndUpdate({
-        email: signedInUser
-      }, {
-        kids:learningResourcesArray
-      }, (err, foundList) => {
-        if(foundList){
-          console.log(learningResourcesArray);
-          console.log("Added LR Successfully");
-          console.log(foundList);
         }
-      });
       }
     }
   });
 });
+
+// app.post("/updatexp", (req, res) => {
+//   const xp = req.body.experiencePoints;
+//   const xpInInt = parseInt(xp);
+//   User.findOne({
+//     email: signedInUser
+//   }, function(err, foundList){
+//     if(!err){
+//       if(foundList){
+//         kids = foundList.kids;
+
+//         for (let i = 0; i < kids.length; i++) {
+//           if(kids[i]._id == kidProfileCurrentlyIn.kidID){
+//             User.findOne({email: signedInUser}).then((user) => {
+//               user.kids[i].experiencePoints += xpInInt;
+//               console.log("XP: " + user.kids[i].experiencePoints);
+//               user.save();
+//             });
+//           }
+//         }
+//       }
+//     }
+//   });
+// });
 
 // GETTING PROGRESS OF ALL OF THE KID PORTAL ROUTES
 
@@ -848,7 +834,7 @@ app.post("/getEngLrProgress", (req, res) => {
         if(foundList){
           console.log("Updated Successfully")
         }
-      });
+      }, useFindAndModify = false);
       }
     }
   });
