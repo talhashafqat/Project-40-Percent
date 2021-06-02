@@ -657,13 +657,10 @@ Apex.chart = {
   var options = {
     labels: ['Task 1', 'Task 2', 'Task 3'],
     series: [{
-      name: 'Learning Resources',
-      data: [5, 7, 9]
-    }, {
       name: 'Games',
-      data: [test, 6, 8]
+      data: [engGameScore1, engGameScore2 , engGameScore3 ]
     }],
-    colors: [blue, green],
+    colors: [green],
     chart: {
       height: '100%',
       type: 'bar',

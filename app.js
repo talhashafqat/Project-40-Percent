@@ -495,6 +495,13 @@ app.post("/dashboard", function(req, res) {
   var kidProfile = []
   kidID = req.body.kidID;
 
+  var engGameName = [];
+  var engGameTimes = [];
+  var engLearningTimes = [];
+  var engGameScore = [];
+
+
+
   User.findOne({
     email: signedInUser
   }, function(err, foundList) {
@@ -503,10 +510,27 @@ app.post("/dashboard", function(req, res) {
         kidProfile = foundList.kids;
         for (let i = 0; i < kidProfile.length; i++) {
           if (kidProfile[i]._id == kidID) {
+
+            for(k=0;k<kidProfile[i].gameScores.length;k++){
+              engGameName.push(kidProfile[i].gameScores[k].gameTitle);
+              engGameTimes.push(kidProfile[i].gameScores[k].gameTime);
+              engGameScore.push(kidProfile[i].gameScores[k].gameScore);
+            }
+
+            console.log(engGameName);
+            console.log(engGameTimes);
+            console.log(engGameScore);
+
+
             res.render("profile", {
               kidProfile: kidProfile[i],
               kidID: kidID,
-              test: [2,1,3]
+              engGameName: engGameName,
+              engGameTimes: engGameTimes,
+              engGameScore : engGameScore,
+              engGameScore1 : engGameScore[0],
+              engGameScore2 : engGameScore[1],
+              engGameScore3: engGameScore[2]
             })
             kidProfileCurrentlyIn = {
               kidID: kidID,
