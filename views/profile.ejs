@@ -115,7 +115,11 @@
                   <div class="event__details">
                     <div class="event__title">iBN-E-SINA</div>
                     <div class="event__info"><span class="event__time">Entry Level</span><span class="event__place">Expeirence Points: 20XP</span></div>
-                    <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/acheivment.svg" alt=""></div>
+                    <% if(kidProfile.experiencePoints >= 20) { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/acheivment.svg" alt=""></div>
+                      <% } else { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                      <% } %>
                   </div>
                 </div>
               </a>
@@ -126,7 +130,11 @@
                   <div class="event__details">
                     <div class="event__title">ABBAS IBNE FARNAS</div>
                     <div class="event__info"><span class="event__time">Novice</span><span class="event__place">Expeirence Points: 40XP</span></div>
-                    <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                    <% if(kidProfile.experiencePoints >= 40) { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/acheivment.svg" alt=""></div>
+                      <% } else { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                      <% } %>
                   </div>
                 </div>
               </a>
@@ -137,7 +145,11 @@
                   <div class="event__details">
                     <div class="event__title">Jabir Bin Hayan</div>
                     <div class="event__info"><span class="event__time">Skillful</span><span class="event__place">Expeirence Points: 60XP</span></div>
-                    <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                    <% if(kidProfile.experiencePoints >= 60) { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/acheivment.svg" alt=""></div>
+                      <% } else { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                      <% } %>
                   </div>
                 </div>
               </a>
@@ -148,7 +160,11 @@
                   <div class="event__details">
                     <div class="event__title">Albert Einstein</div>
                     <div class="event__info"><span class="event__time">Proficient</span><span class="event__place">Expeirence Points: 80XP</span></div>
-                    <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                    <% if(kidProfile.experiencePoints >= 80) { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/acheivment.svg" alt=""></div>
+                      <% } else { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                      <% } %>
                   </div>
                 </div>
               </a>
@@ -159,7 +175,11 @@
                   <div class="event__details">
                     <div class="event__title">Issac Newton</div>
                     <div class="event__info"><span class="event__time">Expert</span><span class="event__place">Expeirence Points: 100XP</span></div>
-                    <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                    <% if(kidProfile.experiencePoints >= 100) { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/acheivment.svg" alt=""></div>
+                      <% } else { %>
+                          <div class="student__icon tooltip" title="Onfire"><img class="student__pic" style="margin-left: 10px;" src="img/locked.svg" alt=""></div>
+                      <% } %>
                   </div>
                 </div>
               </a>
