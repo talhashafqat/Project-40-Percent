@@ -266,6 +266,9 @@ const newKidSchema = new mongoose.Schema({
   urduPlanner: [],
   mathPlanner: [],
   dates: [],
+  rewardCards: {
+    type: Number
+  },
   dayTaskLength:[]
 });
 
@@ -444,7 +447,8 @@ app.post("/kidsregistration", function(req, res) {
     urduPlanner: [],
     mathPlanner:[],
     dates: [],
-    dayTaskLength:[]
+    dayTaskLength:[],
+    rewardCards:0
   });
 
   kids.push(newKid);
@@ -567,7 +571,8 @@ app.post("/addkid", function(req, res) {
           urduPlanner: [],
           mathPlanner:[],
           dates: [],
-          dayTaskLength:[]
+          dayTaskLength:[],
+          rewardCards: 0
         });
         kids.push(newKid);
         console.log(kids);
@@ -728,18 +733,6 @@ app.post("/add-game-score", (req, res) => {
             });
           }
         }
-
-      // User.findOneAndUpdate({
-      //   email: signedInUser
-      // }, {
-      //   $set: {"kids.$[].gameScores": [newgame]}
-      // }, (err, foundList) => {
-      //   if(foundList){
-      //     console.log(kids);
-      //     console.log("Added Game Successfully");
-      //     console.log(foundList);
-      //   }
-      // }, useFindAndModify = false);
       }
     }
   });
@@ -818,12 +811,9 @@ app.post("/getEngLrProgress", (req, res) => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New LR Eng Progress")
             console.log(engLrProgress);
-            console.log("ENG LR PROGRESS STORED IN DB");
-            console.log(kid.progress[0].engLrProgress);
             if(kid.progress[0].engLrProgress < engLrProgress){
               kid.progress[0].engLrProgress = engLrProgress;
             }
-
           }
         });
 
@@ -853,7 +843,10 @@ app.post("/getEngGameProgress", (req, res) => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
             console.log(engGamesProgress);
-            kid.progress[0].engGamesProgress = engGamesProgress;
+            if(kid.progress[0].engGamesProgress < engGamesProgress){
+              kid.progress[0].engGamesProgress = engGamesProgress;
+            }
+            
           }
         });
 
@@ -883,7 +876,10 @@ app.post("/getUrduLrProgress", (req, res) => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
             console.log(urduLrProgress);
-            kid.progress[0].urduLrProgress = urduLrProgress;
+            if(kid.progress[0].urduLrProgress < urduLrProgress){
+              kid.progress[0].urduLrProgress = urduLrProgress;
+            }
+            
           }
         });
 
@@ -913,7 +909,9 @@ app.post("/getUrduGameProgress", (req, res) => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
             console.log(urduGamesProgress);
-            kid.progress[0].urduGamesProgress = urduGamesProgress;
+            if(kid.progress[0].urduGamesProgress < urduGamesProgress){
+              kid.progress[0].urduGamesProgress = urduGamesProgress;
+            }
           }
         });
 
@@ -943,7 +941,9 @@ app.post("/getMathLrProgress", (req, res) => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
             console.log(mathLrProgress);
-            kid.progress[0].mathLrProgress = mathLrProgress;
+            if(kid.progress[0].mathLrProgress < mathLrProgress){
+              kid.progress[0].mathLrProgress = mathLrProgress;
+            }
           }
         });
 
@@ -973,7 +973,9 @@ app.post("/getMathGameProgress", (req, res) => {
           if(kid._id == kidProfileCurrentlyIn.kidID){
             console.log("New game Progress")
             console.log(mathGamesProgress);
-            kid.progress[0].mathGamesProgress = mathGamesProgress;
+            if(kid.progress[0].mathGamesProgress < mathGamesProgress){
+              kid.progress[0].mathGamesProgress = mathGamesProgress;
+            }
           }
         });
 
@@ -986,6 +988,48 @@ app.post("/getMathGameProgress", (req, res) => {
           console.log("Updated Successfully")
         }
       });
+      }
+    }
+  });
+});
+
+app.post("/saveRewardCard", (req, res) => {
+  let card = parseInt(req.body.cardNo);
+  card = card + 1;
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        for (let i = 0; i < kids.length; i++) {
+          if(kids[i]._id == kidProfileCurrentlyIn.kidID){
+            User.findOne({email: signedInUser}).then((user) => {
+              user.kids[i].rewardCards = card;
+              console.log("Sending card no: " + user.kids[i].rewardCards);
+              user.save();
+            });
+          }
+        }
+      }
+    }
+  });
+});
+
+app.get("/getRewardCard", (req, res) => {
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        for (let i = 0; i < kids.length; i++) {
+          if(kids[i]._id == kidProfileCurrentlyIn.kidID){
+            User.findOne({email: signedInUser}).then((user) => {
+              res.json(user.kids[i].rewardCards);
+            });
+          }
+        }
       }
     }
   });
