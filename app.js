@@ -1277,6 +1277,25 @@ app.post("/saveRewardCard", (req, res) => {
   });
 });
 
+app.get("/sendProgress", (req, res) =>{
+  User.findOne({
+    email: signedInUser
+  }, function(err, foundList){
+    if(!err){
+      if(foundList){
+        kids = foundList.kids;
+        for (let i = 0; i < kids.length; i++) {
+          if(kids[i]._id == kidProfileCurrentlyIn.kidID){
+            User.findOne({email: signedInUser}).then((user) => {
+              res.json(user.kids[i].progress);
+            });
+          }
+        }
+      }
+    }
+  });
+});
+
 app.get("/getRewardCard", (req, res) => {
   User.findOne({
     email: signedInUser
