@@ -1379,9 +1379,7 @@ app.post("/MathsOCR", function(req, res) {
     convertToText();
 
   });
-
-
-
+  res.redirect('/maths');
 });
 
 app.post("/EnglishOCR", function(req, res) {
@@ -1421,8 +1419,8 @@ app.post("/EnglishOCR", function(req, res) {
       englishAnswer = text;
     }
     convertToText();
-    res.redirect("/english");
   });
+  res.redirect('/english');
 
 });
 
@@ -1464,6 +1462,7 @@ app.post("/UrduOCR", function(req, res) {
     }
     convertToText();
   });
+  res.redirect('/urdud');
 
 });
 
@@ -1549,20 +1548,49 @@ app.post("/createplanner", function(req, res) {
   console.log("Number of Days" + diffDays);
   // var remainderTasks = engTaskList.length % diffDays;
   // var notRemainingTasksDivision = diffDays - remainderTasks;
-  var numberOfTaskPerDay = Math.round(engTaskList.length / diffDays);
 
-  console.log("Number of tasks to be divided Per Day" + numberOfTaskPerDay);
+  if(diffDays>4 && diffDays<=24){
 
-  if (numberOfTaskPerDay < (engTaskList.length / diffDays)) {
-    console.log("Modulus Exist");
-    var remainderTasks = engTaskList.length % diffDays;
-    var notRemainingTasksDivision = diffDays - remainderTasks;
+    var numberOfTaskPerDay = Math.round(engTaskList.length / diffDays);
 
-    for (i = 1, j = 1, l = 0; i <= diffDays; i++) {
-      engPlanner['day' + i] = {};
-      mathPlanner['day' + i] = {};
-      urduPlanner['day' + i] = {};
-      if (i <= notRemainingTasksDivision) {
+    console.log("Number of tasks to be divided Per Day" + numberOfTaskPerDay);
+
+    if (numberOfTaskPerDay < (engTaskList.length / diffDays)) {
+      console.log("Modulus Exist");
+      var remainderTasks = engTaskList.length % diffDays;
+      var notRemainingTasksDivision = diffDays - remainderTasks;
+
+      for (i = 1, j = 1, l = 0; i <= diffDays; i++) {
+        engPlanner['day' + i] = {};
+        mathPlanner['day' + i] = {};
+        urduPlanner['day' + i] = {};
+        if (i <= notRemainingTasksDivision) {
+          for (k = 0; k < numberOfTaskPerDay; k++) {
+            engPlanner['day' + i]['Task' + j] = engTaskList[l];
+            mathPlanner['day' + i]['Task' + j] = mathTaskList[l];
+            urduPlanner['day' + i]['Task' + j] = urduTaskList[l];
+            j++;
+            l++;
+            console.log(engPlanner);
+          }
+        } else {
+          for (k = 0; k < numberOfTaskPerDay + 1; k++) {
+            engPlanner['day' + i]['Task' + j] = engTaskList[l];
+            mathPlanner['day' + i]['Task' + j] = mathTaskList[l];
+            urduPlanner['day' + i]['Task' + j] = urduTaskList[l];
+            j++;
+            l++;
+            console.log(engPlanner);
+          }
+        }
+      }
+
+    } else {
+      console.log("Modulus Doesnt exist");
+      for (i = 1, j = 1, l = 0; i <= diffDays; i++) {
+        engPlanner['day' + i] = {};
+        mathPlanner['day' + i] = {};
+        urduPlanner['day' + i] = {};
         for (k = 0; k < numberOfTaskPerDay; k++) {
           engPlanner['day' + i]['Task' + j] = engTaskList[l];
           mathPlanner['day' + i]['Task' + j] = mathTaskList[l];
@@ -1571,107 +1599,85 @@ app.post("/createplanner", function(req, res) {
           l++;
           console.log(engPlanner);
         }
-      } else {
-        for (k = 0; k < numberOfTaskPerDay + 1; k++) {
-          engPlanner['day' + i]['Task' + j] = engTaskList[l];
-          mathPlanner['day' + i]['Task' + j] = mathTaskList[l];
-          urduPlanner['day' + i]['Task' + j] = urduTaskList[l];
-          j++;
-          l++;
-          console.log(engPlanner);
-        }
       }
     }
+
+    console.log(engPlanner);
+    console.log(mathPlanner);
+    console.log(urduPlanner);
+
+    console.log(_.size(engPlanner));
+    var engPlannerSize  = _.size(engPlanner);
+
+    for (var a=1, b=0; a<=engPlannerSize; a++,b++){
+        console.log(_.size(engPlanner['day'+a]));
+        dayTaskLength.push(_.size(engPlanner['day'+a]));
+        console.log('Push Successful');
+    }
+
+    console.log(dayTaskLength);
+
+    // for (var a = 0,b=1; a < _.size(engPlanner); a++,b++) {
+    //   dayTaskLength[a]  = _.size(engPlanner['day'+b]);
+    // }
+
+    console.log(engPlanner);
+    console.log(mathPlanner);
+    console.log(urduPlanner);
+    console.log(selectedDates);
+    console.log(dayTaskLength);
+
+
+    var engPlannerArray = [];
+    var mathPlannerArray = [];
+    var urduPlannerArray = [];
+
+    engPlannerArray.push(engPlanner);
+    mathPlannerArray.push(mathPlanner);
+    urduPlannerArray.push(urduPlanner);
+
+    User.findOne({
+      email: signedInUser
+    }, function(err, foundList) {
+      if (!err) {
+        if (foundList) {
+          var new_kids = foundList.kids;
+          for (let i = 0; i < foundList.kids.length; i++) {
+            if (new_kids[i]._id == kidID) {
+              new_kids[i].engPlanner = engPlannerArray;
+              new_kids[i].mathPlanner = mathPlannerArray;
+              new_kids[i].urduPlanner = urduPlannerArray;
+              new_kids[i].dates = selectedDates;
+              new_kids[i].dayTaskLength = dayTaskLength;
+            }
+          }
+          console.log(kids);
+          User.findOneAndUpdate({
+            email: signedInUser
+          }, {
+            kids: new_kids
+          }, function(err, foundList) {
+            if (foundList) {
+              console.log("Updated Successfully");
+              // res.redirect("/dashboard");
+            }
+          });
+        }
+      }
+    });
+
+    res.render("customplanner", {
+      engPlanner: engPlanner,
+      mathPlanner: mathPlanner,
+      urduPlanner: urduPlanner,
+      dates: selectedDates,
+      dayTaskLength: dayTaskLength
+    });
 
   } else {
-    console.log("Modulus Doesnt exist");
-    for (i = 1, j = 1, l = 0; i <= diffDays; i++) {
-      engPlanner['day' + i] = {};
-      mathPlanner['day' + i] = {};
-      urduPlanner['day' + i] = {};
-      for (k = 0; k < numberOfTaskPerDay; k++) {
-        engPlanner['day' + i]['Task' + j] = engTaskList[l];
-        mathPlanner['day' + i]['Task' + j] = mathTaskList[l];
-        urduPlanner['day' + i]['Task' + j] = urduTaskList[l];
-        j++;
-        l++;
-        console.log(engPlanner);
-      }
-    }
+      res.redirect("/customplanner");
   }
 
-  console.log(engPlanner);
-  console.log(mathPlanner);
-  console.log(urduPlanner);
-
-  console.log(_.size(engPlanner));
-  var engPlannerSize  = _.size(engPlanner);
-
-  for (var a=1, b=0; a<=engPlannerSize; a++,b++){
-      console.log(_.size(engPlanner['day'+a]));
-      dayTaskLength.push(_.size(engPlanner['day'+a]));
-      console.log('Push Successful');
-  }
-
-  console.log(dayTaskLength);
-
-  // for (var a = 0,b=1; a < _.size(engPlanner); a++,b++) {
-  //   dayTaskLength[a]  = _.size(engPlanner['day'+b]);
-  // }
-
-  console.log(engPlanner);
-  console.log(mathPlanner);
-  console.log(urduPlanner);
-  console.log(selectedDates);
-  console.log(dayTaskLength);
-
-
-  var engPlannerArray = [];
-  var mathPlannerArray = [];
-  var urduPlannerArray = [];
-
-  engPlannerArray.push(engPlanner);
-  mathPlannerArray.push(mathPlanner);
-  urduPlannerArray.push(urduPlanner);
-
-  User.findOne({
-    email: signedInUser
-  }, function(err, foundList) {
-    if (!err) {
-      if (foundList) {
-        var new_kids = foundList.kids;
-        for (let i = 0; i < foundList.kids.length; i++) {
-          if (new_kids[i]._id == kidID) {
-            new_kids[i].engPlanner = engPlannerArray;
-            new_kids[i].mathPlanner = mathPlannerArray;
-            new_kids[i].urduPlanner = urduPlannerArray;
-            new_kids[i].dates = selectedDates;
-            new_kids[i].dayTaskLength = dayTaskLength;
-          }
-        }
-        console.log(kids);
-        User.findOneAndUpdate({
-          email: signedInUser
-        }, {
-          kids: new_kids
-        }, function(err, foundList) {
-          if (foundList) {
-            console.log("Updated Successfully");
-            // res.redirect("/dashboard");
-          }
-        });
-      }
-    }
-  });
-
-
-  res.render("customplanner", {
-    engPlanner: engPlanner,
-    mathPlanner: mathPlanner,
-    urduPlanner: urduPlanner,
-    dates: selectedDates,
-    dayTaskLength: dayTaskLength
-  });
 
   // for(i=1,j=1,l=0;i<=diffDays;i++){
   //   planner['day' + i] = {};
