@@ -194,7 +194,17 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number"><%= kidProfile.experiencePoints %></div>
+                            <% if(kidProfile.gameScores.length == 0 &&  kidProfile.learningResources.length == 0) { %>
+                                <div class="overview__number">0</div>
+                            <% } else { %>
+                                <% var totalExperiencePoints = 0 %>
+                                <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                                      <% if(kidProfile.gameScores[i].subject == "English") { %>
+                                              <% totalExperiencePoints += kidProfile.gameScores[i].experiencePoints %>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            <div class="overview__number"><%=totalExperiencePoints%></div>
                             <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -236,7 +246,19 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">8.2</div>
+                            <% if(kidProfile.gameScores.length == 0) { %>
+                                  <div class="overview__number">0</div>
+                            <% } else { %>
+
+                                <% var totalScore = 0 %>
+                                <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                                      <% if(kidProfile.gameScores[i].subject == "English") { %>
+                                              <% totalScore += kidProfile.gameScores[i].gameScore %>
+                                        <% } %>
+                                    <% } %>
+                                  <% var avgScore = totalScore/kidProfile.gameScores.length %>
+                                <% } %>
+                            <div class="overview__number"><%=avgScore%></div>
                             <div class="overview__status overview__status_up">Points<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -364,10 +386,6 @@
                               </div>
                               <div class="overview__legend">
                                 <div class="overview__parameter">
-                                  <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Learning Resources</div>
-                                </div>
-                                <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
                                   <div class="overview__text">Games</div>
                                 </div>
@@ -416,7 +434,17 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number"><%= kidProfile.experiencePoints %></div>
+                            <% if(kidProfile.gameScores.length == 0 &&  kidProfile.learningResources.length == 0) { %>
+                                <div class="overview__number">0</div>
+                            <% } else { %>
+                                <% var totalExperiencePoints = 0 %>
+                                <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                                      <% if(kidProfile.gameScores[i].subject == "Maths") { %>
+                                              <% totalExperiencePoints += kidProfile.gameScores[i].experiencePoints %>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            <div class="overview__number"><%=totalExperiencePoints%></div>
                             <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -461,7 +489,19 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">7.5</div>
+                            <% if(kidProfile.gameScores.length == 0) { %>
+                                  <div class="overview__number">0</div>
+                            <% } else { %>
+
+                                <% var totalScore = 0 %>
+                                <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                                      <% if(kidProfile.gameScores[i].subject == "Maths") { %>
+                                              <% totalScore += kidProfile.gameScores[i].gameScore %>
+                                        <% } %>
+                                    <% } %>
+                                  <% var avgScore = totalScore/kidProfile.gameScores.length %>
+                                <% } %>
+                            <div class="overview__number"><%=avgScore%></div>
                             <div class="overview__status overview__status_up">Points<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -590,10 +630,6 @@
                               </div>
                               <div class="overview__legend">
                                 <div class="overview__parameter">
-                                  <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Learning Resources</div>
-                                </div>
-                                <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
                                   <div class="overview__text">Games</div>
                                 </div>
@@ -643,7 +679,17 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number"><%= kidProfile.experiencePoints %></div>
+                            <% if(kidProfile.gameScores.length == 0 &&  kidProfile.learningResources.length == 0) { %>
+                                <div class="overview__number">0</div>
+                            <% } else { %>
+                                <% var totalExperiencePoints = 0 %>
+                                <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                                      <% if(kidProfile.gameScores[i].subject == "Urdu") { %>
+                                              <% totalExperiencePoints += kidProfile.gameScores[i].experiencePoints %>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            <div class="overview__number"><%=totalExperiencePoints%></div>
                             <div class="overview__status overview__status_up">XP<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -688,7 +734,19 @@
                               </svg></div>
                           </div>
                           <div class="overview__flex">
-                            <div class="overview__number">6.4</div>
+                            <% if(kidProfile.gameScores.length == 0) { %>
+                                  <div class="overview__number">0</div>
+                            <% } else { %>
+
+                                <% var totalScore = 0 %>
+                                <% for(i=0;i<kidProfile.gameScores.length;i++) { %>
+                                      <% if(kidProfile.gameScores[i].subject == "Urdu") { %>
+                                              <% totalScore += kidProfile.gameScores[i].gameScore %>
+                                        <% } %>
+                                    <% } %>
+                                  <% var avgScore = totalScore/kidProfile.gameScores.length %>
+                                <% } %>
+                            <div class="overview__number"><%=avgScore%></div>
                             <div class="overview__status overview__status_up">Points<svg class="icon icon-arrow-top">
                                 <use xlink:href="img/sprite.svg#icon-arrow-top"></use>
                               </svg></div>
@@ -816,10 +874,6 @@
 
                               </div>
                               <div class="overview__legend">
-                                <div class="overview__parameter">
-                                  <div class="overview__bg" style="background-color: #0062FF;"></div>
-                                  <div class="overview__text">Learning Resources</div>
-                                </div>
                                 <div class="overview__parameter">
                                   <div class="overview__bg" style="background-color: #3DD598;"></div>
                                   <div class="overview__text">Games</div>
