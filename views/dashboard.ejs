@@ -58,7 +58,7 @@
         </div>
 
 
-        <div class="student__list student__list_2 student__list__margin">
+        <div class="student__list student__list_2 student__list__margin" style="margin-bottom: 245px;">
           <% for (let i=0; i<kids.length; i++) { %>
           <div class="student__item">
             <% if (kids[i].gender === "Male") { %>
@@ -101,40 +101,6 @@
           </div>
 
           <% } %>
-        </div>
-
-        <div class="student__dashboard">
-          <div class="student__head">
-            <h1 class="student__title title title_big">Overall Statistics</h1>
-
-            <!-- Experience Points Statistics -->
-
-            <% var totalExperiencePoints = 0 %>
-            <% for (let i=0; i<kids.length; i++) { %>
-              <% totalExperiencePoints += kids[i].experiencePoints %>
-              <% } %>
-
-            <div class="admin__card admin__card_p30">
-              <div class="admin__top">
-                <div class="admin__details">
-                  <div class="admin__total">Total Experience Points</div>
-                  <div class="admin__number"><%= totalExperiencePoints %> </div>
-                </div>
-                <div class="admin__legends">
-                  <% for (let i=0; i<kids.length; i++) { %>
-                  <div class="admin__parameter">
-                    <div class="admin__bg" style="background-color: <%=colors[i]%>;"></div>
-                    <div class="admin__text"><%=kids[i].name%></div>
-                  </div>
-                  <% } %>
-                </div>
-              </div>
-              <div class="admin__chart admin__chart_total">
-                <div id="chart-total-impressions"></div>
-              </div>
-            </div>
-
-          </div>
         </div>
       </div>
 

@@ -554,7 +554,7 @@ Apex.chart = {
 // chart counter cases (page circle overview)
 (function () {
   var options = {
-    series: [46],
+    series: [mathGameScore[0]*100],
     chart: {
       height: '100%',
       type: 'radialBar'
@@ -587,7 +587,7 @@ Apex.chart = {
 // chart counter applications (page circle overview)
 (function () {
   var options = {
-    series: [74],
+    series: [mathGameScore[1]*100],
     chart: {
       height: '100%',
       type: 'radialBar'
@@ -620,7 +620,7 @@ Apex.chart = {
 // chart counter products (page circle overview)
 (function () {
   var options = {
-    series: [14],
+    series: [mathGameScore[2]*100],
     chart: {
       height: '100%',
       type: 'radialBar'

@@ -484,7 +484,7 @@ Apex.chart = {
 // chart counter cases (page circle overview)
 (function () {
   var options = {
-    series: [46],
+    series: [engGameScore[0]*100],
     chart: {
       height: '100%',
       type: 'radialBar'
@@ -517,7 +517,7 @@ Apex.chart = {
 // chart counter applications (page circle overview)
 (function () {
   var options = {
-    series: [74],
+    series: [engGameScore[1]*100],
     chart: {
       height: '100%',
       type: 'radialBar'
@@ -541,7 +541,7 @@ Apex.chart = {
     }
   };
 
-  var chart = document.querySelector('#chart-counter-applications');
+  var chart = document.querySelector('#chart-english-applications');
   if (chart != null) {
     new ApexCharts(chart, options).render();
   }
@@ -550,7 +550,7 @@ Apex.chart = {
 // chart counter products (page circle overview)
 (function () {
   var options = {
-    series: [14],
+    series: [engGameScore[2]*100],
     chart: {
       height: '100%',
       type: 'radialBar'
@@ -574,7 +574,7 @@ Apex.chart = {
     }
   };
 
-  var chart = document.querySelector('#chart-counter-products');
+  var chart = document.querySelector('#chart-english-products');
   if (chart != null) {
     new ApexCharts(chart, options).render();
   }
