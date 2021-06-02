@@ -88,7 +88,7 @@
                   <% for(j=0;j<kids[i].gameScores.length;j++) { %>
                         <% totalScore += kids[i].gameScores[j].gameScore  %>
                       <% } %>
-                    <% var avgScore = totalScore/kids[i].gameScores.length %>
+                    <% var avgScore = Math.round(totalScore/kids[i].gameScores.length) %>
                         <div class="student__counter"><%= avgScore %></div>
                     <% } %>
               </div>
