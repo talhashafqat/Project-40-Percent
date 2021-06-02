@@ -522,41 +522,46 @@ app.post("/dashboard", function(req, res) {
       if (foundList) {
         kidProfile = foundList.kids;
         for (let i = 0; i < kidProfile.length; i++) {
-          if (kidProfile[i]._id == kidID && kidProfile[i].gameScores.length!=0) {
+          if (kidProfile[i]._id == kidID){
 
-            for(k=0;k<kidProfile[i].gameScores.length;k++){
-              if(kidProfile[i].gameScores[k].subject == "English"){
-                engGameName.push(kidProfile[i].gameScores[k].gameTitle);
-                engGameTimes.push(kidProfile[i].gameScores[k].gameTime);
-                engGameScore.push(kidProfile[i].gameScores[k].gameScore);
-              }
 
-              if(kidProfile[i].gameScores[k].subject == "Maths"){
-                mathGameName.push(kidProfile[i].gameScores[k].gameTitle);
-                mathGameTimes.push(kidProfile[i].gameScores[k].gameTime);
-                mathGameScore.push(kidProfile[i].gameScores[k].gameScore);
-              }
-
-              if(kidProfile[i].gameScores[k].subject == "Urdu"){
-                urduGameName.push(kidProfile[i].gameScores[k].gameTitle);
-                urduGameTimes.push(kidProfile[i].gameScores[k].gameTime);
-                urduGameScore.push(kidProfile[i].gameScores[k].gameScore);
-              }
-
-              if(kidProfile[i].learningResources.length!=0 ){
-                if(kidProfile[i].learningResources[k].subject == "English"){
-                  engLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+            if(kidProfile[i].gameScores.length!=0 || kidProfile[i].learningResources.length!=0 ){
+              for(k=0;k<kidProfile[i].gameScores.length;k++){
+                if(kidProfile[i].gameScores[k].subject == "English"){
+                  engGameName.push(kidProfile[i].gameScores[k].gameTitle);
+                  engGameTimes.push(kidProfile[i].gameScores[k].gameTime);
+                  engGameScore.push(kidProfile[i].gameScores[k].gameScore);
                 }
 
-                if(kidProfile[i].learningResources[k].subject == "Maths"){
-                  mathLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+                if(kidProfile[i].gameScores[k].subject == "Maths"){
+                  mathGameName.push(kidProfile[i].gameScores[k].gameTitle);
+                  mathGameTimes.push(kidProfile[i].gameScores[k].gameTime);
+                  mathGameScore.push(kidProfile[i].gameScores[k].gameScore);
                 }
-                if(kidProfile[i].learningResources[k].subject == "Urdu"){
-                  urduLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
-                }
-              }
 
+                if(kidProfile[i].gameScores[k].subject == "Urdu"){
+                  urduGameName.push(kidProfile[i].gameScores[k].gameTitle);
+                  urduGameTimes.push(kidProfile[i].gameScores[k].gameTime);
+                  urduGameScore.push(kidProfile[i].gameScores[k].gameScore);
+                }
+
+                if(kidProfile[i].learningResources.length!=0 ){
+                  if(kidProfile[i].learningResources[k].subject == "English"){
+                    engLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+                  }
+
+                  if(kidProfile[i].learningResources[k].subject == "Maths"){
+                    mathLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+                  }
+                  if(kidProfile[i].learningResources[k].subject == "Urdu"){
+                    urduLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+                  }
+                }
+
+              }
             }
+
+
 
             console.log(engGameName);
             console.log(engGameTimes);
