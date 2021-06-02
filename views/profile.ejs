@@ -873,32 +873,18 @@
 
 <script>
 
-  var engGameScore1 = <%=engGameScore1 %>
-  var engGameScore2 = <%=engGameScore2 %>
-  var engGameScore3 = <%=engGameScore3 %>
+  var engGameScore  = [<%=engGameScore1 %>,<%=engGameScore2 %>,<%=engGameScore3 %>];
+  var engGameTime = [<%=engGameTime1 %>, <%=engGameTime2 %>,<%=engGameTime3 %>]
+  var engLearningTime = [<%=engLearningTime1 %>, <%=engLearningTime2 %>,<%=engLearningTime3 %>]
 
-  // for(i=0;i<kidProfile.gameScores;i++){
-  //   engGameName.push(kid.gameScores[i].gameTitle);
-  //   engGameTimes.push(kid.gameScores[i].gameTime);
-  //   engGameScore.push(kid.gameScores[i].gameScore);
-  // }
+  var mathGameScore  = [<%=mathGameScore1 %>,<%=mathGameScore2 %>,<%=mathGameScore3 %>];
+  var mathGameTime = [<%=mathGameTime1 %>, <%=mathGameTime2 %>,<%=mathGameTime3 %>]
+  var mathLearningTime = [<%=mathLearningTime1 %>, <%=mathLearningTime2 %>,<%=mathLearningTime3 %>]
 
+  var urduGameScore  = [<%=urduGameScore1 %>,<%=urduGameScore2 %>,<%=urduGameScore3 %>];
+  var urduGameTime = [<%=urduGameTime1 %>, <%=urduGameTime2 %>,<%=urduGameTime3 %>]
+  var urduLearningTime = [<%=urduLearningTime1 %>, <%=urduLearningTime2 %>,<%=urduLearningTime3 %>]
 
-  // kidProfile.forEach((kid,i) => {
-  //
-  //   if(kid.gameScores.subject == "English"){
-  //     engGameName.push(kid.gameScores[i].gameTitle);
-  //     engGameTimes.push(kid.gameScores[i].gameTime);
-  //     engGameScore.push(kid.gameScores[i].gameScore);
-  //   }
-  //
-  //   if(kid.learningResources.subject == "English"){
-  //     engLearningTimes.push(kid.learningResources[i].learningTime);
-  //   }
-  //
-  // });
-
-  // console.log(engGameName + " " + engGameTimes + " " + engLearningTimes + " " + engGameScore);
 
 </script>
 

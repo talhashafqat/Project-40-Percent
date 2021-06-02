@@ -504,6 +504,15 @@ app.post("/dashboard", function(req, res) {
   var engLearningTimes = [];
   var engGameScore = [];
 
+  var mathGameName = [];
+  var mathGameTimes = [];
+  var mathLearningTimes = [];
+  var mathGameScore = [];
+
+  var urduGameName = [];
+  var urduGameTimes = [];
+  var urduLearningTimes = [];
+  var urduGameScore = [];
 
 
   User.findOne({
@@ -513,18 +522,217 @@ app.post("/dashboard", function(req, res) {
       if (foundList) {
         kidProfile = foundList.kids;
         for (let i = 0; i < kidProfile.length; i++) {
-          if (kidProfile[i]._id == kidID) {
+          if (kidProfile[i]._id == kidID && kidProfile[i].gameScores.length!=0) {
 
             for(k=0;k<kidProfile[i].gameScores.length;k++){
-              engGameName.push(kidProfile[i].gameScores[k].gameTitle);
-              engGameTimes.push(kidProfile[i].gameScores[k].gameTime);
-              engGameScore.push(kidProfile[i].gameScores[k].gameScore);
+              if(kidProfile[i].gameScores[k].subject == "English"){
+                engGameName.push(kidProfile[i].gameScores[k].gameTitle);
+                engGameTimes.push(kidProfile[i].gameScores[k].gameTime);
+                engGameScore.push(kidProfile[i].gameScores[k].gameScore);
+              }
+
+              if(kidProfile[i].gameScores[k].subject == "Maths"){
+                mathGameName.push(kidProfile[i].gameScores[k].gameTitle);
+                mathGameTimes.push(kidProfile[i].gameScores[k].gameTime);
+                mathGameScore.push(kidProfile[i].gameScores[k].gameScore);
+              }
+
+              if(kidProfile[i].gameScores[k].subject == "Urdu"){
+                urduGameName.push(kidProfile[i].gameScores[k].gameTitle);
+                urduGameTimes.push(kidProfile[i].gameScores[k].gameTime);
+                urduGameScore.push(kidProfile[i].gameScores[k].gameScore);
+              }
+
+              if(kidProfile[i].learningResources.length!=0 ){
+                if(kidProfile[i].learningResources[k].subject == "English"){
+                  engLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+                }
+
+                if(kidProfile[i].learningResources[k].subject == "Maths"){
+                  mathLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+                }
+                if(kidProfile[i].learningResources[k].subject == "Urdu"){
+                  urduLearningTimes.push(kidProfile[i].learningResources[k].learningTime);
+                }
+              }
+
             }
 
             console.log(engGameName);
             console.log(engGameTimes);
             console.log(engGameScore);
 
+            //English Game Scoring
+            if(engGameScore[0]!= null){
+              var gameScore1 = engGameScore[0]
+            } else {
+              gameScore1 = 0;
+            }
+
+            if(engGameScore[1]!= null){
+              var gameScore2 = engGameScore[1]
+            } else {
+              gameScore2 = 0;
+            }
+
+            if(engGameScore[2]!= null){
+              var gameScore3 = engGameScore[2]
+            } else {
+              gameScore3 = 0;
+            }
+
+            //English Game Timing\
+            if(engGameTimes[0]!= null) {
+              var engGameTime1 = engGameTimes[0]
+            } else {
+              engGameTime1 = 0;
+            }
+
+            if(engGameTimes[1]!= null) {
+              var engGameTime2 = engGameTimes[1]
+            } else {
+              engGameTime2 = 0;
+            }
+
+            if(engGameTimes[2]!= null) {
+              var engGameTime3 = engGameTimes[2]
+            } else {
+              engGameTime3 = 0;
+            }
+
+            //English  Learning Timing
+            if(engLearningTimes[0] != null){
+              var engLearningTime1 = engLearningTimes[0]
+            } else {
+              engLearningTime1 = 0;
+            }
+
+            if(engLearningTimes[1] != null){
+              var engLearningTime2 = engLearningTimes[1]
+            } else {
+              engLearningTime2 = 0;
+            }
+
+            if(engLearningTimes[2] != null){
+              var engLearningTime3 = engLearningTimes[2]
+            } else {
+              engLearningTime3 = 0;
+            }
+
+            //Maths Game Scoring
+            if(mathGameScore[0]!= null){
+              var mathgameScore1 = mathGameScore[0]
+            } else {
+              mathgameScore1 = 0;
+            }
+
+            if(mathGameScore[1]!= null){
+              var mathgameScore2 = mathGameScore[1]
+            } else {
+              mathgameScore2 = 0;
+            }
+
+            if(mathGameScore[2]!= null){
+              var mathgameScore3 = mathGameScore[2]
+            } else {
+              mathgameScore3 = 0;
+            }
+
+            //Math Game Timing\
+            if(mathGameTimes[0]!= null) {
+              var mathGameTime1 = mathGameTimes[0]
+            } else {
+              mathGameTime1 = 0;
+            }
+
+            if(mathGameTimes[1]!= null) {
+              var mathGameTime2 = mathGameTimes[1]
+            } else {
+              mathGameTime2 = 0;
+            }
+
+            if(mathGameTimes[2]!= null) {
+              var mathGameTime3 = mathGameTimes[2]
+            } else {
+              mathGameTime3 = 0;
+            }
+
+            //mathlish  Learning Timing
+            if(mathLearningTimes[0] != null){
+              var mathLearningTime1 = mathLearningTimes[0]
+            } else {
+              mathLearningTime1 = 0;
+            }
+
+            if(mathLearningTimes[1] != null){
+              var mathLearningTime2 = mathLearningTimes[1]
+            } else {
+              mathLearningTime2 = 0;
+            }
+
+            if(mathLearningTimes[2] != null){
+              var mathLearningTime3 = mathLearningTimes[2]
+            } else {
+              mathLearningTime3 = 0;
+            }
+
+
+            //Urdu Game Scoring
+            if(urduGameScore[0]!= null){
+              var urdugameScore1 = urduGameScore[0]
+            } else {
+              urdugameScore1 = 0;
+            }
+
+            if(urduGameScore[1]!= null){
+              var urdugameScore2 = urduGameScore[1]
+            } else {
+              urdugameScore2 = 0;
+            }
+
+            if(urduGameScore[2]!= null){
+              var urdugameScore3 = urduGameScore[2]
+            } else {
+              urdugameScore3 = 0;
+            }
+
+            //urdu Game Timing\
+            if(urduGameTimes[0]!= null) {
+              var urduGameTime1 = urduGameTimes[0]
+            } else {
+              urduGameTime1 = 0;
+            }
+
+            if(urduGameTimes[1]!= null) {
+              var urduGameTime2 = urduGameTimes[1]
+            } else {
+              urduGameTime2 = 0;
+            }
+
+            if(urduGameTimes[2]!= null) {
+              var urduGameTime3 = urduGameTimes[2]
+            } else {
+              urduGameTime3 = 0;
+            }
+
+            //urdulish  Learning Timing
+            if(urduLearningTimes[0] != null){
+              var urduLearningTime1 = urduLearningTimes[0]
+            } else {
+              urduLearningTime1 = 0;
+            }
+
+            if(urduLearningTimes[1] != null){
+              var urduLearningTime2 = urduLearningTimes[1]
+            } else {
+              urduLearningTime2 = 0;
+            }
+
+            if(urduLearningTimes[2] != null){
+              var urduLearningTime3 = urduLearningTimes[2]
+            } else {
+              urduLearningTime3 = 0;
+            }
 
             res.render("profile", {
               kidProfile: kidProfile[i],
@@ -532,9 +740,33 @@ app.post("/dashboard", function(req, res) {
               engGameName: engGameName,
               engGameTimes: engGameTimes,
               engGameScore : engGameScore,
-              engGameScore1 : engGameScore[0],
-              engGameScore2 : engGameScore[1],
-              engGameScore3: engGameScore[2]
+              engGameScore1 : gameScore1,
+              engGameScore2 : gameScore2,
+              engGameScore3: gameScore3,
+              engGameTime1: engGameTime1,
+              engGameTime2: engGameTime2,
+              engGameTime3: engGameTime3,
+              engLearningTime1: engLearningTime1,
+              engLearningTime2: engLearningTime2,
+              engLearningTime3: engLearningTime3,
+              mathGameScore1 : mathgameScore1,
+              mathGameScore2 : mathgameScore2,
+              mathGameScore3: mathgameScore3,
+              mathGameTime1: mathGameTime1,
+              mathGameTime2: mathGameTime2,
+              mathGameTime3: mathGameTime3,
+              mathLearningTime1: mathLearningTime1,
+              mathLearningTime2: mathLearningTime2,
+              mathLearningTime3: mathLearningTime3,
+              urduGameScore1 : urdugameScore1,
+              urduGameScore2 : urdugameScore2,
+              urduGameScore3: urdugameScore3,
+              urduGameTime1: urduGameTime1,
+              urduGameTime2: urduGameTime2,
+              urduGameTime3: urduGameTime3,
+              urduLearningTime1: urduLearningTime1,
+              urduLearningTime2: urduLearningTime2,
+              urduLearningTime3: urduLearningTime3
             })
             kidProfileCurrentlyIn = {
               kidID: kidID,
@@ -870,7 +1102,7 @@ app.post("/getEngGameProgress", (req, res) => {
             if(kid.progress[0].engGamesProgress < engGamesProgress){
               kid.progress[0].engGamesProgress = engGamesProgress;
             }
-            
+
           }
         });
 
@@ -903,7 +1135,7 @@ app.post("/getUrduLrProgress", (req, res) => {
             if(kid.progress[0].urduLrProgress < urduLrProgress){
               kid.progress[0].urduLrProgress = urduLrProgress;
             }
-            
+
           }
         });
 

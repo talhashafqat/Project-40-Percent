@@ -359,10 +359,10 @@ Apex.chart = {
     labels: ['Task 1', 'Task 2', 'Task 3'],
     series: [{
       name: 'Learning Resources',
-      data: [442, 380, 275]
+      data: urduLearningTime
     }, {
       name: 'Games',
-      data: [375, 370, 435]
+      data: urduGameTime
     }],
     colors: [blue, green],
     chart: {
@@ -655,13 +655,10 @@ Apex.chart = {
   var options = {
     labels: ['Task 1', 'Task 2', 'Task 3'],
     series: [{
-      name: 'Learning Resources',
-      data: [8,6,4]
-    }, {
       name: 'Games',
-      data: [5,8,9]
+      data: urduGameScore
     }],
-    colors: [blue, green],
+    colors: [green],
     chart: {
       height: '100%',
       type: 'bar',

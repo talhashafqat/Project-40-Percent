@@ -585,10 +585,10 @@ Apex.chart = {
     labels: ['Task 1', 'Task 2', 'Task 3'],
     series: [{
       name: 'Learning Resources',
-      data: [442, 380, 275]
+      data: engLearningTime
     }, {
       name: 'Games',
-      data: [259, 370, 435]
+      data: engGameTime
     }],
     colors: [blue, green],
     chart: {
@@ -658,7 +658,7 @@ Apex.chart = {
     labels: ['Task 1', 'Task 2', 'Task 3'],
     series: [{
       name: 'Games',
-      data: [engGameScore1, engGameScore2 , engGameScore3 ]
+      data: engGameScore
     }],
     colors: [green],
     chart: {
