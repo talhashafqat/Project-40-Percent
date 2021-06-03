@@ -1379,7 +1379,7 @@ app.post("/MathsOCR", function(req, res) {
     convertToText();
 
   });
-  res.redirect('/maths');
+
 });
 
 app.post("/EnglishOCR", function(req, res) {
@@ -1420,7 +1420,6 @@ app.post("/EnglishOCR", function(req, res) {
     }
     convertToText();
   });
-  res.redirect('/english');
 
 });
 
@@ -1462,7 +1461,7 @@ app.post("/UrduOCR", function(req, res) {
     }
     convertToText();
   });
-  res.redirect('/urdud');
+
 
 });
 
